@@ -10,7 +10,7 @@ To 'install' Ego Menu, simply:
 5️⃣ \\ # Hover over the bottom left screen to unhide the Ego Menu
 
 ## Usage
-# You have to click on the bookmarklet ## ONCE # before using it on a page
+# You have to click on the bookmarklet ONCE before using it on a page
 ## Staff
 Ego Menu is currently being developed by
 - me... lol [@yeahbread](https://github.com/yeahbread)
