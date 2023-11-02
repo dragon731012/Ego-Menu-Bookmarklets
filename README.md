@@ -3,7 +3,7 @@ Ego Menu is a bookmarklet UI with a collection of bookmarklets that enhance user
 
 ## Installation
 To 'install' Ego Menu, simply:
-- 1️⃣ \\ # Make sure bookmark bar is active on chrome
+- 1️⃣ \\ # Make sure bookmark bar is active on chrome [ENABLE HERE](chrome://settings/?search=Show+bookmarks+bar)
 - 2️⃣ // # Visit [Menu.js Source Code](https://raw.githubusercontent.com/yeahbread/Ego-Menu-Bookmarklets/main/Menu.js), and copy everything from that page.
 - 3️⃣ \\ # Paste the copied code from the previous step into the URL entry of a bookmark
 - 4️⃣ // # Visit a website (bookmarklets don't work on SOME strict sites, or on chrome://newtab), and press the bookmarklet you just made.
