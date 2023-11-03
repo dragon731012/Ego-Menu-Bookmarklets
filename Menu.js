@@ -972,7 +972,7 @@ div#ego-stream-container {
               DELAY = document.getElementById("delayInput").value;
               document.body.addEventListener("click", addClicker, 0);
               document.body.style.cursor = "crosshair";
-              document.getElementById("statusIndicator").textContent = "[🟢}Active";
+              document.getElementById("statusIndicator").textContent = "[🟢]Active";
             }
           } else if (e.key == ",") {
             if (autoclickerEnabled) {
