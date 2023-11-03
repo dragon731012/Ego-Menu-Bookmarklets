@@ -139,16 +139,18 @@ javascript: (function() {
           border-radius: 5px;
       }
       .EgoXButton {
-          background-color: #000000c9;
-          color: #fff;
-          border: none;
-          padding: 5px 10px;
-          cursor: pointer;
-          border-radius: 100%;
-          position: absolute;
-          right: -1vmin;
-          top: 0;
-      }
+        background-color: #000000b3;
+        color: #fff;
+        border: black 1mm solid;
+        padding: 0.6mm 3mm;
+        cursor: pointer;
+        border-radius: 1mm;
+        position: absolute;
+        margin: 0;
+        right: 1%;
+        top: -4.1vmin;
+        transform: skewX(-10deg);
+    }
       .EgoLogo {
         background-image: url("https://cdn.glitch.global/efbbe251-937e-4c16-898c-cdfb9e3d65f4/fullLogo?v=1697857559723");
         background-size: 4vmax;
@@ -614,6 +616,17 @@ div#ego-stream-container {
   position: absolute;
   font-weight: 300;
 }
+.EgoWindowPopoutTitle {
+  position: absolute;
+  background-color: black;
+  padding: 1mm;
+  top: -4vmin;
+  transform: translateX(-50%) skewx(-10deg);
+  left: 50%;
+  width: 25vmin;
+  font-size: 2vmin;
+  border-radius: 1mm;
+}
   `;
 
 
@@ -630,6 +643,8 @@ div#ego-stream-container {
   menuContent.className = "EgoMenuContentDIV";
   menuContent.innerHTML = `
       <div class="EgoMenu">
+      <div class="EgoWindowPopoutTitle">Ego Menu</div>
+
       <div class="EgoMenuIcon">&#124;&#124;&#124;</div>
       <div class="EgoMenuContent">
           <button class="EgoMenuButton" id="EgoButton1">Home</button>
@@ -809,6 +824,8 @@ div#ego-stream-container {
   document.getElementById("calculatorOption").addEventListener("click", function() {
       var content = `
           <h2>Calculator</h2>
+          <div class="EgoWindowPopoutTitle">Calculator</div>
+
           <input type="text" id="calcInput" class="EgoInput">
           <div class="EgoCalculatorButtons">
               <button class="numbers" id="btn7">7</button>
@@ -999,7 +1016,9 @@ div#ego-stream-container {
         document.body.appendChild(autoClickerStyleElement);
       
         var content = `
-          <h2>Auto Clicker Delay</h2>
+        <div class="EgoWindowPopoutTitle">Auto Clicker</div>
+
+          <h2>Auto Clicker</h2>
           <label for="delayInput">Enter Delay (in milliseconds):</label>
           <input type="number" id="delayInput" class="EgoInput" min="1" value="${DELAY}">
           <p>Status: <span id="statusIndicator">Inactive</span></p>
@@ -1016,7 +1035,7 @@ div#ego-stream-container {
               DELAY = document.getElementById("delayInput").value;
               document.body.addEventListener("click", addClicker, 0);
               document.body.style.cursor = "crosshair";
-              document.getElementById("statusIndicator").textContent = "[🟢}Active";
+              document.getElementById("statusIndicator").textContent = "[🟢]Active";
             }
           } else if (e.key == ",") {
             if (autoclickerEnabled) {
@@ -1066,6 +1085,8 @@ div#ego-stream-container {
         let gameCount = 1;
         
         const content = `
+        <div class="EgoWindowPopoutTitle">Rock Paper Scissors</div>
+
           <h2>Rock Paper Scissors</h2>
           <p>Best of 3 - Choose your weapon:</p>
           <div class="rps-container">
