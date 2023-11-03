@@ -787,6 +787,7 @@ div#ego-stream-container {
   });
   document.getElementById("floodingOption").addEventListener("click", function() {
       var content = `
+      <div class="EgoWindowPopoutTitle">Flood History</div>
           <h2>Flood History</h2>
           <label for="numOfTimes">How many times do you want this page to show up in your history?</label>
           <label for="numOfTimes">(higher numbers might take longer)</label>
