@@ -1,4 +1,45 @@
 javascript: (function() {
+  const errorPrefixes = [
+    'Uh oh, something goofed up... ',
+    'Oops, we have a problem... ',
+    'Warning, malfunction ahead... ',
+    'Well, that didn\'t work out... ',
+    'Looks like there\'s a hiccup... ',
+    'Whoopsie, something went wrong... ',
+    'Hmm, something unexpected happened... ',
+    'Error time! But let\'s stay positive... ',
+    'Oh no, an error occurred... ',
+    'Warning, critical failure detected... ',
+    'Error: Something\'s not right... ',
+    'Oopsie, something went awry... ',
+    'Error detected... Stay calm, we can fix this! ',
+    'Error detected, initiating troubleshooting protocol... ',
+    'Oops, sorry about that... ',
+    'Warning, something fishy happened... ',
+    'Error message incoming... but don\'t panic! ',
+    'Mayday, mayday, we have an error... but it\'s not the end of the world... ',
+    'Error detected, please stand by... ',
+    'This isn\'t good... we have an error. But let\'s stay hopeful... ',
+    'Error detected, please reboot and try again... ',
+    'Critical error detected... but we\'ll figure it out... ',
+    'Sorry about that, please try again... We\'ll make it up to you. ',
+    'Error alert, please wait while we fix things... ',
+    'Error detected, system is working on it... ',
+    'Appears we have a bug... please be patient while we squash it... ',
+    'Something went wrong, please try again later... ',
+    'Error detected, please contact support... we\'re here to help. ',
+    'We have a problem, please wait while we resolve it... ',
+    'Oopsie, system overload... wait, no, just a silly message... ',
+    'What in the world, an error occurred... but we\'ll find a solution. ',
+    'Error message incoming... but don\'t worry, we can fix this. '
+  ];
+
+  const bookmarkletAlreadyOpened = window.bookmarkletAlreadyOpened;
+
+  try {
+    if (!bookmarkletAlreadyOpened) {
+      console.log('Bookmarklet set to opened');
+      window.bookmarkletAlreadyOpened = true;
   var styles = `
       .EgoMenuHoverArea {
           position: fixed;
@@ -574,6 +615,9 @@ div#ego-stream-container {
   font-weight: 300;
 }
   `;
+
+
+
   var styleSheet = document.createElement("style");
   styleSheet.type = "text/css";
   styleSheet.innerText = styles;
@@ -972,7 +1016,7 @@ div#ego-stream-container {
               DELAY = document.getElementById("delayInput").value;
               document.body.addEventListener("click", addClicker, 0);
               document.body.style.cursor = "crosshair";
-              document.getElementById("statusIndicator").textContent = "[🟢]Active";
+              document.getElementById("statusIndicator").textContent = "[🟢}Active";
             }
           } else if (e.key == ",") {
             if (autoclickerEnabled) {
@@ -1148,6 +1192,12 @@ div#ego-stream-container {
 
 
 
+
+
+
+
+
+      
       const form = document.getElementById('ego-message-form');
       const usernameDiv = document.getElementById('egoUsername');
       const textInput = document.getElementById('egoMessageInput');
@@ -1436,5 +1486,58 @@ div#ego-stream-container {
       hoverArea.classList.remove("fade-out");
     }, 800);
   }, 800);
+
+} else {
+  const errorPrefixes = [
+    'Are you dumb? ',
+    'Ummmm... ',
+    'Seriously? ',
+    'Sigh... ',
+    'Oops! ',
+    'Wait, what? ',
+    'Well, well, well... ',
+    'Nice one... ',
+    'Use some braincells... ',
+    'Did you leave your brain at home? ',
+    'Yikes... ',
+    'Uh... ',
+    'Hello? ',
+    'What the... ',
+    'Are you kidding me? ',
+    'I give up... ',
+    'Never mind... ',
+    'Oh, dear... ',
+    'You\'re not serious... ',
+    'Brace yourself... ',
+    'I think I\'m going to be sick... ',
+    'This is terrible... ',
+    'What a mess... ',
+    'Oh, no... ',
+    'You\'re not helping... ',
+    'Just great... ',
+    'I can\'t believe this... ',
+    'This is insane... ',
+    'You\'re impossible... ',
+    'Why can\'t you just leave me alone? ',
+    'You\'re the worst... ',
+    'I\'m going to die of embarrassment... ',
+    'This is too much... ',
+    'You\'re making me crazy... ',
+    'I don\'t know what to do... ',
+    'I\'m not sure I want to know... '
+  ]; 
   
-  })();
+  const randomPrefix = errorPrefixes[Math.floor(Math.random() * errorPrefixes.length)];
+  const errorMessage = randomPrefix + 'Ego Menu is already active. Hover over the bottom left corner for the Ego Menu to popup.';
+  alert(errorMessage);
+  return;
+}
+  
+} catch (error) {
+  const errorMessage = errorPrefixes[Math.floor(Math.random() * errorPrefixes.length)] + error.message;
+  window.bookmarkletAlreadyOpened = false;
+
+  alert(errorMessage + "                                                                                                                                                                                           Most strict websites are SO LAME that they won't let 👁️Ego Menu load correctly. Try using a different website. 🤷‍♂️");
+}
+})();
+  
