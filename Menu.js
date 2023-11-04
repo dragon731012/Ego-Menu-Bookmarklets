@@ -105,15 +105,15 @@ javascript: (function() {
           bottom: 35vh;
       }
       .EgoPopup {
-          background-color: rgb(0 0 0 / 71%);
-          backdrop-filter: blur(1.5vmin);
-          color: #fff;
-          border: 1px solid #444;
-          padding: 10px;
-          width: 100%;
-          border-radius: 3mm;
-          box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px 20px, rgba(0, 0, 0, 0.3) 0px 30px 60px 20px;
-      }
+        background-color: rgb(0 0 0 / 71%);
+        backdrop-filter: blur(1.5vmin);
+        color: #fff;
+        border: 1px solid #444;
+        padding: 10px;
+        width: 100%;
+        border-radius: 3mm;
+        box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px 20px, rgba(0, 0, 0, 0.3) 0px 30px 60px 20px, inset 1vmin -1vmin 0px 1vmin #00000061;
+    }
       .EgoInput {
           width: 90%;
           padding: 2vmin;
@@ -627,6 +627,16 @@ div#ego-stream-container {
   font-size: 2vmin;
   border-radius: 1mm;
 }
+div#egoCookieClickerContainer {
+  width: 95%;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 15vmax;
+  background-color: #6c6c6c;
+  position: relative;
+  border-radius: 1vmax;
+  box-shadow: inset 5px -5px 0px 5px #00000040;
+}
   `;
 
 
@@ -682,7 +692,9 @@ div#ego-stream-container {
       <div class="EgoPage" id="EgoPage4">
       <button class="EgoMenuButton" id="BreakoutGame">Breakout</button>
       <button class="EgoMenuButton" id="AsteroidGame">Asteroid</button>
-      <button class="EgoMenuButton" id="getUUID">Print my UUID</button>
+      <button class="EgoMenuButton" id="DinoGameCloaked">Dino Game (cloaked)</button>
+      <button class="EgoMenuButton" id="CookieClickeGamer">Clicker Game</button>
+      <button class="EgoMenuButton" id="EgoGuessTheNumberGame">Guess The Number!</button>
 
       <button class="EgoMenuButton" id="RockPaperScissors">Rock/Paper/Scissors</button>
 
@@ -977,35 +989,57 @@ div#ego-stream-container {
       const breakoutButton = document.querySelector('#BreakoutGame');
 
       breakoutButton.addEventListener('click', () => {
-        const scriptUrl = 'https://raw.githubusercontent.com/dragon731012/-WORKING-bookmarklets-and-games/main/games/breakout%20(by%20me).js';
-        fetch(scriptUrl)
-          .then(response => response.text())
-          .then(scriptContent => {
-            console.log('Script content:', scriptContent);
-            eval(scriptContent);
-          });
+        const confirmMessage = "WARNING: When the game ends, the page WILL refresh forcefully.";
+        if(confirm(confirmMessage)) {
+          const scriptUrl = 'https://raw.githubusercontent.com/dragon731012/-WORKING-bookmarklets-and-games/main/games/breakout%20(by%20me).js';
+          fetch(scriptUrl)
+            .then(response => response.text())
+            .then(scriptContent => {
+              console.log('Script content:', scriptContent);
+              eval(scriptContent);
+            });
+        }
       });
       
-      const AsteroidGame = document.querySelector('#BreakoutGame');
-
-      AsteroidGame.addEventListener('click', () => {
-        const url = 'https://blog.roysolberg.com/js/dom2.min.js';
       
-        fetch(url)
-          .then(response => response.text())
-          .then(scriptContent => {
-            const s = document.createElement('script');
-            s.type = 'text/javascript';
-            s.textContent = scriptContent;
-            document.body.appendChild(s);
-          })
-          .catch(error => {
-            console.error('Error loading script:', error);
-            alert('Failed to load the script. Please try again later.');
-          });
-      });
+    function startGame() {
+      const confirmation = window.confirm(
+        'WARNING: Starting the game will break some site elements and may require a page refresh to restore them. Are you sure you want to start the game?'
+      );
+
+      if (confirmation) {
+        const s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.src = 'https://blog.roysolberg.com/js/dom2.min.js';
+        s.onerror = (event) => {
+          console.error('Error loading script:', event);
+          alert('Failed to load the script. The site\'s Content Security Policy might be blocking it. Feel free to try again later.');
+        };
+        document.body.appendChild(s);
+      }
+    }
+
+    const AsteroidGame = document.querySelector('#AsteroidGame');
+    AsteroidGame.addEventListener('click', startGame);
 
 
+    function openNewTabWithHTML(html, width = 800, height = 600) {
+      const newTab = window.open('about:blank', '_blank');
+      newTab.document.write(html);
+      newTab.document.close();
+      newTab.resizeTo(width, height);
+    }
+    
+    const dinoGameButton = document.querySelector('#DinoGameCloaked');
+    
+    dinoGameButton.addEventListener('click', () => {
+      const gameUrl = 'https://yeahbread.github.io/Ego-Menu-Bookmarklets/ChromeDino(dragon731012).html';
+      const htmlContent = `<iframe src="${gameUrl}" style="border:0;width:100%;height:100%"></iframe>`;
+      const width = 800;
+      const height = 600;
+    
+      openNewTabWithHTML(htmlContent, width, height);
+    });
 
 
 
@@ -1208,7 +1242,302 @@ div#ego-stream-container {
 
 
 
+
+
+
+
+      var GuessTheNumberButton = document.getElementById('EgoGuessTheNumberGame');
+      GuessTheNumberButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        
+        var randomNumber = Math.floor(Math.random() * 100) + 1;
+        var userGuess = null;
+        var numGuesses = 0;
+        var startTime = new Date().getTime();
       
+        var content = `
+          <div class="EgoWindowPopoutTitle">Guess The Number</div>
+      
+          <h2>Guess The Number</h2>
+          <p>Guess a number between 1 and 100.</p>
+          <label for="guessInput">Your Guess:</label>
+          <input type="number" id="guessInput" class="EgoInput">
+          <p>Status: <span id="statusIndicator"></span></p>
+        `;
+      
+        togglePopup(content);
+      
+        var guessInput = document.getElementById('guessInput');
+        var statusIndicator = document.getElementById('statusIndicator');
+      
+        function checkGuess() {
+          userGuess = parseInt(guessInput.value);
+          numGuesses++;
+      
+          if (userGuess === randomNumber) {
+            var elapsedTime = (new Date().getTime() - startTime) / 1000;
+            var congratsContent = `
+              <div class="EgoWindowPopoutTitle">Congratulations!</div>
+              <p>You correctly guessed the number ${randomNumber} in ${numGuesses} tries and ${elapsedTime.toFixed(1)} seconds!</p>
+            `;
+            togglePopup(congratsContent, false);
+          } else {
+            var difference = randomNumber - userGuess;
+            if (difference > 0) {
+              if (difference < 5) {
+                statusIndicator.innerText = 'Hotter! Go Higher!';
+                statusIndicator.style.color = 'red';
+              } else if (difference < 10) {
+                statusIndicator.innerText = 'Getting Warm! Go Higher!';
+                statusIndicator.style.color = 'orange';
+              } else if (difference < 20) {
+                statusIndicator.innerText = 'Luke Warm... Try Going Higher.';
+                statusIndicator.style.color = 'yellow';
+              } else if (difference < 30) {
+                statusIndicator.innerText = 'Chilly... Try Going Higher.';
+                statusIndicator.style.color = 'cyan';
+              } else if (difference < 40) {
+                statusIndicator.innerText = 'Really Cold... Go Higher Please.';
+                statusIndicator.style.color = 'blue';
+              } else {
+                statusIndicator.innerText = 'Freezing... You Definitely Need to Go Higher.';
+                statusIndicator.style.color = 'purple';
+              }
+            } else {
+              if (Math.abs(difference) < 5) {
+                statusIndicator.innerText = 'Hotter! Go Lower!';
+                statusIndicator.style.color = 'red';
+              } else if (Math.abs(difference) < 10) {
+                statusIndicator.innerText = 'Getting Warm! Go Lower!';
+                statusIndicator.style.color = 'orange';
+              } else if (Math.abs(difference) < 20) {
+                statusIndicator.innerText = 'Luke Warm... Try Going Lower.';
+                statusIndicator.style.color = 'yellow';
+              } else if (Math.abs(difference) < 30) {
+                statusIndicator.innerText = 'Chilly... Try Going Lower.';
+                statusIndicator.style.color = 'cyan';
+              } else if (Math.abs(difference) < 40) {
+                statusIndicator.innerText = 'Really Cold... Go Lower Please.';
+                statusIndicator.style.color = 'blue';
+              } else {
+                statusIndicator.innerText = 'Freezing... You Definitely Need to Go Lower.';
+                statusIndicator.style.color = 'purple';
+              }
+            }
+          }
+          
+          guessInput.value = '';
+        }
+      
+        guessInput.addEventListener('keydown', function(event) {
+          if (event.key === 'Enter') {
+            event.preventDefault();
+            checkGuess();
+          }
+        });
+      });
+      
+
+
+
+
+
+
+
+      const cookieClickerButton = document.querySelector('#CookieClickeGamer');
+
+      cookieClickerButton.addEventListener('click', () => {
+        const content = `
+          <div class="EgoWindowPopoutTitle">Clicker Game</div>
+          <div id="egoCookieClickerContainer"></div>
+          <div style="display: flex; align-items: center; justify-content: center;">
+            <div>Time: <span id="timer"></span></div>
+            <div style="margin-left: 20px;">Score: <span id="score">0</span></div>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; margin-top: 20px;">
+            <div>Total clicked: <span id="totalCookiesClicked">0</span></div>
+            <div style="margin-left: 20px;">Click status: <span id="clickStatus">-</span></div>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; margin-top: 20px;">
+            <button id="resetGameButton">Reset Game</button>
+          </div>
+        `;
+        
+        togglePopup(content);
+      
+        const MIN_SCORE = 10;
+        const MAX_SCORE = 20;
+        const COOKIE_SIZE = 50;
+      
+        let startTime = Date.now();
+        let score = 0;
+        let totalCookiesClicked = 0;
+        let gameInterval;
+        let cookieElement;
+        let prevClickTimestamp = null;
+        let totalClickDelayMs = 0;
+        let clickCount = 0;
+        let clickStatus = '-';
+      
+        const egoCookieClickerContainer = document.querySelector('#egoCookieClickerContainer');
+        const scoreElement = document.querySelector('#score');
+        const timerElement = document.querySelector('#timer');
+        const resetGameButton = document.querySelector('#resetGameButton');
+        const totalCookiesClickedElement = document.querySelector('#totalCookiesClicked');
+        const clickStatusElement = document.querySelector('#clickStatus');
+      
+        function spawnCookie() {
+          const randomX = Math.floor(Math.random() * (egoCookieClickerContainer.offsetWidth - COOKIE_SIZE));
+          const randomY = Math.floor(Math.random() * (egoCookieClickerContainer.offsetHeight - COOKIE_SIZE));
+          const cookie = document.createElement('div');
+          cookie.setAttribute('class', 'cookie-element egoCookieClass');
+          cookie.style.cssText = `
+          position: absolute;
+          top: ${randomY}px;
+          left: ${randomX}px;
+          width: ${COOKIE_SIZE}px;
+          height: ${COOKIE_SIZE}px;
+          background-color: #00e361;
+          border-radius: 6vmax;
+          box-shadow: -5px 3px 2mm 0px black, 
+                      4px -5px 0mm 0px rgb(11 102 4 / 62%) inset, 
+                      -8px 6px 2mm 0px rgb(170 255 162) inset;
+          cursor: pointer;
+          user-select: none;
+      `;
+          cookieElement = cookie;
+          egoCookieClickerContainer.appendChild(cookieElement);
+        }
+      
+        function startGame() {
+          gameInterval = setInterval(() => {
+            let elapsedTimeMs = Date.now() - startTime;
+            let elapsedTimeStr = formatElapsedTime(elapsedTimeMs);
+            timerElement.textContent = elapsedTimeStr;
+          }, 100);
+          spawnCookie();
+        }
+      
+        function formatElapsedTime(ms) {
+          const minutes = Math.floor(ms / 60000);
+          const seconds = Math.floor((ms % 60000) / 1000);
+          const milliseconds = Math.floor((ms % 1000) / 10);
+      
+          const minutesStr = String(minutes).padStart(2, '0');
+          const secondsStr = String(seconds).padStart(2, '0');
+          const millisecondsStr = String(milliseconds).padStart(2, '0');
+      
+          const elapsedTimeStr = `${minutesStr}:${secondsStr}:${millisecondsStr}`;
+      
+          return elapsedTimeStr;
+        }
+      
+        function endGame() {
+          clearInterval(gameInterval);
+          egoCookieClickerContainer.removeChild(cookieElement);
+          alert(`Game over! Your score is ${score}.`);
+          resetGame();
+        }
+      
+        function resetGame() {
+          clearInterval(gameInterval);
+          egoCookieClickerContainer.innerHTML = '';
+          startTime = Date.now();
+          score = 0;
+          totalCookiesClicked = 0;
+          clickStatus = '-';
+          prevClickTimestamp = null;
+          totalClickDelayMs = 0;
+          clickCount = 0;
+          scoreElement.textContent = score;
+          totalCookiesClickedElement.textContent = totalCookiesClicked;
+          clickStatusElement.textContent = clickStatus;
+          startGame();
+        }
+      
+        function updateClickStatus(clickDelayMs) {
+          let hue = 0;
+          const statusCount = 13;
+          const hueStep = 120 / (statusCount - 1);
+          if (clickDelayMs < 250) {
+            clickStatus = 'Hacker!';
+            hue = 120;
+          } else if (clickDelayMs < 350) {
+            clickStatus = 'Perfect!';
+            hue = hueStep * 11;
+          } else if (clickDelayMs < 450) {
+            clickStatus = 'Awesome!';
+            hue = hueStep * 10;
+          } else if (clickDelayMs < 550) {
+            clickStatus = 'Alright!';
+            hue = hueStep * 9;
+          } else if (clickDelayMs < 650) {
+            clickStatus = 'Okay!';
+            hue = hueStep * 8;
+          } else if (clickDelayMs < 750) {
+            clickStatus = 'Sure!';
+            hue = hueStep * 7;
+          } else if (clickDelayMs < 850) {
+            clickStatus = 'Oh!';
+            hue = hueStep * 6;
+          } else if (clickDelayMs < 950) {
+            clickStatus = 'K!';
+            hue = hueStep * 5;
+          } else if (clickDelayMs < 1050) {
+            clickStatus = 'Um...';
+            hue = hueStep * 4;
+          } else if (clickDelayMs < 1150) {
+            clickStatus = 'Yikes!';
+            hue = hueStep * 3;
+          } else if (clickDelayMs < 1250) {
+            clickStatus = 'Sucks!';
+            hue = hueStep * 2;
+          } else if (clickDelayMs < 1350) {
+            clickStatus = 'Horrible!';
+            hue = hueStep * 1;
+          } else {
+            clickStatus = 'Terrible!';
+            hue = 0;
+          }
+          const saturation = '80%';
+          const lightness = '50%';
+          clickStatusElement.style.color = `hsl(${hue}, ${saturation}, ${lightness})`;
+          clickStatusElement.textContent = clickStatus;
+        }
+
+        startGame();
+      
+        egoCookieClickerContainer.addEventListener('mousedown', (event) => {
+          if (event.target.classList.contains('egoCookieClass')) {
+            egoCookieClickerContainer.removeChild(event.target);
+            totalCookiesClicked++;
+            totalCookiesClickedElement.textContent = totalCookiesClicked;
+            score += Math.floor(Math.random() * (MAX_SCORE - MIN_SCORE) + MIN_SCORE);
+            scoreElement.textContent = score;
+            const cookies = document.querySelectorAll('.egoCookieClass');
+            for (let i = 0; i < cookies.length; i++) {
+              cookies[i].dataset.spawnTime = Date.now();
+            }
+            spawnCookie();
+      
+            clickCount++;
+            const clickTimestamp = Date.now();
+            if (prevClickTimestamp !== null) {
+              const clickDelayMs = clickTimestamp - prevClickTimestamp;
+              totalClickDelayMs += clickDelayMs;
+              const averageClickDelayMs = totalClickDelayMs / clickCount;
+              updateClickStatus(clickDelayMs);
+              clickStatus += ` (${clickDelayMs}ms, average: ${averageClickDelayMs.toFixed(2)}ms)`;
+              clickStatusElement.textContent = clickStatus;
+            }
+            prevClickTimestamp = clickTimestamp;
+          }
+        });
+      
+        resetGameButton.addEventListener('click', () => {
+          resetGame();
+        });
+      });
 
 
 
