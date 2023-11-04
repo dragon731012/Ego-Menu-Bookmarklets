@@ -170,12 +170,17 @@
 
   <div id="install-instructions">
     <h2>Installation Instructions</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec blandit mollis leo, vel vehicula justo bibendum vel. Sed eu interdum tortor. Sed quis purus ut velit dictum malesuada. Aenean eu cursus lacus, et malesuada ligula.</p>
-    <p>Nulla elementum suscipit aliquet. Morbi non enim sapien. Curabitur eget elementum mi. Maecenas vitae risus eu est malesuada tristique. Praesent euismod mauris lorem, et consequat orci dignissim sit amet. Aenean suscipit ex eget libero facilisis, vel accumsan dui sagittis. Donec ut nunc a massa mollis auctor. Vivamus ac magna ut enim pharetra lacinia sed sagittis leo.</p>
-  </div>
+    <ol>
+        <li>Press CTRL+SHIFT+B on Windows/Linux or COMMAND+SHIFT+B on Mac to show the bookmarks bar at the top of your browser window.</li>
+        <li>Drag the "Drag Me!" button from above to the bookmarks bar. The installation is complete.</li>
+        <li>Click on the bookmark you just created to activate the Ego Menu on the current page. The Ego Menu popup should appear when you hover over the bottom left corner of the website.</li>
+        <li>Note that if you navigate to a new page, you might need to activate the menu again using the bookmark. Also, please note that the Ego Menu may not work on some strict websites due to security reasons.</li>
+    </ol>
+</div>
+
+<button id="ego-source-code" draggable="true" ondragstart="event.dataTransfer.setData('text/plain', buttonSrc)">Drag Me!</button>
 
 
-  <button id="ego-source-code" draggable="true" ondragstart="event.dataTransfer.setData('text/plain', buttonSrc)">Drag Me!</button>
 
   <script>
     let buttonSrc;
@@ -189,7 +194,7 @@
       })
       .catch(error => console.log(error));
   </script>
-  
+
   
   <script>
     function scrollToInstall() {
