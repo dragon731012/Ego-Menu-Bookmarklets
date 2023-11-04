@@ -22,13 +22,20 @@
             margin-top: 2em;
             margin-bottom: 1em;
             color: #dddddd;
-            text-shadow: 0 0 20px white;
+            text-shadow: 0 0 2px white;
             background-color: #0000002b;
             top: 0;
             position: relative;
             margin: 0;
             padding: 7mm;
+            box-shadow: 0 0px 3vmin 1mm black;
             border-radius: 2mm;
+        }
+        h1:hover {
+            transform: scale(1.03) skewX(5deg);
+            text-shadow: 0 0 10px #ffffffbf, -5px 5px 0px #000000bf;
+            letter-spacing: 0.3mm;
+            box-shadow: 0 0px 5vmin 1mm black;
         }
 		
         h2 {
@@ -41,7 +48,9 @@
             font-size: 2.5em;
             margin-top: 1em;
             margin-bottom: 1em;
-            text-shadow: -5px 5px black;
+            text-shadow: -5px 5px black, -5px 5px 20px black;
+            transform: translate(1mm,-1mm) skewX(5deg) scale(1.03);
+            letter-spacing: 0.43mm;
         }
 		
 		.features {
