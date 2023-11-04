@@ -215,10 +215,10 @@
     <ol id="instruction-holder">
         <li id="OneInstruction">Press CTRL+SHIFT+B on Windows/Linux or COMMAND+SHIFT+B on Mac to show the bookmarks bar at the top of your browser window.</li>
         <li id="OneInstruction">Drag the "Drag Me!" button from below to the bookmarks bar. The installation is complete.</li>
+        <button id="ego-source-code" draggable="true" ondragstart="event.dataTransfer.setData('text/plain', buttonSrc)">Drag Me!</button>
         <li id="OneInstruction">Click on the bookmark you just created to activate the Ego Menu on the current page. The Ego Menu popup should appear when you hover over the bottom left corner of the website.</li>
         <li id="OneInstruction">Note that if you navigate to a new page, you might need to activate the menu again using the bookmark. Also, please note that the Ego Menu may not work on some strict websites due to security reasons.</li>
     </ol>
-    <button id="ego-source-code" draggable="true" ondragstart="event.dataTransfer.setData('text/plain', buttonSrc)">Drag Me!</button>
 
 </div>
 
