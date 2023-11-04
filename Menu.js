@@ -152,17 +152,20 @@ javascript: (function() {
         transform: skewX(-10deg);
     }
     .EgoLogo {
-        background-image: url("https://cdn.glitch.global/efbbe251-937e-4c16-898c-cdfb9e3d65f4/fullLogo?v=1697857559723");
-        background-size: 4vmax;
-        background-repeat: no-repeat;
-        background-position: center;
-        height: 3vmax;
-        position: relative;
-        background-position-x: center;
-        margin: 0 !important;
-        top: -1vmin;
-        transform: none !important;
-    }
+      background-image: url("https://cdn.glitch.global/efbbe251-937e-4c16-898c-cdfb9e3d65f4/fullLogo?v=1697857559723");
+      background-size: 4vmax;
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 3vmax;
+      position: relative;
+      background-position-x: center;
+      margin: 0 !important;
+      top: -1vmin;
+      right: 0;
+      left: 0;
+      width: 100%;
+      transform: none !important;
+  }
       .EgoSmallImage {
           position: fixed;
           bottom: 1vmin;
