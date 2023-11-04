@@ -30,9 +30,13 @@
             padding: 7mm;
             box-shadow: 0 0px 3vmin 1mm black;
             border-radius: 2mm;
+            max-width: 100%;
+            width: 90%;
+            left: 50%;
+            transform: translateX(-50%);
         }
         h1:hover {
-            transform: scale(1.03) skewX(5deg);
+            transform: scale(1.03) skewX(5deg) translateX(-50%);
             text-shadow: 0 0 10px #ffffffbf, -5px 5px 0px #000000bf !important;
             letter-spacing: 0.3mm;
             box-shadow: 0 0px 5vmin 1mm black !important;
@@ -113,10 +117,10 @@
             box-shadow: inset 1vmin -1vmin 0px 0.5mm #00000042;
         }
         #get-ego:hover {
-            background-color: #062a02;
+            background-color: #1ea80e;
             transform: scale(1.03);
             box-shadow: inset 1vmin -1vmin 0px 0.5mm #00000042, -1vmin 1vmin 0px 0mm #000000, -3vmin 3vmin 20px 0mm #0000003d !important;
-            color: #4b6747;
+            color: #ffffff;
         }
         #ego-source-code {
             background-color: #35701c;
@@ -149,7 +153,16 @@
             margin-bottom: 0.6em;
             text-shadow: -2px 2px black;
             margin-top: -1em;
+            width: max-content;
+            left: 50%;
+            position: relative;
+            transform: translateX(-50%);
         }
+        #install-instructions h2:hover {
+            text-shadow: -3px 3px black;
+            transform: translateX(-50%) skewX(5deg) scale(1.03);
+        }
+        
         ol#instruction-holder {
             display: flex;
             flex-direction: column;
@@ -160,6 +173,8 @@
             row-gap: 1vmax;
             margin: 0;
             list-style-type: disc;
+            padding-left: 5vmax;
+            padding-right: 5vmax;
         }
         ol#instruction-holder:hover {
             transform: translate(1mm, -1mm) scale(1.01) skewX(0);
@@ -213,10 +228,10 @@
     <ol id="instruction-holder">
         <li id="OneInstruction">Press CTRL+SHIFT+B on Windows/Linux or COMMAND+SHIFT+B on Mac to show the bookmarks bar at the top of your browser window.</li>
         <li id="OneInstruction">Drag the "Drag Me!" button from below to the bookmarks bar. The installation is complete.</li>
+        <button id="ego-source-code" draggable="true" ondragstart="event.dataTransfer.setData('text/plain', buttonSrc)">Drag Me!</button>
         <li id="OneInstruction">Click on the bookmark you just created to activate the Ego Menu on the current page. The Ego Menu popup should appear when you hover over the bottom left corner of the website.</li>
         <li id="OneInstruction">Note that if you navigate to a new page, you might need to activate the menu again using the bookmark. Also, please note that the Ego Menu may not work on some strict websites due to security reasons.</li>
     </ol>
-    <button id="ego-source-code" draggable="true" ondragstart="event.dataTransfer.setData('text/plain', buttonSrc)">Drag Me!</button>
 
 </div>
 
