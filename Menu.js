@@ -30,9 +30,13 @@
             padding: 7mm;
             box-shadow: 0 0px 3vmin 1mm black;
             border-radius: 2mm;
+            max-width: 100%;
+            width: 90%;
+            left: 50%;
+            transform: translateX(-50%);
         }
         h1:hover {
-            transform: scale(1.03) skewX(5deg);
+            transform: scale(1.03) skewX(5deg) translateX(-50%);
             text-shadow: 0 0 10px #ffffffbf, -5px 5px 0px #000000bf !important;
             letter-spacing: 0.3mm;
             box-shadow: 0 0px 5vmin 1mm black !important;
@@ -149,7 +153,16 @@
             margin-bottom: 0.6em;
             text-shadow: -2px 2px black;
             margin-top: -1em;
+            width: max-content;
+            left: 50%;
+            position: relative;
+            transform: translateX(-50%);
         }
+        #install-instructions h2:hover {
+            text-shadow: -3px 3px black;
+            transform: translateX(-50%) skewX(5deg) scale(1.03);
+        }
+        
         ol#instruction-holder {
             display: flex;
             flex-direction: column;
