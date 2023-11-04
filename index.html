@@ -112,8 +112,26 @@
             outline: none;
             box-shadow: inset 1vmin -1vmin 0px 0.5mm #00000042;
         }
-
         #get-ego:hover {
+            background-color: #062a02;
+            transform: scale(1.03);
+            box-shadow: inset 1vmin -1vmin 0px 0.5mm #00000042, -1vmin 1vmin 0px 0mm #000000, -3vmin 3vmin 20px 0mm #0000003d !important;
+            color: #4b6747;
+        }
+        #ego-source-code {
+            background-color: #203e13;
+            border: none;
+            border-radius: 1vmin;
+            color: #bdffb5;
+            cursor: pointer;
+            font-size: 2em;
+            margin: 1em auto;
+            padding: 0.7em 1.9em;
+            outline: none;
+            box-shadow: inset 1vmin -1vmin 0px 0.5mm #00000042;
+        }
+
+        #ego-source-code:hover {
             background-color: #062a02;
             transform: scale(1.03);
             box-shadow: inset 1vmin -1vmin 0px 0.5mm #00000042, -1vmin 1vmin 0px 0mm #000000, -3vmin 3vmin 20px 0mm #0000003d !important;
@@ -172,13 +190,14 @@
     <h2>Installation Instructions</h2>
     <ol>
         <li>Press CTRL+SHIFT+B on Windows/Linux or COMMAND+SHIFT+B on Mac to show the bookmarks bar at the top of your browser window.</li>
-        <li>Drag the "Drag Me!" button from above to the bookmarks bar. The installation is complete.</li>
+        <li>Drag the "Drag Me!" button from below to the bookmarks bar. The installation is complete.</li>
         <li>Click on the bookmark you just created to activate the Ego Menu on the current page. The Ego Menu popup should appear when you hover over the bottom left corner of the website.</li>
         <li>Note that if you navigate to a new page, you might need to activate the menu again using the bookmark. Also, please note that the Ego Menu may not work on some strict websites due to security reasons.</li>
     </ol>
+    <button id="ego-source-code" draggable="true" ondragstart="event.dataTransfer.setData('text/plain', buttonSrc)">Drag Me!</button>
+
 </div>
 
-<button id="ego-source-code" draggable="true" ondragstart="event.dataTransfer.setData('text/plain', buttonSrc)">Drag Me!</button>
 
 
 
