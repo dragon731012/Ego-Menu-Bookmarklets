@@ -149,7 +149,29 @@
             margin-bottom: 0.6em;
             text-shadow: -2px 2px black;
         }
-        
+        ol#instruction-holder {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            align-content: center;
+            justify-content: center;
+            align-items: flex-start;
+            row-gap: 1vmax;
+            margin: 0;
+            list-style-type: disc;
+        }
+        ol#instruction-holder:hover {
+            transform: translate(1mm, -1mm) scale(1.01) skewX(0);
+            text-shadow: -3px 3px 0 black;
+        }
+        li#OneInstruction {
+            text-align: left;
+            padding: 3mm;
+        }
+        li#OneInstruction:hover {
+            transform: translate(1mm, -1mm) skewX(5deg) scale(1.03);
+            text-shadow: -3px 3px 0 black;
+        }
 	</style>
 </head>
 <body>
@@ -191,7 +213,7 @@
         <li id="OneInstruction">Press CTRL+SHIFT+B on Windows/Linux or COMMAND+SHIFT+B on Mac to show the bookmarks bar at the top of your browser window.</li>
         <li id="OneInstruction">Drag the "Drag Me!" button from below to the bookmarks bar. The installation is complete.</li>
         <li id="OneInstruction">Click on the bookmark you just created to activate the Ego Menu on the current page. The Ego Menu popup should appear when you hover over the bottom left corner of the website.</li>
-        <li id="OneInstruction"></li>Note that if you navigate to a new page, you might need to activate the menu again using the bookmark. Also, please note that the Ego Menu may not work on some strict websites due to security reasons.</li>
+        <li id="OneInstruction">Note that if you navigate to a new page, you might need to activate the menu again using the bookmark. Also, please note that the Ego Menu may not work on some strict websites due to security reasons.</li>
     </ol>
     <button id="ego-source-code" draggable="true" ondragstart="event.dataTransfer.setData('text/plain', buttonSrc)">Drag Me!</button>
 
