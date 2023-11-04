@@ -151,7 +151,7 @@ javascript: (function() {
         top: -4.1vmin;
         transform: skewX(-10deg);
     }
-      .EgoLogo {
+    .EgoLogo {
         background-image: url("https://cdn.glitch.global/efbbe251-937e-4c16-898c-cdfb9e3d65f4/fullLogo?v=1697857559723");
         background-size: 4vmax;
         background-repeat: no-repeat;
@@ -159,8 +159,9 @@ javascript: (function() {
         height: 3vmax;
         position: relative;
         background-position-x: center;
-        margin: 0;
+        margin: 0 !important;
         top: -1vmin;
+        transform: none !important;
     }
       .EgoSmallImage {
           position: fixed;
