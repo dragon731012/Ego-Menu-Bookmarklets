@@ -1,7 +1,7 @@
 ## Description 🕷
 👁 Ego Menu is a bookmarklet UI with a collection of bookmarklets that enhance user expeirence and improve productivity, especially during school hours.
 
-Ego menu is a proof-of-concept project and is meant for educational purposes only. Using this project means you understand you're using it as your own risk.
+Ego menu is a proof-of-concept project and is meant for educational purposes only. Using this project means you understand you're using it at your own risk.
 
 
 
