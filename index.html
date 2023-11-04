@@ -53,12 +53,16 @@
             letter-spacing: 0.43mm;
         }
 		
-		.features {
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: center;
-			margin-top: 2em;
-		}
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 2em;
+            flex-direction: row;
+            align-content: center;
+            align-items: center;
+            grid-gap: 11mm;
+        }
 		
         .feature {
             background-color: #444444a3;
@@ -93,6 +97,40 @@
             transform: translate(1mm, -1mm) scale(1.03) skewX(5deg);
             text-shadow: -3px 3px 0 black;
         }
+
+        /* Button styles */
+        #get-ego {
+            background-color: #ff9c17;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1.8em;
+            margin: 2em auto;
+            padding: 1em 2em;
+            text-shadow: -1px 1px black;
+            box-shadow: 0 0px 2vmin 1mm black;
+            transition: transform 0.3s ease-in-out;
+            outline: none;
+        }
+        #get-ego:hover {
+          background-color: #ffa53c;
+          transform: scale(1.05);
+        }
+
+        /* Install instructions styles */
+        #install-instructions {
+          background-color: #222;
+          color: #fff;
+          font-size: 1.6em;
+          padding: 5em 1em;
+        }
+        #install-instructions h2 {
+          color: #ff9c17;
+          font-size: 2.5em;
+          margin-bottom: 0.6em;
+          text-shadow: -2px 2px black;
+        }
 	</style>
 </head>
 <body>
@@ -125,5 +163,21 @@
 			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</p>
 		</div>
 	</div>
+
+  <button id="get-ego" onclick="scrollToInstall()">Get Ego</button>
+
+  <div id="install-instructions">
+    <h2>Installation Instructions</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec blandit mollis leo, vel vehicula justo bibendum vel. Sed eu interdum tortor. Sed quis purus ut velit dictum malesuada. Aenean eu cursus lacus, et malesuada ligula.</p>
+    <p>Nulla elementum suscipit aliquet. Morbi non enim sapien. Curabitur eget elementum mi. Maecenas vitae risus eu est malesuada tristique. Praesent euismod mauris lorem, et consequat orci dignissim sit amet. Aenean suscipit ex eget libero facilisis, vel accumsan dui sagittis. Donec ut nunc a massa mollis auctor. Vivamus ac magna ut enim pharetra lacinia sed sagittis leo.</p>
+  </div>
+
+  <script>
+    function scrollToInstall() {
+      var installInstructions = document.getElementById('install-instructions');
+      installInstructions.scrollIntoView({behavior: 'smooth'});
+    }
+  </script>
+
 </body>
 </html>
