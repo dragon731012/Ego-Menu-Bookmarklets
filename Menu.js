@@ -646,7 +646,8 @@ div#egoCookieClickerContainer {
   flex-direction: column;
   flex-wrap: wrap;
   width: 100%;
-  height: 12rem;
+  height: max-content;
+  max-height: 12rem;
   align-items: stretch;
   overflow-y: auto;
   border-radius: 2vmin;
