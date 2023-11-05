@@ -180,14 +180,14 @@ javascript: (function() {
           z-index: 999;
       }
       .EgoSwitchContainer {
-          display: flex;
-          justify-content: space-evenly;
-          flex-direction: row;
-          flex-wrap: wrap;
-          align-content: stretch;
-          align-items: center;
-          gap: 3mm;
-      }
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: stretch;
+        align-items: center;
+        gap: 3mm;
+    }
       .EgoSwitch {
           display: inline-block;
           position: relative;
