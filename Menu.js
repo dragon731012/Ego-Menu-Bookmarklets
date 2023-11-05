@@ -73,15 +73,19 @@ javascript: (function() {
           transform: rotate3d(1, 1, 1, 360deg);
       }
       .EgoMenuButton {
-          background-color: #3498db;
-          color: #fff;
-          border: none;
-          padding: 5px 10px;
-          cursor: pointer;
-          border-radius: 5px;
-          font-size: 14px;
-          margin: 5px;
-      }
+        background-color: #5b9258;
+        box-shadow: inset 1mm -1mm 0 #00000096;
+        color: #fff;
+        border: none;
+        padding: 1mm 2mm;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 14px;
+        margin: 5px;
+        text-overflow: ellipsis;
+        width: 10.9rem;
+        overflow: hidden;
+    }
       .EgoMenuContainer.active + .EgoMenuHoverArea {
           width: 15vmax;
           height: 15vmax;
@@ -643,16 +647,37 @@ div#egoCookieClickerContainer {
 }
 .egoButtonHolder {
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  flex-direction: row;
   width: 100%;
   height: max-content;
-  max-height: 12rem;
-  align-items: stretch;
-  overflow-y: auto;
+  max-height: 10rem;
+  overflow-x: hidden;
   border-radius: 2vmin;
-  align-content: center;
-  justify-content: center;
+  align-content: stretch;
+  padding-top: 1.7vmax;
+  padding-bottom: 0vmax;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  justify-items: center;
+  align-items: stretch;
+}
+.tooltip {
+  padding: 1mm;
+  visibility: hidden;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+  z-index: 999999;
+}
+
+.tooltip.show {
+  visibility: visible;
+  opacity: 1;
+  transform: translate(-6.5rem, 1rem);
+  filter: drop-shadow(-3px 3px 10px green) drop-shadow(1px 1px 0px white);
 }
   `;
 
@@ -712,7 +737,19 @@ div#egoCookieClickerContainer {
       <div class="EgoPage" id="EgoPage3">
       <div class="egoButtonHolder">
 
-      <button class="EgoMenuButton" id="unblockedYouTube">Unblocked YouTube</button>
+      <button class="EgoMenuButton" id="unblockedYouTube" data-text="Unblocked YouTube">Unblocked YouTube</button>
+      <button class="EgoMenuButton" id="unblockerNebula" data-text="nebulaproxy.io">nebulaproxy.io</button>
+      <button class="EgoMenuButton" id="unblockerHolyUnblocker" data-text="holyubofficial.net">holyubofficial.net</button>
+      <button class="EgoMenuButton" id="unblockerKazwire" data-text="kazwire.com">kazwire.com</button>
+      <button class="EgoMenuButton" id="unblockerTotallyScience" data-text="totallyscience.co/apps.php">totallyscience.co/apps.php</button>
+      <button class="EgoMenuButton" id="unblockerMetallic" data-text="metallic.xyz.wf">metallic.xyz.wf</button>
+      <button class="EgoMenuButton" id="unblockerMetallic2" data-text="metalli.zc.al">metalli.zc.al</button>
+      <button class="EgoMenuButton" id="unblockerGalaxy" data-text="galaxy.lag.tf">galaxy.lag.tf</button>
+      <div class="tooltip"></div>
+
+      
+      
+      
       </div>
       </div>
       <div class="EgoPage" id="EgoPage4">
@@ -724,6 +761,9 @@ div#egoCookieClickerContainer {
       <button class="EgoMenuButton" id="EgoGuessTheNumberGame">Guess The Number!</button>
 
       <button class="EgoMenuButton" id="RockPaperScissors">Rock/Paper/Scissors</button>
+      <button class="EgoMenuButton" id="TotallyScienceGame">totallyscience.co</button>
+
+      
       </div>
       </div>
       <div class="EgoPage" id="EgoPage5">
@@ -1004,12 +1044,57 @@ div#egoCookieClickerContainer {
       ABTitle=tryAbTitle;
   }
 
-  document.getElementById("unblockedYouTube").addEventListener("click", function() {
-          stealthEngine("https://piped.kavin.rocks/");
-      });
+  document.querySelectorAll("#unblockedYouTube").forEach(function(element) {
+    element.addEventListener("click", function() {
+        stealthEngine("https://piped.kavin.rocks/");
+    });
+});
 
+document.querySelectorAll("#unblockerNebula").forEach(function(element) {
+    element.addEventListener("click", function() {
+        stealthEngine("https://nebulaproxy.io/");
+    });
+});
 
+document.querySelectorAll("#unblockerHolyUnblocker").forEach(function(element) {
+    element.addEventListener("click", function(e) {
+        e.preventDefault();
+        window.open("https://holyubofficial.net/", "_blank");
+    });
+});
 
+document.querySelectorAll("#unblockerKazwire").forEach(function(element) {
+    element.addEventListener("click", function(e) {
+        e.preventDefault();
+        window.open("https://kazwire.com", "_blank");
+    });
+});
+
+document.querySelectorAll("#unblockerTotallyScience").forEach(function(element) {
+    element.addEventListener("click", function() {
+        stealthEngine("https://totallyscience.co/apps.php");
+    });
+});
+
+document.querySelectorAll("#TotallyScienceGame").forEach(function(element) {
+    element.addEventListener("click", function() {
+        stealthEngine("https://totallyscience.co/");
+    });
+});
+
+document.querySelectorAll("#unblockerMetallic").forEach(function(element) {
+    element.addEventListener("click", function(e) {
+        e.preventDefault();
+        window.open("https://metallic.xyz.wf", "_blank");
+    });
+});
+
+document.querySelectorAll("#unblockerGalaxy").forEach(function(element) {
+    element.addEventListener("click", function(e) {
+        e.preventDefault();
+        window.open("https://galaxy.lag.tf", "_blank");
+    });
+});
 
 
       
@@ -1867,6 +1952,31 @@ div#egoCookieClickerContainer {
       hoverArea.classList.remove("fade-out");
     }, 800);
   }, 800);
+
+
+  document.querySelectorAll("[data-text]").forEach(function(button) {
+    var timeoutId;
+  
+    button.addEventListener("mouseover", function() {
+      var tooltip = document.querySelector(".tooltip");
+      var text = button.getAttribute("data-text");
+      tooltip.innerText = text;
+  
+      timeoutId = setTimeout(function() {
+        var rect = button.getBoundingClientRect();
+        tooltip.style.bottom = window.innerHeight - rect.top + "px";
+        tooltip.style.left = rect.left + rect.width / 2 + "px";
+        tooltip.classList.add("show");
+      }, 150); 
+  
+    });
+  
+    button.addEventListener("mouseleave", function() {
+      var tooltip = document.querySelector(".tooltip");
+      clearTimeout(timeoutId);
+      tooltip.classList.remove("show");
+    });
+  });
 
 } else {
   const errorPrefixes = [
