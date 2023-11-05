@@ -1090,6 +1090,12 @@ document.querySelectorAll("#unblockerMetallic").forEach(function(element) {
         window.open("https://metallic.xyz.wf", "_blank");
     });
 });
+document.querySelectorAll("#unblockerMetallic2").forEach(function(element) {
+  element.addEventListener("click", function(e) {
+      e.preventDefault();
+      window.open("https://metalli.zc.al", "_blank");
+  });
+});
 
 document.querySelectorAll("#unblockerGalaxy").forEach(function(element) {
     element.addEventListener("click", function(e) {
