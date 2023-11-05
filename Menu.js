@@ -1051,9 +1051,10 @@ div#egoCookieClickerContainer {
 });
 
 document.querySelectorAll("#unblockerNebula").forEach(function(element) {
-    element.addEventListener("click", function() {
-        stealthEngine("https://nebulaproxy.io/");
-    });
+  element.addEventListener("click", function(e) {
+    e.preventDefault();
+    window.open("https://nebulaproxy.io/", "_blank");
+});
 });
 
 document.querySelectorAll("#unblockerHolyUnblocker").forEach(function(element) {
@@ -1071,17 +1072,18 @@ document.querySelectorAll("#unblockerKazwire").forEach(function(element) {
 });
 
 document.querySelectorAll("#unblockerTotallyScience").forEach(function(element) {
-    element.addEventListener("click", function() {
-        stealthEngine("https://totallyscience.co/apps.php");
-    });
+  element.addEventListener("click", function(e) {
+    e.preventDefault();
+    window.open("https://totallyscience.co/apps.php", "_blank");
+});
 });
 
 document.querySelectorAll("#TotallyScienceGame").forEach(function(element) {
-    element.addEventListener("click", function() {
-        stealthEngine("https://totallyscience.co/");
-    });
+  element.addEventListener("click", function(e) {
+    e.preventDefault();
+    window.open("https://totallyscience.co/", "_blank");
 });
-
+});
 document.querySelectorAll("#unblockerMetallic").forEach(function(element) {
     element.addEventListener("click", function(e) {
         e.preventDefault();
