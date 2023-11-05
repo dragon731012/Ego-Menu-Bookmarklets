@@ -1155,6 +1155,9 @@ div#egoCookieClickerContainer {
             button.classList.remove("rps-hidden");
           });
           resultEl.classList.remove("rps-result-visible");
+          resultEl.innerHTML = `
+          <p></p>
+        `;
           robotEl.classList.remove("rps-robot-visible");
         }
         
