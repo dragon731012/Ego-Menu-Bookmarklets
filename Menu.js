@@ -641,6 +641,18 @@ div#egoCookieClickerContainer {
   border-radius: 1vmax;
   box-shadow: inset 5px -5px 0px 5px #00000040;
 }
+.egoButtonHolder {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 12rem;
+  align-items: stretch;
+  overflow-y: auto;
+  border-radius: 2vmin;
+  align-content: center;
+  justify-content: center;
+}
   `;
 
 
