@@ -661,6 +661,7 @@ div#egoCookieClickerContainer {
 
       <div class="EgoMenuIcon">&#124;&#124;&#124;</div>
       <div class="EgoMenuContent">
+      
           <button class="EgoMenuButton" id="EgoButton1">Home</button>
           <button class="EgoMenuButton" id="EgoButton2">Hacks/Cheats</button>
           <button class="EgoMenuButton" id="EgoButton3">Unblocked</button>
@@ -670,10 +671,12 @@ div#egoCookieClickerContainer {
       </div>
       <h2 class="EgoLogo"></h2>
       <div class="EgoPage" id="EgoPage1">
+      <div class="egoButtonHolder">
+
       <button class="EgoMenuButton" id="floodingOption">Flood History</button>
       <button class="EgoMenuButton" id="calculatorOption">Calculator</button>
       <button class="EgoMenuButton" id="AutoClickerOption">Autoclicker</button>
-  
+    </div>
       <div class="EgoSwitchContainer">
           <label class="EgoSwitch">
           <input type="checkbox" id="editPageSwitch">
@@ -688,12 +691,19 @@ div#egoCookieClickerContainer {
       </div>
       </div>
       <div class="EgoPage" id="EgoPage2">
+      <div class="egoButtonHolder">
+
       <button class="EgoMenuButton" id="fetchButton">EdPuzzle Hacks</button>
       </div>
+      </div>
       <div class="EgoPage" id="EgoPage3">
+      <div class="egoButtonHolder">
+
       <button class="EgoMenuButton" id="unblockedYouTube">Unblocked YouTube</button>
       </div>
+      </div>
       <div class="EgoPage" id="EgoPage4">
+      <div class="egoButtonHolder">
       <button class="EgoMenuButton" id="BreakoutGame">Breakout</button>
       <button class="EgoMenuButton" id="AsteroidGame">Asteroid</button>
       <button class="EgoMenuButton" id="DinoGameCloaked">Dino Game (cloaked)</button>
@@ -701,7 +711,7 @@ div#egoCookieClickerContainer {
       <button class="EgoMenuButton" id="EgoGuessTheNumberGame">Guess The Number!</button>
 
       <button class="EgoMenuButton" id="RockPaperScissors">Rock/Paper/Scissors</button>
-
+      </div>
       </div>
       <div class="EgoPage" id="EgoPage5">
       <div id="ego-stream-container"></div>
