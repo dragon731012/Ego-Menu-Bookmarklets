@@ -867,7 +867,7 @@ div#egoCookieClickerContainer {
   document.getElementById("floodingOption").addEventListener("click", function() {
       var content = `
       <div class="EgoWindowPopoutTitle">Flood History</div>
-          <h2>Flood History</h2>
+          <div>Flood History</div>
           <label for="numOfTimes">How many times do you want this page to show up in your history?</label>
           <label for="numOfTimes">(higher numbers might take longer)</label>
           <input type="number" id="numOfTimes" class="EgoInput">
@@ -903,7 +903,7 @@ div#egoCookieClickerContainer {
   });
   document.getElementById("calculatorOption").addEventListener("click", function() {
       var content = `
-          <h2>Calculator</h2>
+          <div>Calculator</div>
           <div class="EgoWindowPopoutTitle">Calculator</div>
 
           <input type="text" id="calcInput" class="EgoInput">
@@ -1173,7 +1173,7 @@ document.querySelectorAll("#unblockerGalaxy").forEach(function(element) {
         var content = `
         <div class="EgoWindowPopoutTitle">Auto Clicker</div>
 
-          <h2>Auto Clicker</h2>
+          <div>Auto Clicker</div>
           <label for="delayInput">Enter Delay (in milliseconds):</label>
           <input type="number" id="delayInput" class="EgoInput" min="1" value="${DELAY}">
           <p>Status: <span id="statusIndicator">Inactive</span></p>
@@ -1242,7 +1242,7 @@ document.querySelectorAll("#unblockerGalaxy").forEach(function(element) {
         const content = `
         <div class="EgoWindowPopoutTitle">Rock Paper Scissors</div>
 
-          <h2>Rock Paper Scissors</h2>
+          <div>Rock Paper Scissors</div>
           <p>Best of 3 - Choose your weapon:</p>
           <div class="rps-container">
             <div class="user-rps">
@@ -1315,7 +1315,7 @@ document.querySelectorAll("#unblockerGalaxy").forEach(function(element) {
                   robotScore > userScore ? `Robot wins the Best of 3 (${robotScore}-${userScore})!` :
                   `The Best of 3 is a tie (${userScore}-${robotScore})!`;
                 togglePopup(`
-                  <h2>Rock Paper Scissors</h2>
+                  <div>Rock Paper Scissors</div>
                   <p>${winnerText}</p>
                 `);
               }, 2000);
