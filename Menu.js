@@ -1401,7 +1401,7 @@ document.querySelectorAll("#unblockerGalaxy").forEach(function(element) {
             var elapsedTime = (new Date().getTime() - startTime) / 1000;
             var congratsContent = `
               <div class="EgoWindowPopoutTitle">Congratulations!</div>
-              <p>You correctly guessed the number ${randomNumber} in ${numGuesses} tries and ${elapsedTime.toFixed(1)} seconds!</p>
+              <div> 👑You correctly guessed the number ${randomNumber} in ${numGuesses} tries and ${elapsedTime.toFixed(1)} seconds! 🐍 </div>
             `;
             togglePopup(congratsContent, false);
           } else {
