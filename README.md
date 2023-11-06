@@ -14,7 +14,7 @@ To 'install' Ego Menu, simply:
 - 5️⃣ ! Hover over the bottom left screen to unhide the Ego Menu
 
 
-Easy 'install' method on [my website](https://yeahbread.github.io/#ego-menu)
+Faster 'install' method on [Ego Menu Website](https://yeahbread.github.io/#ego-menu)
 ## Usage
  You have to click on the bookmarklet ONCE before using it on a page. Sometimes websites block bookmarklets from running or the menu from showing up, nothing I can do about it shake my head
 
