@@ -1381,11 +1381,11 @@ document.querySelectorAll("#unblockerGalaxy").forEach(function(element) {
         var content = `
           <div class="EgoWindowPopoutTitle">Guess The Number</div>
       
-          <h2>Guess The Number</h2>
-          <p>Guess a number between 1 and 100.</p>
+          <div>Guess The Number</div>
+          <div>Guess a number between 1 and 100.</div>
           <label for="guessInput">Your Guess:</label>
           <input type="number" id="guessInput" class="EgoInput">
-          <p>Status: <span id="statusIndicator"></span></p>
+          <div>Status: <span id="statusIndicator"></span></div>
         `;
       
         togglePopup(content);
