@@ -1304,7 +1304,7 @@ javascript:(function(){
       
       const panicKeySwitch = document.getElementById('panicKeySwitch');
       
-      panicKeySwitch.addEventListener('click', event => {
+      panicKeySwitch.addEventListener('change', event => {
         if (event.target.checked) {
           document.addEventListener('keydown', event => {
             if (event.key === '%60') {
