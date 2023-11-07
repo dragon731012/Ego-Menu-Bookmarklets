@@ -1257,6 +1257,7 @@ javascript:(function(){
 
       let isClassroomCovered=false;
       let originalTitle=document.title;
+      const egoPanicButton = document.getElementById('toggleCheckbox');
       
       const coverClassroom=()=> {
           if (isClassroomCovered) {
@@ -1304,7 +1305,7 @@ javascript:(function(){
           }
       }
       
-      if (EgoPanicButton) {
+      if (egoPanicButton) {
         document.addEventListener('keydown', event=> {
           if (event.key==='%60' && isClassroomCovered) {
             coverClassroom();
