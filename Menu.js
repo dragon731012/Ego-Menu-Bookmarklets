@@ -283,10 +283,18 @@ javascript: (function() {
         font-weight: bolder;
         font-family: serif !important;
     }
-      .EgoMenuIcon:hover {
-          cursor: pointer;
-          filter: drop-shadow(0px 0px 3px grey);
-      }
+    .EgoMenuIcon:hover {
+      cursor: pointer;
+      filter: drop-shadow(0px 0px 3px grey);
+      transform: rotate(90deg) scalex(1);
+      color: #c1c1c1;
+  }
+      .EgoMenuIcon:active {
+        cursor: pointer;
+        filter: drop-shadow(0px 0px 3px #a6ff9e) drop-shadow(0px 0px 3px #a6ff9e);
+        transform: rotate(90deg) scalex(0.8);
+        color: #5e5e5e;
+    }
       .EgoMenuContent {
         position: fixed;
         top: 0;
