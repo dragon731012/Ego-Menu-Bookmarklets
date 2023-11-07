@@ -708,6 +708,8 @@ div#egoCookieClickerContainer {
   menuContent.innerHTML = `
       <div class="EgoMenu">
       <div class="EgoWindowPopoutTitle">Ego Menu</div>
+      <div class="tooltip"></div>
+
 
       <div class="EgoMenuIcon" data-text="Open/close page menu" >&#124;&#124;&#124;</div>
       <div class="EgoMenuContent">
@@ -757,7 +759,6 @@ div#egoCookieClickerContainer {
       <button class="EgoMenuButton" id="unblockerMetallic" data-text="metallic.xyz.wf">metallic.xyz.wf</button>
       <button class="EgoMenuButton" id="unblockerMetallic2" data-text="metalli.zc.al">metalli.zc.al</button>
       <button class="EgoMenuButton" id="unblockerGalaxy" data-text="galaxy.lag.tf">galaxy.lag.tf</button>
-      <div class="tooltip"></div>
 
       
       
@@ -1281,7 +1282,7 @@ document.querySelectorAll("#unblockerGalaxy").forEach(function(element) {
     });
   });
 
-  
+
       
       const rockPaperScissorsButton = document.querySelector("#RockPaperScissors");
 
