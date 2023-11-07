@@ -9,12 +9,12 @@ Ego menu is a proof-of-concept project and is meant for educational purposes onl
 To 'install' Ego Menu, simply:
 - 1️⃣ ! Make sure bookmark bar is active on chrome by pressing CTRL+SHIFT+B OR CMD+SHIFT+B
 - 2️⃣ ! Visit [bookmarklet.js Source Code](https://raw.githubusercontent.com/yeahbread/Ego-Menu-Bookmarklets/main/bookmarklet.js), and copy everything from that page.
-- 3️⃣ ! Paste the copied code from the previous step into the URL entry of a bookmark
+- 3️⃣ ! Paste the copied code from the previous step into the URL destination of a bookmark
 - 4️⃣ ! Visit a website (bookmarklets don't work on SOME strict sites, or on chrome://newtab), and press the bookmarklet you just made.
 - 5️⃣ ! Hover over the bottom left screen to unhide the Ego Menu
 
 
-Faster 'install' method on [Ego Menu Website](https://yeahbread.github.io/#ego-menu)
+Faster/Alternative 'install' method on [Ego Menu Website](https://yeahbread.github.io/#ego-menu)
 ## Usage
  You have to click on the bookmarklet ONCE before using it on a page. Sometimes websites block bookmarklets from running or the menu from showing up, nothing I can do about it shake my head
 
