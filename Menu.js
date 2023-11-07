@@ -661,11 +661,11 @@ div#egoCookieClickerContainer {
   flex-direction: row;
   width: 100%;
   height: max-content;
-  max-height: 10rem;
+  max-height: 13vmax;
   overflow-x: hidden;
   border-radius: 2vmin;
   align-content: stretch;
-  padding-top: 1.7vmax;
+  padding-top: 1vmax;
   padding-bottom: 0vmax;
   flex-wrap: wrap;
   justify-content: space-evenly;
