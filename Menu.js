@@ -185,9 +185,9 @@ javascript: (function() {
       }
       .EgoSwitchContainer {
         display: flex;
-        justify-content: space-evenly;
-        flex-direction: row;
-        flex-wrap: nowrap;
+        justify-content: center;
+        flex-direction: column;
+        flex-wrap: wrap;
         align-content: stretch;
         align-items: center;
         gap: 3mm;
@@ -1255,19 +1255,16 @@ javascript:(function(){
 
 
 
-      let isClassroomCovered=false;
-      let originalTitle=document.title;
-      const egoPanicButton = document.getElementById('toggleCheckbox');
+      let isClassroomCovered = false;
+      let originalTitle = document.title;
       
-      const coverClassroom=()=> {
+      const coverClassroom = () => {
           if (isClassroomCovered) {
-              document.body.style.overflow='auto';
+              document.body.style.overflow = 'auto';
               document.getElementById('classroom-cover').remove();
-              document.title=originalTitle;
-              isClassroomCovered=false;
-          }
-      
-          else {
+              document.title = originalTitle;
+              isClassroomCovered = false;
+          } else {
               const coverDiv = document.createElement('div');
               coverDiv.id = 'classroom-cover';
               coverDiv.style.width = '100vw';
@@ -1279,7 +1276,7 @@ javascript:(function(){
               coverDiv.style.zIndex = '9999999999999999999999999';
               coverDiv.style.padding = '0';
               coverDiv.style.margin = '0';
-              
+      
               const coverImage = document.createElement('img');
               coverImage.src = 'https://raw.githubusercontent.com/yeahbread/Ego-Menu-Bookmarklets/main/disconnect.png';
               coverImage.style.width = '100%';
@@ -1288,16 +1285,16 @@ javascript:(function(){
               coverImage.style.top = '0';
               coverImage.style.left = '0';
               coverImage.style.zIndex = '1';
-              
+      
               coverDiv.appendChild(coverImage);
-              
+      
               document.head.querySelectorAll('link[rel="icon"]').forEach(e => e.remove());
-              
+      
               const favicon = document.createElement('link');
               favicon.rel = 'icon';
               favicon.href = 'https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png';
               document.head.appendChild(favicon);
-              
+      
               document.title = 'Error';
               document.body.style.overflow = 'hidden';
               document.body.appendChild(coverDiv);
@@ -1305,16 +1302,22 @@ javascript:(function(){
           }
       }
       
-      if (egoPanicButton) {
-        document.addEventListener('keydown', event=> {
-          if (event.key==='%60' && isClassroomCovered) {
-            coverClassroom();
-          }
-        });
-      }
+      const panicKeySwitch = document.getElementById('panicKeySwitch');
       
-      document.getElementById('panicKeySwitch').addEventListener('change', () => {
-        isClassroomCovered = !isClassroomCovered;
+      panicKeySwitch.addEventListener('click', event => {
+        if (event.target.checked) {
+          document.addEventListener('keydown', event => {
+            if (event.key === '%60') {
+              coverClassroom();
+            }
+          });
+        } else {
+          document.removeEventListener('keydown', event => {
+            if (event.key === '%60') {
+              coverClassroom();
+            }
+          });
+        }
       });
 
 
