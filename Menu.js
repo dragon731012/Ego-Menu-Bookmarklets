@@ -1082,7 +1082,16 @@ javascript:(function(){
           page.open();
       });
   });
-
+  document.querySelectorAll("#unblockedYouTube").forEach(function(element) {
+    element.addEventListener("click", function(e) {
+      e.preventDefault();
+      var page = new ABC({
+          "type": "blank",
+          "url": "https://piped.kavin.rocks/"
+      });
+      page.open();
+  });
+});
   document.querySelectorAll("#unblockerHolyUnblocker").forEach(function(element) {
       element.addEventListener("click", function(e) {
           e.preventDefault();
