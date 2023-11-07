@@ -342,22 +342,21 @@ javascript: (function() {
           display: block;
         }
         .EgoMenuHoverArea.glow-effect {
-          position: relative;
           z-index: 1;
-        }
+      }
         .EgoMenuHoverArea.glow-effect::before {
           content: "";
           position: absolute;
-          bottom: 28mm;
+          bottom: 0vmin;
           left: 0mm;
           width: calc(100% + 20px);
           height: calc(100% + 20px);
           border-radius: 5mm;
-          background-color: green;
-          filter: drop-shadow(1px -1px 15px green) drop-shadow(1px -1px 15px green) drop-shadow(1px -1px 15px green) drop-shadow(1px -1px 15px green);
+          background-color: #b0ffb06e;
+          filter: drop-shadow(1px -1px 15px #b0ffb06e) drop-shadow(1px -1px 15px #b0ffb06e) drop-shadow(1px -1px 15px #b0ffb06e) drop-shadow(1px -1px 15px #b0ffb06e);
           opacity: 0;
           transition: all 0.8s ease-in-out;
-        }
+      }
 
 
         .EgoMenuHoverArea.glow-effect.fade-in::before {
