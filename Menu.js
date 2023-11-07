@@ -688,12 +688,13 @@ div#egoCookieClickerContainer {
   pointer-events: none;
   width: max-content;
   max-width: 20vmax;
+  font-family: monospace !important;
 }
 .tooltip.show {
   visibility: visible;
   opacity: 1;
-  transform: translate(-3.2vmax, -4vmin);
-  filter: drop-shadow(-3px 3px 10px green) drop-shadow(1px 1px 0px white);
+  transform: translate(-3.2vmax, 1vmin);
+  filter: drop-shadow(-3px 3px 2px green) drop-shadow(1px 1px 0px white);
 }
   `;
 
