@@ -269,17 +269,19 @@ javascript: (function() {
           border: .2vmin solid white;
       }
       .EgoMenuIcon {
-          display: inline-block;
-          text-align: left;
-          transform: rotate(90deg);
-          font-size: 24px;
-          cursor: pointer;
-          filter: drop-shadow(0px 0px 5px grey) drop-shadow(0px 0px 5px grey) drop-shadow(0px 0px 5px grey);
-          left: 10%;
-          top: 1%;
-          position: absolute;
-          z-index: 99999;
-      }
+        display: inline-block;
+        text-align: left;
+        transform: rotate(90deg) scalex(1.4);
+        font-size: 2vmax;
+        cursor: pointer;
+        filter: drop-shadow(0px 0px 5px grey) drop-shadow(0px 0px 5px grey) drop-shadow(0px 0px 5px grey);
+        left: 2vmax;
+        top: 1vmin;
+        position: absolute;
+        z-index: 99999;
+        letter-spacing: normal;
+        font-weight: bolder;
+    }
       .EgoMenuIcon:hover {
           cursor: pointer;
           filter: drop-shadow(0px 0px 3px grey);
@@ -320,6 +322,10 @@ javascript: (function() {
     color: white;
     font-size: 1vmax;
     transform: scale(1.05) translate(1mm, -1mm);
+}
+.EgoMenuContent button:active {
+  transform: scale(0.9) translate(-1mm, 1mm);
+  background-color: #00000059;
 }
   .EgoMenuContent--open {
     transform: scaleX(1);
