@@ -1070,54 +1070,56 @@ div#egoCookieClickerContainer {
 document.querySelectorAll("#unblockerNebula").forEach(function(element) {
   element.addEventListener("click", function(e) {
     e.preventDefault();
-    window.open("https://nebulaproxy.io/", "_blank");
+    window.open("about:blank").location.href = "https://nebulaproxy.io/";
 });
 });
 
 document.querySelectorAll("#unblockerHolyUnblocker").forEach(function(element) {
     element.addEventListener("click", function(e) {
         e.preventDefault();
-        window.open("https://holyubofficial.net/", "_blank");
+        window.open("about:blank").location.href = "https://holyubofficial.net/";
     });
 });
 
 document.querySelectorAll("#unblockerKazwire").forEach(function(element) {
     element.addEventListener("click", function(e) {
         e.preventDefault();
-        window.open("https://kazwire.com", "_blank");
+        window.open("about:blank").location.href = "https://kazwire.com";
     });
 });
 
 document.querySelectorAll("#unblockerTotallyScience").forEach(function(element) {
   element.addEventListener("click", function(e) {
     e.preventDefault();
-    window.open("https://totallyscience.co/apps.php", "_blank");
+    window.open("about:blank").location.href = "https://totallyscience.co/apps.php";
 });
 });
 
 document.querySelectorAll("#TotallyScienceGame").forEach(function(element) {
   element.addEventListener("click", function(e) {
     e.preventDefault();
-    window.open("https://totallyscience.co/", "_blank");
+    window.open("about:blank").location.href = "https://totallyscience.co/";
 });
 });
+
 document.querySelectorAll("#unblockerMetallic").forEach(function(element) {
     element.addEventListener("click", function(e) {
         e.preventDefault();
-        window.open("https://metallic.xyz.wf", "_blank");
+        window.open("about:blank").location.href = "https://metallic.xyz.wf";
     });
 });
+
 document.querySelectorAll("#unblockerMetallic2").forEach(function(element) {
   element.addEventListener("click", function(e) {
       e.preventDefault();
-      window.open("https://metalli.zc.al", "_blank");
+      window.open("about:blank").location.href = "https://metalli.zc.al";
   });
 });
 
 document.querySelectorAll("#unblockerGalaxy").forEach(function(element) {
     element.addEventListener("click", function(e) {
         e.preventDefault();
-        window.open("https://galaxy.lag.tf", "_blank");
+        window.open("about:blank").location.href = "https://galaxy.lag.tf";
     });
 });
 
