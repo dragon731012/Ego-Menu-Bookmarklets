@@ -1304,19 +1304,17 @@ javascript:(function(){
       
       const panicKeySwitch = document.getElementById('panicKeySwitch');
       
+      const handleKeyDown = (event) => {
+        if (event.key === '`') {
+          coverClassroom();
+        }
+      }
+      
       panicKeySwitch.addEventListener('change', event => {
         if (event.target.checked) {
-          document.addEventListener('keydown', event => {
-            if (event.key === '%60') {
-              coverClassroom();
-            }
-          });
+          document.addEventListener('keydown', handleKeyDown);
         } else {
-          document.removeEventListener('keydown', event => {
-            if (event.key === '%60') {
-              coverClassroom();
-            }
-          });
+          document.removeEventListener('keydown', handleKeyDown);
         }
       });
 
