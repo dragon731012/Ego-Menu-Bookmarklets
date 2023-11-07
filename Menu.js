@@ -285,45 +285,50 @@ javascript: (function() {
           filter: drop-shadow(0px 0px 3px grey);
       }
       .EgoMenuContent {
-          position: fixed;
-          top: 0;
-          left: -40vw;
-          width: 10vmax;
-          height: 100%;
-          background-color: #212121cc;
-          backdrop-filter: blur(3mm);
-          z-index: 9998;
-          transition: transform 0.3s ease-in-out;
-          transform-origin: left;
-          display: flex;
-          flex-direction: column;
-          flex-wrap: nowrap;
-          border-radius: 5mm;
-          align-content: center;
-          justify-content: center;
-          align-items: flex-start;
-      }
-      .EgoMenuContent button {
-        padding-top: 0mm;
-        position: relative;
-        background-color: #212121;
-        font-size: 1vmax;
-        width: 90%;
+        position: fixed;
+        top: 0;
+        width: 10vmax;
+        height: 100%;
+        left: -0.3vmax;
+        background-color: #212121cc;
+        backdrop-filter: blur(3mm);
+        z-index: 9998;
+        transition: transform 0.3s ease-in-out;
+        transform-origin: left;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        border-radius: 5mm;
+        align-content: center;
+        justify-content: center;
+        align-items: flex-start;
+        transform: scaleX(0);
     }
-    .EgoMenuContent button:hover {
-      padding-top: 0mm;
+    .EgoMenuContent button {
+      padding-top: 1vmin;
+      padding-bottom: 1vmin;
       position: relative;
-      background-color: #404040;
+      background-color: #21212182;
       font-size: 1vmax;
-      width: 85%;
-      box-shadow: -5px 2px 0px 3px black;
+      border-radius: .5mm;
+      margin: 0;
+      width: 10vmax;
   }
-        .EgoMenuContent--open {
-          transform: translateX(40vw);
-        }
+  .EgoMenuContent button:hover {
+    position: relative;
+    background-color: #585858e0;
+    color: white;
+    font-size: 1vmax;
+    transform: scale(1.05) translate(1mm, -1mm);
+}
+  .EgoMenuContent--open {
+    transform: scaleX(1);
+}
         .EgoPage {
           display: none;
-          height: 100%;
+          height: 13.8vmax;
+          overflow-x: hidden;
+          overflow-y: auto;
       }
         
         #EgoPage1 {
