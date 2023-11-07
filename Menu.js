@@ -342,10 +342,12 @@ javascript: (function() {
           display: block;
         }
         .EgoMenuHoverArea.glow-effect {
+          position: relative;
           z-index: 1;
         }
         .EgoMenuHoverArea.glow-effect::before {
           content: "";
+          position: absolute;
           bottom: 28mm;
           left: 0mm;
           width: calc(100% + 20px);
