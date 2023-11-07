@@ -1258,7 +1258,6 @@ javascript:(function(){
       let isClassroomCovered = false;
       let originalTitle = document.title;
       let originalFavicon;
-      let popup;
       
       const coverClassroom = () => {
           if (isClassroomCovered) {
@@ -1273,90 +1272,68 @@ javascript:(function(){
                   document.head.appendChild(originalFavicon);
               }
           } else {
-              popup = new EgoWindowPopout('Cover Classroom', `
-                  <div>Enter the key you want to use to trigger Cover Classroom:</div>
-                  <input type="text" id="keyInput" class="EgoInput" value="` + String.fromCharCode(96) + `">
-                  <br>
-                  <div>Choose an image to display on the cover:</div>
-                  <select id="imageSelect" class="EgoInput">
-                      <option value="https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true">Disconnect</option>
-                      <option value="https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/reset.png?raw=true">Reset</option>
-                  </select>
-                  <br>
-                  <button id="startButton" class="EgoButton">Start</button>
-                  <button id="cancelButton" class="EgoButton">Cancel</button>
-              `);
-              
-              const keyInput = document.getElementById('keyInput');
-              const imageSelect = document.getElementById('imageSelect');
-              const startButton = document.getElementById('startButton');
-              const cancelButton = document.getElementById('cancelButton');
-              
-              cancelButton.onclick = () => {
-                  popup.close();
-              };
-              
-              startButton.onclick = () => {
-                  const keyCode = keyInput.value.charCodeAt(0);
-                  const imageUrl = imageSelect.value;
-                  
-                  const coverDiv = document.createElement('div');
-                  coverDiv.id = 'classroom-cover';
-                  coverDiv.style.width = '100vw';
-                  coverDiv.style.height = '100vh';
-                  coverDiv.style.position = 'fixed';
-                  coverDiv.style.top = '0';
-                  coverDiv.style.left = '0';
-                  coverDiv.style.backgroundColor = '#fff';
-                  coverDiv.style.zIndex = '9999999999999999999999999';
-                  coverDiv.style.padding = '0';
-                  coverDiv.style.margin = '0';
+              const hotkeyForm = `
+                  <div class="EgoWindowPopoutTitle">Cover Classroom Hotkey</div>
+                  <div>Enter a key to use as the hotkey for covering the classroom:</div>
+                  <input type="text" id="hotkeyInput" class="EgoInput">
+                  <button id="hotkeySubmit" class="EgoButton">Save</button>
+              `;
       
-                  const coverImage = document.createElement('img');
-                  coverImage.src = imageUrl;
-                  coverImage.style.width = '100%';
-                  coverImage.style.height = '100%';
-                  coverImage.style.position = 'absolute';
-                  coverImage.style.top = '0';
-                  coverImage.style.left = '0';
-                  coverImage.style.zIndex = '1';
+              const showPopout = (resetImage) => {
+                  const confirmationMessage = `
+                      <div class="EgoWindowPopoutTitle">Cover Classroom</div>
+                      <div>
+                          You have chosen to activate the Cover Classroom feature.
+                          <br><br>
+                          The hotkey is currently set to "${hotkey}".
+                          <br><br>
+                          Press the hotkey to cover the classroom using the image below:
+                          <br><br>
+                          <img src="${resetImage}" style="max-width: 200px; max-height: 200px;">
+                      </div>
+                  `;
+                  togglePopup(confirmationMessage);
+              }
       
-                  coverDiv.appendChild(coverImage);
+              const onSubmitHotkey = (event) => {
+                  event.preventDefault();
+                  hotkey = document.getElementById('hotkeyInput').value;
+                  togglePopup(null, false);
+                  showPopout('https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/reset.png?raw=true');
+              }
       
-                  const currentFavicon = document.querySelector('link[rel="icon"]');
-                  if (currentFavicon) {
-                      originalFavicon = currentFavicon.cloneNode(true);
-                      document.head.removeChild(currentFavicon);
-                  }
+              togglePopup(hotkeyForm);
       
-                  const favicon = document.createElement('link');
-                  favicon.rel = 'icon';
-                  favicon.href = 'https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png';
-                  document.head.appendChild(favicon);
-      
-                  document.title = 'Error';
-                  document.body.style.overflow = 'hidden';
-                  document.body.appendChild(coverDiv);
-                  isClassroomCovered = true;
-                  
-                  const handleKeyDown = (event) => {
-                      if (event.keyCode === keyCode) {
-                          coverClassroom();
-                      }
-                  };
-                  document.addEventListener('keydown', handleKeyDown);
-      
-                  popup.close();
-              };
+              document.getElementById('hotkeySubmit').addEventListener('click', onSubmitHotkey);
           }
       }
       
+      let hotkey = '`';
+      const hotkeyInput = document.createElement('input');
+      hotkeyInput.type = 'text';
+      hotkeyInput.value = hotkey;
+      hotkeyInput.style.fontSize = '16px';
+      hotkeyInput.style.width = '50px';
+      
       const panicKeySwitch = document.getElementById('panicKeySwitch');
+      
+      const handleKeyDown = (event) => {
+          if (event.key === hotkey) {
+              coverClassroom();
+          }
+      }
       
       panicKeySwitch.addEventListener('change', event => {
           if (event.target.checked) {
-              coverClassroom();
+              if (isClassroomCovered) {
+                  showPopout('https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true');
+              } else {
+                  showPopout('https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true');
+                  togglePopup(hotkeyForm);        
+              }
+              document.addEventListener('keydown', handleKeyDown);
           } else {
+              document.removeEventListener('keydown', handleKeyDown);
               if (isClassroomCovered) {
                   coverClassroom();
               }
