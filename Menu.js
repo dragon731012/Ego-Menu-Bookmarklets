@@ -1061,11 +1061,6 @@ div#egoCookieClickerContainer {
       ABTitle=tryAbTitle;
   }
 
-  document.querySelectorAll("#unblockedYouTube").forEach(function(element) {
-    element.addEventListener("click", function() {
-        stealthEngine("https://piped.kavin.rocks/");
-    });
-});
 javascript:(function(){
   var abcScript = document.createElement('script');
   abcScript.src = 'https://cdn.jsdelivr.net/gh/FogNetwork/ABC/index.js';
