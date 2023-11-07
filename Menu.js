@@ -1258,29 +1258,29 @@ document.querySelectorAll("#unblockerGalaxy").forEach(function(element) {
 
 
     
-      document.querySelectorAll("[data-text]").forEach(function(element) {
-        var timeoutId;
-      
-        element.addEventListener("mouseover", function() {
-          var tooltip = document.querySelector(".tooltip");
-          var text = element.getAttribute("data-text");
-          tooltip.innerText = text;
-      
-          timeoutId = setTimeout(function() {
-            var rect = element.getBoundingClientRect();
-            tooltip.style.bottom = (window.innerHeight - rect.top > tooltip.clientHeight + 10 ? window.innerHeight - rect.top - tooltip.clientHeight - 10 : 0) + "px";
-            tooltip.style.left = rect.left + rect.width / 2 + "px";
-            tooltip.classList.add("show");
-          }, 150); 
-      
-        });
-      
-        element.addEventListener("mouseleave", function() {
-          var tooltip = document.querySelector(".tooltip");
-          clearTimeout(timeoutId);
-          tooltip.classList.remove("show");
-        });
-      });
+  document.querySelectorAll("[data-text]").forEach(function(element) {
+    var timeoutId;
+  
+    element.addEventListener("mouseover", function() {
+      var tooltip = document.querySelector(".tooltip");
+      var text = element.getAttribute("data-text");
+      tooltip.innerText = text;
+  
+      timeoutId = setTimeout(function() {
+        var rect = element.getBoundingClientRect();
+        tooltip.style.bottom = window.innerHeight - rect.top + "px";
+        tooltip.style.left = rect.left + rect.width / 2 + "px";
+        tooltip.classList.add("show");
+      }, 150); 
+  
+    });
+  
+    element.addEventListener("mouseleave", function() {
+      var tooltip = document.querySelector(".tooltip");
+      clearTimeout(timeoutId);
+      tooltip.classList.remove("show");
+    });
+  });
 
 
       
