@@ -1266,71 +1266,95 @@ javascript:(function(){
               document.title = originalTitle;
               isClassroomCovered = false;
       
+              // Reset the favicon
               const currentFavicon = document.querySelector('link[rel="icon"]');
               if (originalFavicon && currentFavicon) {
                   document.head.removeChild(currentFavicon);
                   document.head.appendChild(originalFavicon);
               }
           } else {
-              const hotkeyForm = `
-                  <div class="EgoWindowPopoutTitle">Cover Classroom Hotkey</div>
-                  <div>Enter a key to use as the hotkey for covering the classroom:</div>
-                  <input type="text" id="hotkeyInput" class="EgoInput">
-                  <button id="hotkeySubmit" class="EgoButton">Save</button>
+              const content = `
+                  <div class="EgoWindowPopoutTitle">Panic Key Configuration</div>
+                  <p>Enter the key that should trigger the cover:</p>
+                  <input type="text" id="triggerKeyInput" class="EgoInput" placeholder="Enter key...">
+                  <p>Select the image to use:</p>
+                  <img id="disconnectImg" src="https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true" width="20" height="20" style="cursor: pointer;">
+                  <img id="resetImg" src="https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/reset.png?raw=true" width="20" height="20" style="cursor: pointer;">
+                  <div id="buttonContainer">
+                      <button id="cancelBtn" class="EgoBtn">Cancel</button>
+                      <button id="saveBtn" class="EgoBtnPrimary">Save</button>
+                  </div>
               `;
+              togglePopup(content);
       
-              const showPopout = (resetImage) => {
-                  const confirmationMessage = `
-                      <div class="EgoWindowPopoutTitle">Cover Classroom</div>
-                      <div>
-                          You have chosen to activate the Cover Classroom feature.
-                          <br><br>
-                          The hotkey is currently set to "${hotkey}".
-                          <br><br>
-                          Press the hotkey to cover the classroom using the image below:
-                          <br><br>
-                          <img src="${resetImage}" style="max-width: 200px; max-height: 200px;">
-                      </div>
-                  `;
-                  togglePopup(confirmationMessage);
-              }
+              const triggerKeyInput = document.getElementById('triggerKeyInput');
+              const disconnectImg = document.getElementById('disconnectImg');
+              const resetImg = document.getElementById('resetImg');
+              const cancelBtn = document.getElementById('cancelBtn');
+              const saveBtn = document.getElementById('saveBtn');
       
-              const onSubmitHotkey = (event) => {
-                  event.preventDefault();
-                  hotkey = document.getElementById('hotkeyInput').value;
-                  togglePopup(null, false);
-                  showPopout('https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/reset.png?raw=true');
-              }
+              disconnectImg.addEventListener('click', () => {
+                  disconnectImg.style.border = '2px solid #2196F3';
+                  resetImg.style.border = 'none';
+              });
       
-              togglePopup(hotkeyForm);
+              resetImg.addEventListener('click', () => {
+                  resetImg.style.border = '2px solid #2196F3';
+                  disconnectImg.style.border = 'none';
+              });
       
-              document.getElementById('hotkeySubmit').addEventListener('click', onSubmitHotkey);
+              cancelBtn.addEventListener('click', () => {
+                  togglePopup('', false);
+              });
+      
+              saveBtn.addEventListener('click', () => {
+                  const triggerKey = triggerKeyInput.value;
+                  const imgSrc = disconnectImg.style.border ? disconnectImg.src : resetImg.src;
+      
+                  // Validate the trigger key and image
+                  if (triggerKey.trim() === '') {
+                      triggerKeyInput.focus();
+                      return;
+                  } else if (imgSrc !== 'https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true' &&
+                             imgSrc !== 'https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/reset.png?raw=true') {
+                      return;
+                  }
+      
+                  // Save the configuration and enable the panic key switch
+                  localStorage.setItem('panicKeyConfig', JSON.stringify({ triggerKey, imgSrc }));
+                  panicKeySwitch.checked = true;
+                  togglePopup('', false);
+              });
           }
       }
-      
-      let hotkey = '`';
-      const hotkeyInput = document.createElement('input');
-      hotkeyInput.type = 'text';
-      hotkeyInput.value = hotkey;
-      hotkeyInput.style.fontSize = '16px';
-      hotkeyInput.style.width = '50px';
       
       const panicKeySwitch = document.getElementById('panicKeySwitch');
       
       const handleKeyDown = (event) => {
-          if (event.key === hotkey) {
+          const config = JSON.parse(localStorage.getItem('panicKeyConfig'));
+          if (event.key === config?.triggerKey) {
               coverClassroom();
           }
       }
       
       panicKeySwitch.addEventListener('change', event => {
           if (event.target.checked) {
-              if (isClassroomCovered) {
-                  showPopout('https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true');
-              } else {
-                  showPopout('https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true');
-                  togglePopup(hotkeyForm);        
+              const config = JSON.parse(localStorage.getItem('panicKeyConfig'));
+              if (config) {
+                  const imgSrc = config.imgSrc;
+                  const currentFavicon = document.querySelector('link[rel="icon"]');
+                  if (currentFavicon) {
+                      // Store the original favicon
+                      originalFavicon = currentFavicon.cloneNode(true);
+                      document.head.removeChild(currentFavicon);
+                  }
+      
+                  const favicon = document.createElement('link');
+                  favicon.rel = 'icon';
+                  favicon.href = imgSrc;
+                  document.head.appendChild(favicon);
               }
+      
               document.addEventListener('keydown', handleKeyDown);
           } else {
               document.removeEventListener('keydown', handleKeyDown);
