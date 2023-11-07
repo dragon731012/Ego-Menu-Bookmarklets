@@ -281,6 +281,7 @@ javascript: (function() {
         z-index: 99999;
         letter-spacing: normal;
         font-weight: bolder;
+        font-family: serif !important;
     }
       .EgoMenuIcon:hover {
           cursor: pointer;
