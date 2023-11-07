@@ -741,18 +741,23 @@ div#egoCookieClickerContainer {
       <button class="EgoMenuButton" id="calculatorOption">Calculator</button>
       <button class="EgoMenuButton" id="AutoClickerOption">Autoclicker</button>
     </div>
-      <div class="EgoSwitchContainer">
-          <label class="EgoSwitch">
-          <input type="checkbox" id="editPageSwitch">
-          <span class="slider round"></span>
-          </label>
-          Edit Page
-          <label class="EgoSwitch">
-          <input type="checkbox" id="toggleCheckbox">
-          <span class="slider round"></span>
-          </label>
-          Show logo
-      </div>
+    <div class="EgoSwitchContainer">
+    <label class="EgoSwitch">
+      <input type="checkbox" id="editPageSwitch">
+      <span class="slider round"></span>
+    </label>
+    Edit Page
+    <label class="EgoSwitch">
+      <input type="checkbox" id="toggleCheckbox">
+      <span class="slider round"></span>
+    </label>
+    Show logo
+    <label class="EgoSwitch">
+      <input type="checkbox" id="panicKeySwitch">
+      <span class="slider round"></span>
+    </label>
+    Panic Key
+  </div>
       </div>
       <div class="EgoPage" id="EgoPage2">
       <div class="egoButtonHolder">
@@ -1250,7 +1255,66 @@ javascript:(function(){
 
 
 
-
+      let isClassroomCovered=false;
+      let originalTitle=document.title;
+      
+      const coverClassroom=()=> {
+          if (isClassroomCovered) {
+              document.body.style.overflow='auto';
+              document.getElementById('classroom-cover').remove();
+              document.title=originalTitle;
+              isClassroomCovered=false;
+          }
+      
+          else {
+              const coverDiv = document.createElement('div');
+              coverDiv.id = 'classroom-cover';
+              coverDiv.style.width = '100vw';
+              coverDiv.style.height = '100vh';
+              coverDiv.style.position = 'fixed';
+              coverDiv.style.top = '0';
+              coverDiv.style.left = '0';
+              coverDiv.style.backgroundColor = '#fff';
+              coverDiv.style.zIndex = '9999999999999999999999999';
+              coverDiv.style.padding = '0';
+              coverDiv.style.margin = '0';
+              
+              const coverImage = document.createElement('img');
+              coverImage.src = 'https://raw.githubusercontent.com/yeahbread/Ego-Menu-Bookmarklets/main/disconnect.png';
+              coverImage.style.width = '100%';
+              coverImage.style.height = '100%';
+              coverImage.style.position = 'absolute';
+              coverImage.style.top = '0';
+              coverImage.style.left = '0';
+              coverImage.style.zIndex = '1';
+              
+              coverDiv.appendChild(coverImage);
+              
+              document.head.querySelectorAll('link[rel="icon"]').forEach(e => e.remove());
+              
+              const favicon = document.createElement('link');
+              favicon.rel = 'icon';
+              favicon.href = 'https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png';
+              document.head.appendChild(favicon);
+              
+              document.title = 'Error';
+              document.body.style.overflow = 'hidden';
+              document.body.appendChild(coverDiv);
+              isClassroomCovered = true;
+          }
+      }
+      
+      if (EgoPanicButton) {
+        document.addEventListener('keydown', event=> {
+          if (event.key==='%60' && isClassroomCovered) {
+            coverClassroom();
+          }
+        });
+      }
+      
+      document.getElementById('panicKeySwitch').addEventListener('change', () => {
+        isClassroomCovered = !isClassroomCovered;
+      });
 
 
 
