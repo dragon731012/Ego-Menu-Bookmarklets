@@ -1066,93 +1066,100 @@ div#egoCookieClickerContainer {
         stealthEngine("https://piped.kavin.rocks/");
     });
 });
-document.querySelectorAll("#unblockerNebula").forEach(function(element) {
-  element.addEventListener("click", function(e) {
-    e.preventDefault();
-    var page = new ABC({
-      "type": "blank",
-      "url": "https://nebulaproxy.io/"
-    });
-    page.open();
+javascript:(function(){
+  var abcScript = document.createElement('script');
+  abcScript.src = 'https://cdn.jsdelivr.net/gh/FogNetwork/ABC/index.js';
+  var head = document.getElementsByTagName('head')[0];
+  head.insertBefore(abcScript,head.firstChild);
+  
+  document.querySelectorAll("#unblockerNebula").forEach(function(element) {
+      element.addEventListener("click", function(e) {
+          e.preventDefault();
+          var page = new ABC({
+              "type": "blank",
+              "url": "https://nebulaproxy.io/"
+          });
+          page.open();
+      });
   });
-});
 
-document.querySelectorAll("#unblockerHolyUnblocker").forEach(function(element) {
-  element.addEventListener("click", function(e) {
-    e.preventDefault();
-    var page = new ABC({
-      "type": "blank",
-      "url": "https://holyubofficial.net/"
-    });
-    page.open();
+  document.querySelectorAll("#unblockerHolyUnblocker").forEach(function(element) {
+      element.addEventListener("click", function(e) {
+          e.preventDefault();
+          var page = new ABC({
+              "type": "blank",
+              "url": "https://holyubofficial.net/"
+          });
+          page.open();
+      });
   });
-});
 
-document.querySelectorAll("#unblockerKazwire").forEach(function(element) {
-  element.addEventListener("click", function(e) {
-    e.preventDefault();
-    var page = new ABC({
-      "type": "blank",
-      "url": "https://kazwire.com"
-    });
-    page.open();
+  document.querySelectorAll("#unblockerKazwire").forEach(function(element) {
+      element.addEventListener("click", function(e) {
+          e.preventDefault();
+          var page = new ABC({
+              "type": "blank",
+              "url": "https://kazwire.com"
+          });
+          page.open();
+      });
   });
-});
 
-document.querySelectorAll("#unblockerTotallyScience").forEach(function(element) {
-  element.addEventListener("click", function(e) {
-    e.preventDefault();
-    var page = new ABC({
-      "type": "blank",
-      "url": "https://totallyscience.co/apps.php"
-    });
-    page.open();
+  document.querySelectorAll("#unblockerTotallyScience").forEach(function(element) {
+      element.addEventListener("click", function(e) {
+          e.preventDefault();
+          var page = new ABC({
+              "type": "blank",
+              "url": "https://totallyscience.co/apps.php"
+          });
+          page.open();
+      });
   });
-});
 
-document.querySelectorAll("#TotallyScienceGame").forEach(function(element) {
-  element.addEventListener("click", function(e) {
-    e.preventDefault();
-    var page = new ABC({
-      "type": "blank",
-      "url": "https://totallyscience.co/"
-    });
-    page.open();
+  document.querySelectorAll("#TotallyScienceGame").forEach(function(element) {
+      element.addEventListener("click", function(e) {
+          e.preventDefault();
+          var page = new ABC({
+              "type": "blank",
+              "url": "https://totallyscience.co/"
+          });
+          page.open();
+      });
   });
-});
 
-document.querySelectorAll("#unblockerMetallic").forEach(function(element) {
-  element.addEventListener("click", function(e) {
-    e.preventDefault();
-    var page = new ABC({
-      "type": "blank",
-      "url": "https://metallic.xyz.wf"
-    });
-    page.open();
+  document.querySelectorAll("#unblockerMetallic").forEach(function(element) {
+      element.addEventListener("click", function(e) {
+          e.preventDefault();
+          var page = new ABC({
+              "type": "blank",
+              "url": "https://metallic.xyz.wf"
+          });
+          page.open();
+      });
   });
-});
 
-document.querySelectorAll("#unblockerMetallic2").forEach(function(element) {
-  element.addEventListener("click", function(e) {
-    e.preventDefault();
-    var page = new ABC({
-      "type": "blank",
-      "url": "https://metalli.zc.al"
-    });
-    page.open();
+  document.querySelectorAll("#unblockerMetallic2").forEach(function(element) {
+      element.addEventListener("click", function(e) {
+          e.preventDefault();
+          var page = new ABC({
+              "type": "blank",
+              "url": "https://metalli.zc.al"
+          });
+          page.open();
+      });
   });
-});
 
-document.querySelectorAll("#unblockerGalaxy").forEach(function(element) {
-  element.addEventListener("click", function(e) {
-    e.preventDefault();
-    var page = new ABC({
-      "type": "blank",
-      "url": "https://galaxy.lag.tf"
-    });
-    page.open();
+  document.querySelectorAll("#unblockerGalaxy").forEach(function(element) {
+      element.addEventListener("click", function(e) {
+          e.preventDefault();
+          var page = new ABC({
+              "type": "blank",
+              "url": "https://galaxy.lag.tf"
+          });
+          page.open();
+      });
   });
-});
+})();
 
 
       
