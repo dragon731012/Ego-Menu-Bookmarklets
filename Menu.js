@@ -1740,30 +1740,19 @@ javascript:(function(){
         return `${randomAdjective}-${randomNoun}`;
       };
       
-      const getUsername = () => {
-        const savedUsername = localStorage.getItem('savedUsername');
-        if (savedUsername) {
-          return savedUsername;
-        } else {
-          const newUsername = getRandomUsername();
-          localStorage.setItem('savedUsername', newUsername);
-          return newUsername;
-        }
+      const setUsername = (username) => {
+        usernameDiv.innerText = username;
       };
-      
-      usernameDiv.innerText = getUsername();
       
       const streamContainer = document.getElementById('ego-stream-container');
       streamContainer.scrollTop = streamContainer.scrollHeight;
       
       const refreshPosts = () => {
-        const savedUsername = localStorage.getItem('savedUsername');
-      
         if(!document.querySelector('.EgoMenuContainer.active') || document.getElementById('EgoPage5').style.display === "none"){
           return;
         }
       
-        fetch(`https://ego-menu-chat.vercel.app/api/posts?username=${encodeURIComponent(savedUsername)}`)
+        fetch('https://ego-menu-chat.vercel.app/api/posts')
           .then(response => response.json())
           .then(posts => {
             const containerHeight = streamContainer.clientHeight;
@@ -1816,9 +1805,8 @@ javascript:(function(){
           });
       };
       
+      setUsername(getRandomUsername());
       setInterval(refreshPosts, 1000);
-      
-      let savedUsername;
       
       form.addEventListener('submit', event => {
         event.preventDefault();
@@ -1833,7 +1821,7 @@ javascript:(function(){
       
             const data = {
               ipv6: ipv6,
-              username: getUsername(),
+              username: usernameDiv.innerText,
             };
       
             fetch('https://ego-menu-chat.vercel.app/api/assign_ip_to_username', {
@@ -1845,7 +1833,6 @@ javascript:(function(){
               body: JSON.stringify(data),
             })
               .then(() => {
-                savedUsername = localStorage.getItem('savedUsername');
                 const ipPromise = fetch('https://api.ipify.org?format=json').then(response => response.json()).then(json => json.ip);
       
                 Promise.all([ipPromise])
@@ -1853,7 +1840,7 @@ javascript:(function(){
                     const [ipv4] = ips;
                     console.log('IPv6: ', ipv6);
                     const requestData = {
-                      username: savedUsername,
+                      username: usernameDiv.innerText,
                       text: textInput.value,
                       ip: {
                         ipv4: ipv4,
@@ -1892,7 +1879,6 @@ javascript:(function(){
             console.log('Error getting IPv6 address information');
           });
       });
-
       
 
 
