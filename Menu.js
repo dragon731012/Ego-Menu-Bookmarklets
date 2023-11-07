@@ -683,12 +683,16 @@ div#egoCookieClickerContainer {
   opacity: 0;
   transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
   z-index: 999999;
+  font-size: 1.1vmax;
+  text-align: right;
+  pointer-events: none;
+  width: max-content;
+  max-width: 20vmax;
 }
-
 .tooltip.show {
   visibility: visible;
   opacity: 1;
-  transform: translate(-6.5rem, 1rem);
+  transform: translate(-3.2vmax, -4vmin);
   filter: drop-shadow(-3px 3px 10px green) drop-shadow(1px 1px 0px white);
 }
   `;
