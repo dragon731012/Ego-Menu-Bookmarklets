@@ -709,14 +709,14 @@ div#egoCookieClickerContainer {
       <div class="EgoMenu">
       <div class="EgoWindowPopoutTitle">Ego Menu</div>
 
-      <div class="EgoMenuIcon">&#124;&#124;&#124;</div>
+      <div class="EgoMenuIcon" data-text="Open/close page menu" >&#124;&#124;&#124;</div>
       <div class="EgoMenuContent">
       
-          <button class="EgoMenuButton" id="EgoButton1">Home</button>
-          <button class="EgoMenuButton" id="EgoButton2">Hacks/Cheats</button>
-          <button class="EgoMenuButton" id="EgoButton3">Unblocked</button>
-          <button class="EgoMenuButton" id="EgoButton4">Games</button>
-          <button class="EgoMenuButton" id="EgoButton5">Page 5</button>
+          <button class="EgoMenuButton" data-text="Useful tools, main page" id="EgoButton1">Home</button>
+          <button class="EgoMenuButton" data-text="Cheat and hacks for school" id="EgoButton2">Hacks/Cheats</button>
+          <button class="EgoMenuButton" data-text="Unblocked sites or unblockers" id="EgoButton3">Unblocked</button>
+          <button class="EgoMenuButton" data-text="Unblocked games/custom games" id="EgoButton4">Games</button>
+          <button class="EgoMenuButton" data-text="Chatroom (beta)" id="EgoButton5">Page 5</button>
       </div>
       </div>
       <h2 class="EgoLogo"></h2>
