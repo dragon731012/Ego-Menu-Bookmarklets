@@ -990,60 +990,7 @@ div#egoCookieClickerContainer {
           .then(r => r.text())
           .then(r => eval(r));
   });
-  window.stealthEngineLoaded = true;
-  function stealthEngine(encodedURL) {
-      let inFrame;
-      try {
-          inFrame = window !== top;
-      } catch (e) {
-          inFrame = true;
-      }
-      setTimeout(() => {
-          if (!inFrame && !navigator.userAgent.includes("Firefox")) {
-              const popup = open("about:blank", "_blank");
-              if (!popup || popup.closed) {
-                  alert("StealthEngine was unable to open a popup. (Do you have popups disabled?)");
-              } else {
-                  const doc = popup.document;
-                  const iframe = doc.createElement("iframe");
-                  const style = iframe.style;
-                  popup.onload = () => {
-                      document.getElementById("lpoader").style.display = "none";
-                      document.getElementById("connectorText").textContent = "connecting to service";
-                      setTimeout(() => {
-                          document.getElementById("connectorText").textContent = "connecting to service";
-                      }, 17500);
-                  };
-                  var isClosed = setInterval(function () {
-                      if (popup.closed) {
-                          clearInterval(isClosed);
-                          document.getElementById("lpoader").style.display = "none";
-                          document.getElementById("connectorText").textContent = "connecting to service";
-                      }
-                  }, 1000);
-                  const img = doc.createElement("link");
-                  const arcSrc = doc.createElement("script");
-                  arcSrc.setAttribute("src", "https://arc.io/widget.min.js#BgaWcYfi");
-                  arcSrc.setAttribute("async", "");
-                  doc.head.appendChild(arcSrc);
-                  const link = location.href;
-                  img.rel = "icon";
-                  img.href = ABFavicon || "https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_32dp.png";
-                  if (localStorage.nogg == "on") {
-                      doc.title = ABTitle || getRandomName();
-                  }
-
-                  else {
-                      doc.title=ABTitle || "Nebula";
-                  }
-
-                  var currentLink=link.slice(0, link.length - 1); iframe.src=encodedURL; style.position="fixed"; style.top=style.bottom=style.left=style.right=0; style.border=style.outline="none"; style.width=style.height="100%"; doc.body.appendChild(iframe); doc.head.appendChild(img);
-              }
-          }
-      }
-
-      , 1500);
-  }
+ 
 
   let tryAbFavi=localStorage.getItem("ABfaviconURL"); let ABFavicon=""; if (tryAbFavi===null) {
       console.warn("ABfaviconURL is null, Defaulting"); ABFavicon="";
