@@ -1258,6 +1258,8 @@ javascript:(function(){
       let isClassroomCovered = false;
       let originalTitle = document.title;
       let originalFavicon;
+      let egoKey = '`';
+      let egoImage = 'https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true';
       
       const coverClassroom = () => {
           if (isClassroomCovered) {
@@ -1286,8 +1288,7 @@ javascript:(function(){
               coverDiv.style.margin = '0';
       
               const coverImage = document.createElement('img');
-              const selectedImage = document.getElementById('cover-select').value;
-              coverImage.src = selectedImage;
+              coverImage.src = egoImage;
               coverImage.style.width = '100%';
               coverImage.style.height = '100%';
               coverImage.style.position = 'absolute';
@@ -1313,50 +1314,43 @@ javascript:(function(){
               document.body.style.overflow = 'hidden';
               document.body.appendChild(coverDiv);
               isClassroomCovered = true;
-              
-              // Open ego popup
-              const keyInput = document.getElementById('key-input');
-              const imageSelect = document.getElementById('cover-select');
-              var content = `
-              <div class="EgoWindowPopoutTitle">Hello World!</div>
-                <div>This is an example of opening an ego popup when the toggle is switched on.</div>
-                <label for="key-input">Enter key to toggle the classroom cover:</label>
-                <input type="text" id="key-input" class="EgoInput" value="${keyInput.value}">
-                <label for="cover-select">Select cover image:</label>
-                <select id="cover-select" class="EgoSelect">
-                  <option value="https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/reset.png?raw=true">Reset Image</option>
-                  <option value="https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true">Disconnect Image</option>
-                </select>
-                <p>Press the "Enter" key to save your changes.</p>
-              `;
-              togglePopup(content);
-              keyInput.addEventListener('keyup', e => {
-                  if (e.key === 'Enter') {
-                      localStorage.setItem('coverKey', keyInput.value);
-                      togglePopup(content);
-                  }
-              });
-              imageSelect.addEventListener('change', e => {
-                  localStorage.setItem('coverImage', imageSelect.value);
-                  togglePopup(content);
-              });
           }
       }
+      
+      const egoPopup = () => {
+          const content = `
+          <div class="EgoWindowPopoutTitle">Customize Ego Cover</div>
+          
+          <div>
+              <label for="egoKeyInput">Enter Key for Ego Toggle:</label>
+              <input type="text" id="egoKeyInput" class="EgoInput" value="${egoKey}" maxLength="1">
+          </div>
+          <div>
+              <label for="egoImageInput">Enter Ego Image URL:</label>
+              <input type="text" id="egoImageInput" class="EgoInput" value="${egoImage}">
+          </div>
+          <button id="egoPopupSave">Save Changes</button>    
+          `;
+      
+          togglePopup(content);
+      
+          const egoPopupSave = document.getElementById('egoPopupSave');
+          const egoKeyInput = document.getElementById('egoKeyInput');
+          const egoImageInput = document.getElementById('egoImageInput');
+      
+          egoPopupSave.addEventListener('click', event => {
+              egoKey = egoKeyInput.value;
+              egoImage = egoImageInput.value;
+          });  
+      };
       
       const panicKeySwitch = document.getElementById('panicKeySwitch');
       
       const handleKeyDown = (event) => {
-          const savedKey = localStorage.getItem('coverKey') || '`';
-          if (event.key === savedKey) {
+          if (event.key === egoKey) {
               coverClassroom();
           }
       }
-      
-      // Load saved key and image options from localStorage
-      const savedKey = localStorage.getItem('coverKey') || '`';
-      const savedImage = localStorage.getItem('coverImage') || 'https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true';
-      document.getElementById('key-input').value = savedKey;
-      document.getElementById('cover-select').value = savedImage;
       
       panicKeySwitch.addEventListener('change', event => {
           if (event.target.checked) {
@@ -1368,6 +1362,13 @@ javascript:(function(){
               }
           }
       });
+      
+      document.addEventListener('keydown', event => {
+          if (event.key === 'p' && event.ctrlKey && event.altKey) {
+              egoPopup();
+          }
+      });
+      
 
 
 
