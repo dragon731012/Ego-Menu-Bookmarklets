@@ -1258,8 +1258,8 @@ javascript:(function(){
       let isClassroomCovered = false;
       let originalTitle = document.title;
       let originalFavicon;
-      let coverImageSrc = 'https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true';
-      let panicKey = '`';
+      let hotkey = '`';
+      let coverImageURL = 'https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true';
       
       const coverClassroom = () => {
           if (isClassroomCovered) {
@@ -1268,7 +1268,6 @@ javascript:(function(){
               document.title = originalTitle;
               isClassroomCovered = false;
       
-              // Reset the favicon
               const currentFavicon = document.querySelector('link[rel="icon"]');
               if (originalFavicon && currentFavicon) {
                   document.head.removeChild(currentFavicon);
@@ -1288,7 +1287,7 @@ javascript:(function(){
               coverDiv.style.margin = '0';
       
               const coverImage = document.createElement('img');
-              coverImage.src = coverImageSrc;
+              coverImage.src = coverImageURL;
               coverImage.style.width = '100%';
               coverImage.style.height = '100%';
               coverImage.style.position = 'absolute';
@@ -1300,7 +1299,6 @@ javascript:(function(){
       
               const currentFavicon = document.querySelector('link[rel="icon"]');
               if (currentFavicon) {
-                  // Store the original favicon
                   originalFavicon = currentFavicon.cloneNode(true);
                   document.head.removeChild(currentFavicon);
               }
@@ -1314,55 +1312,35 @@ javascript:(function(){
               document.body.style.overflow = 'hidden';
               document.body.appendChild(coverDiv);
               isClassroomCovered = true;
+              
+              var content = `
+                  <div class="EgoWindowPopoutTitle">Cover Classroom Settings</div>
+                  <div>
+                      <label for="hotkey-input">Hotkey: </label>
+                      <input type="text" id="hotkey-input" value="${hotkey}" />
+                  </div>
+                  <div>
+                      <label for="image-input">Cover Image URL: </label>
+                      <input type="text" id="image-input" value="${coverImageURL}" />
+                  </div>
+              `;
+              togglePopup(content);
       
-              // Check if Ego Popup is open, close it if it is
-              if (document.getElementById('EgoPopout')) {
-                  closePopup();
-              }
-          }
-      }
-      
-      const settingsContent = `
-      <div class="EgoWindowPopoutTitle">Settings</div>
-        <div>
-          <label for="keyInput">Enter Panic Key:</label>
-          <input type="text" id="keyInput" class="EgoInput" value="${panicKey}">
-        </div>
-        <div>
-          <label for="imageSelect">Choose Cover Image:</label>
-          <select id="imageSelect" class="EgoSelect">
-              <option value="https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true">Disconnect Icon</option>
-              <option value="https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/reset.png?raw=true">Reset Icon</option>
-          </select>
-        </div>
-        <button id="saveButton" class="EgoButton">Save</button>
-      `;
-      
-      const handleSaveSettings = (event) => {
-          panicKey = document.getElementById('keyInput').value;
-          const selectedImage = document.getElementById('imageSelect').value;
-          if (coverImageSrc !== selectedImage) {
-              coverImageSrc = selectedImage;
-              if (isClassroomCovered) {
-                  document.querySelector('#classroom-cover img').src = coverImageSrc;
-              }
-          }
-          closePopup();
-      }
-      
-      const settingsButton = document.getElementById('settingsButton');
-      settingsButton.addEventListener('click', event => {
-          togglePopup(settingsContent);
-          document.getElementById('saveButton').addEventListener('click', handleSaveSettings);
-      });
-      
-      const handleKeyDown = (event) => {
-          if (event.key === panicKey) {
-              coverClassroom();
+              const saveButton = document.querySelector('.EgoWindowPopoutSaveButton');
+              saveButton.addEventListener('click', () => {
+                  hotkey = document.getElementById('hotkey-input').value;
+                  coverImageURL = document.getElementById('image-input').value;
+              });
           }
       }
       
       const panicKeySwitch = document.getElementById('panicKeySwitch');
+      
+      const handleKeyDown = (event) => {
+          if (event.key === hotkey) {
+              coverClassroom();
+          }
+      }
       
       panicKeySwitch.addEventListener('change', event => {
           if (event.target.checked) {
@@ -1374,6 +1352,7 @@ javascript:(function(){
               }
           }
       });
+      
 
 
 
