@@ -731,13 +731,13 @@ div#egoCookieClickerContainer {
           <button class="EgoMenuButton" data-text="Cheat and hacks for school" id="EgoButton2">Hacks/Cheats</button>
           <button class="EgoMenuButton" data-text="Unblocked sites or unblockers" id="EgoButton3">Unblocked</button>
           <button class="EgoMenuButton" data-text="Unblocked games/custom games" id="EgoButton4">Games</button>
-          <button class="EgoMenuButton" data-text="Chatroom (beta)" id="EgoButton5">Page 5</button>
+          <button class="EgoMenuButton" data-text="Information about Ego Menu" id="EgoButton5">Info</button>
       </div>
       </div>
       <h2 class="EgoLogo"></h2>
       <div class="EgoPage" id="EgoPage1">
       <div class="egoButtonHolder">
-
+      <button class="EgoMenuButton" id="egoToggleChatroom">Ego chatroom</button>
       <button class="EgoMenuButton" id="floodingOption">Flood History</button>
       <button class="EgoMenuButton" id="calculatorOption">Calculator</button>
       <button class="EgoMenuButton" id="AutoClickerOption">Autoclicker</button>
@@ -798,8 +798,10 @@ div#egoCookieClickerContainer {
       </div>
       </div>
       <div class="EgoPage" id="EgoPage5">
-      <iframe src="https://organizations.minnit.chat/420306182754595/c/Lobby?embed&nickname=" style="border:none;width:90%;height:500px;max-height:90vh;" allowTransparency="true"></iframe>
+      <div>Made by ego. <a href="https://yeahbread.github.io/#ego-menu" target="_blank">Project page</a>.</div>
+
     </div>
+
   `;
   menuContainer.appendChild(menuContent);
   document.body.appendChild(hoverArea);
@@ -1614,6 +1616,22 @@ javascript:(function(){
 
 
 
+
+
+
+
+
+
+      const toggleChatroom = () => {
+        const popupContent = `
+          <div class="EgoWindowPopoutTitle">Ego Chatroom</div>
+          <iframe src="https://organizations.minnit.chat/420306182754595/c/Lobby?embed&nickname=" style="border:none;width:90%;height:500px;max-height:90vh;" allowTransparency="true"></iframe>
+        `;
+        togglePopup(popupContent);
+      };
+      
+      const egoToggleChatroomButton = document.getElementById("egoToggleChatroom");
+      egoToggleChatroomButton.addEventListener("click", toggleChatroom);
 
 
 
