@@ -295,26 +295,26 @@ javascript: (function() {
         transform: rotate(90deg) scalex(0.8);
         color: #5e5e5e;
     }
-      .EgoMenuContent {
-        position: fixed;
-        top: 0;
-        width: 10vmax;
-        height: 100%;
-        left: -0.3vmax;
-        background-color: #212121cc;
-        backdrop-filter: blur(3mm);
-        z-index: 9998;
-        transition: transform 0.3s ease-in-out;
-        transform-origin: left;
-        display: flex;
-        flex-direction: column;
-        flex-wrap: nowrap;
-        border-radius: 5mm;
-        align-content: center;
-        justify-content: center;
-        align-items: flex-start;
-        transform: scaleX(0);
-    }
+    .EgoMenuContent {
+      position: fixed;
+      top: 0;
+      width: 10vmax;
+      height: 100%;
+      left: -0.3vmax;
+      background-color: #212121cc;
+      backdrop-filter: blur(3mm);
+      z-index: 9998;
+      transform-origin: left;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      border-radius: 5mm;
+      align-content: center;
+      justify-content: center;
+      align-items: flex-start;
+      transform: scaleX(0);
+      filter: drop-shadow(0vmax 0vmax 0vmax black);
+  }
     .EgoMenuContent button {
       padding-top: 1vmin;
       padding-bottom: 1vmin;
@@ -336,8 +336,9 @@ javascript: (function() {
   transform: scale(0.9) translate(-1mm, 1mm);
   background-color: #00000059;
 }
-  .EgoMenuContent--open {
-    transform: scaleX(1);
+.EgoMenuContent--open {
+  transform: scaleX(1);
+  filter: drop-shadow(4vmax 0vmax 5vmax black);
 }
         .EgoPage {
           display: none;
