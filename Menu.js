@@ -1625,7 +1625,7 @@ javascript:(function(){
       const toggleChatroom = () => {
         const popupContent = `
           <div class="EgoWindowPopoutTitle">Ego Chatroom</div>
-          <iframe src="https://organizations.minnit.chat/420306182754595/c/Lobby?embed&nickname=" style="border:none;width:90%;height:500px;max-height:90vh;" allowTransparency="true"></iframe>
+          <iframe src="https://organizations.minnit.chat/420306182754595/c/Lobby?embed&nickname=" style="border:none;width:100%;height:30vmax;max-height:90vh;" allowTransparency="true"></iframe>
         `;
         togglePopup(popupContent);
       };
