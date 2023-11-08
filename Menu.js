@@ -1255,97 +1255,143 @@ javascript:(function(){
 
 
 
-
       let isClassroomCovered = false;
       let originalTitle = document.title;
       let originalFavicon;
-      let coverImageSrc = 'https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/reset.png?raw=true';
-      let panicKey = '`';
       
       const coverClassroom = () => {
-          if (isClassroomCovered) {
-              document.body.style.overflow = 'auto';
-              document.getElementById('classroom-cover').remove();
-              document.title = originalTitle;
-              isClassroomCovered = false;
+        if (isClassroomCovered) {
+          document.body.style.overflow = "auto";
+          document.getElementById("classroom-cover").remove();
+          document.title = originalTitle;
+          isClassroomCovered = false;
       
-              // Reset the favicon
-              const currentFavicon = document.querySelector('link[rel="icon"]');
-              if (originalFavicon && currentFavicon) {
-                  document.head.removeChild(currentFavicon);
-                  document.head.appendChild(originalFavicon);
-              }
-          } else {
-              const coverDiv = document.createElement('div');
-              coverDiv.id = 'classroom-cover';
-              coverDiv.style.width = '100vw';
-              coverDiv.style.height = '100vh';
-              coverDiv.style.position = 'fixed';
-              coverDiv.style.top = '0';
-              coverDiv.style.left = '0';
-              coverDiv.style.backgroundColor = '#fff';
-              coverDiv.style.zIndex = '9999999999999999999999999';
-              coverDiv.style.padding = '0';
-              coverDiv.style.margin = '0';
-      
-              const coverImage = document.createElement('img');
-              coverImage.src = coverImageSrc;
-              coverImage.style.width = '100%';
-              coverImage.style.height = '100%';
-              coverImage.style.position = 'absolute';
-              coverImage.style.top = '0';
-              coverImage.style.left = '0';
-              coverImage.style.zIndex = '1';
-      
-              coverDiv.appendChild(coverImage);
-      
-              const currentFavicon = document.querySelector('link[rel="icon"]');
-              if (currentFavicon) {
-                  // Store the original favicon
-                  originalFavicon = currentFavicon.cloneNode(true);
-                  document.head.removeChild(currentFavicon);
-              }
-      
-              const favicon = document.createElement('link');
-              favicon.rel = 'icon';
-              favicon.href = 'https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png';
-              document.head.appendChild(favicon);
-      
-              document.title = 'Error';
-              document.body.style.overflow = 'hidden';
-              document.body.appendChild(coverDiv);
-              isClassroomCovered = true;
+          // Reset the favicon
+          const currentFavicon = document.querySelector('link[rel="icon"]');
+          if (originalFavicon && currentFavicon) {
+            document.head.removeChild(currentFavicon);
+            document.head.appendChild(originalFavicon);
           }
-      }
+        } else {
+          const coverDiv = document.createElement("div");
+          coverDiv.id = "classroom-cover";
+          coverDiv.style.width = "100vw";
+          coverDiv.style.height = "100vh";
+          coverDiv.style.position = "fixed";
+          coverDiv.style.top = "0";
+          coverDiv.style.left = "0";
+          coverDiv.style.backgroundColor = "#fff";
+          coverDiv.style.zIndex = "9999999999999999999999999";
+          coverDiv.style.padding = "0";
+          coverDiv.style.margin = "0";
       
-      const egoPopupContent = `
-      <div class="EgoWindowPopoutTitle">Configure Classroom Cover</div>
-      <label for="coverImageSrcInput">Cover Image Source URL:</label>
-      <input type="text" id="coverImageSrcInput" class="EgoInput" value="${coverImageSrc}">
+          const coverImage = document.createElement("img");
+          const imageInput = document.getElementById("coverImageInput");
+          coverImage.src = imageInput.value
+            ? imageInput.value
+            : "https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true";
+          coverImage.style.width = "100%";
+          coverImage.style.height = "100%";
+          coverImage.style.position = "absolute";
+          coverImage.style.top = "0";
+          coverImage.style.left = "0";
+          coverImage.style.zIndex = "1";
       
-      <label for="panicKeyInput">Toggle Panic Key:</label>
-      <input type="text" id="panicKeyInput" class="EgoInput" value="${panicKey}">
+          coverDiv.appendChild(coverImage);
       
-      <button id="saveConfigButton" class="EgoButton">Save Configuration</button>
-      `
+          const currentFavicon = document.querySelector('link[rel="icon"]');
+          if (currentFavicon) {
+            // Store the original favicon
+            originalFavicon = currentFavicon.cloneNode(true);
+            document.head.removeChild(currentFavicon);
+          }
       
-
+          const favicon = document.createElement("link");
+          favicon.rel = "icon";
+          favicon.href =
+            "https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png";
+          document.head.appendChild(favicon);
       
-      togglePopup(egoPopupContent);
+          document.title = "Error";
+          document.body.style.overflow = "hidden";
+          document.body.appendChild(coverDiv);
+          isClassroomCovered = true;
+        }
+      };
       
-      document.getElementById('saveConfigButton').addEventListener('click', () => {
-          coverImageSrc = document.getElementById('coverImageSrcInput').value;
-          panicKey = document.getElementById('panicKeyInput').value;
-          document.body.removeChild(document.querySelector('.EgoWindowPopout'));
-      });
+      const panicKeySwitch = document.getElementById("panicKeySwitch");
+      const coverKeyInput = document.getElementById("coverKeyInput");
       
       const handleKeyDown = (event) => {
-          if (event.key === panicKey) {
-              coverClassroom();
-          }
-      }
+        if (event.key === coverKeyInput.value) {
+          coverClassroom();
+        }
+      };
       
-      document.addEventListener('keydown', handleKeyDown);
+      panicKeySwitch.addEventListener("change", (event) => {
+        if (event.target.checked) {
+          document.addEventListener("keydown", handleKeyDown);
+        } else {
+          document.removeEventListener("keydown", handleKeyDown);
+          if (isClassroomCovered) {
+            coverClassroom();
+          }
+        }
+      });
+      
+      const togglePopup = (content) => {
+        const popupElement = document.createElement("div");
+        popupElement.classList.add("ego-popup");
+      
+        const closeButton = document.createElement("button");
+        closeButton.classList.add("ego-popup-close");
+        closeButton.innerText = "x";
+        closeButton.addEventListener("click", () => {
+          document.body.removeChild(popupElement);
+        });
+      
+        const popupContent = document.createElement("div");
+        popupContent.innerHTML = content;
+      
+        popupElement.appendChild(closeButton);
+        popupElement.appendChild(popupContent);
+      
+        document.body.appendChild(popupElement);
+      };
+      
+      const popupContent = `
+        <div class="EgoWindowPopoutTitle">Cover Classroom Settings</div>
+      
+        <div class="EgoInputContainer">
+          <label for="coverKeyInput">Enter Panic Key:</label>
+          <input type="text" id="coverKeyInput" class="EgoInput" value="` +
+        "`" + `">
+        </div>
+      
+        <div class="EgoInputContainer">
+          <label for="coverImageInput">Enter Image URL:</label>
+          <input type="text" id="coverImageInput" class="EgoInput">
+        </div>
+      
+        <button id="saveButton" class="EgoButton">Save Settings</button>
+      `;
+      
+      const openSettings = () => {
+        togglePopup(popupContent);
+        const saveButton = document.getElementById("saveButton");
+        saveButton.addEventListener("click", () => {
+          const savedKey = document.getElementById("coverKeyInput").value;
+          const savedImage = document.getElementById("coverImageInput").value;
+          if (savedKey) coverKeyInput.value = savedKey;
+          if (savedImage) coverClassroom();
+        });
+      };
+      
+      const settingsButton = document.createElement("button");
+      settingsButton.innerText = "Cover Classroom Settings";
+      settingsButton.classList.add("EgoButton");
+      document.body.appendChild(settingsButton);
+      settingsButton.addEventListener("click", openSettings);
 
 
 
