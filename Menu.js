@@ -1258,8 +1258,6 @@ javascript:(function(){
       let isClassroomCovered = false;
       let originalTitle = document.title;
       let originalFavicon;
-      let hotkey = '`';
-      let coverImageURL = 'https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true';
       
       const coverClassroom = () => {
           if (isClassroomCovered) {
@@ -1268,6 +1266,7 @@ javascript:(function(){
               document.title = originalTitle;
               isClassroomCovered = false;
       
+              // Reset the favicon
               const currentFavicon = document.querySelector('link[rel="icon"]');
               if (originalFavicon && currentFavicon) {
                   document.head.removeChild(currentFavicon);
@@ -1287,7 +1286,8 @@ javascript:(function(){
               coverDiv.style.margin = '0';
       
               const coverImage = document.createElement('img');
-              coverImage.src = coverImageURL;
+              const selectedImage = document.getElementById('cover-select').value;
+              coverImage.src = selectedImage;
               coverImage.style.width = '100%';
               coverImage.style.height = '100%';
               coverImage.style.position = 'absolute';
@@ -1299,6 +1299,7 @@ javascript:(function(){
       
               const currentFavicon = document.querySelector('link[rel="icon"]');
               if (currentFavicon) {
+                  // Store the original favicon
                   originalFavicon = currentFavicon.cloneNode(true);
                   document.head.removeChild(currentFavicon);
               }
@@ -1313,23 +1314,31 @@ javascript:(function(){
               document.body.appendChild(coverDiv);
               isClassroomCovered = true;
               
+              // Open ego popup
+              const keyInput = document.getElementById('key-input');
+              const imageSelect = document.getElementById('cover-select');
               var content = `
-                  <div class="EgoWindowPopoutTitle">Cover Classroom Settings</div>
-                  <div>
-                      <label for="hotkey-input">Hotkey: </label>
-                      <input type="text" id="hotkey-input" value="${hotkey}" />
-                  </div>
-                  <div>
-                      <label for="image-input">Cover Image URL: </label>
-                      <input type="text" id="image-input" value="${coverImageURL}" />
-                  </div>
+              <div class="EgoWindowPopoutTitle">Hello World!</div>
+                <div>This is an example of opening an ego popup when the toggle is switched on.</div>
+                <label for="key-input">Enter key to toggle the classroom cover:</label>
+                <input type="text" id="key-input" class="EgoInput" value="${keyInput.value}">
+                <label for="cover-select">Select cover image:</label>
+                <select id="cover-select" class="EgoSelect">
+                  <option value="https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/reset.png?raw=true">Reset Image</option>
+                  <option value="https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true">Disconnect Image</option>
+                </select>
+                <p>Press the "Enter" key to save your changes.</p>
               `;
               togglePopup(content);
-      
-              const saveButton = document.querySelector('.EgoWindowPopoutSaveButton');
-              saveButton.addEventListener('click', () => {
-                  hotkey = document.getElementById('hotkey-input').value;
-                  coverImageURL = document.getElementById('image-input').value;
+              keyInput.addEventListener('keyup', e => {
+                  if (e.key === 'Enter') {
+                      localStorage.setItem('coverKey', keyInput.value);
+                      togglePopup(content);
+                  }
+              });
+              imageSelect.addEventListener('change', e => {
+                  localStorage.setItem('coverImage', imageSelect.value);
+                  togglePopup(content);
               });
           }
       }
@@ -1337,10 +1346,17 @@ javascript:(function(){
       const panicKeySwitch = document.getElementById('panicKeySwitch');
       
       const handleKeyDown = (event) => {
-          if (event.key === hotkey) {
+          const savedKey = localStorage.getItem('coverKey') || '`';
+          if (event.key === savedKey) {
               coverClassroom();
           }
       }
+      
+      // Load saved key and image options from localStorage
+      const savedKey = localStorage.getItem('coverKey') || '`';
+      const savedImage = localStorage.getItem('coverImage') || 'https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true';
+      document.getElementById('key-input').value = savedKey;
+      document.getElementById('cover-select').value = savedImage;
       
       panicKeySwitch.addEventListener('change', event => {
           if (event.target.checked) {
@@ -1352,7 +1368,6 @@ javascript:(function(){
               }
           }
       });
-      
 
 
 
