@@ -798,7 +798,7 @@ div#egoCookieClickerContainer {
       </div>
       </div>
       <div class="EgoPage" id="EgoPage5">
-      <script src="https://minnit.chat/js/embed.js" defer></script><minnit-chat data-chatname="https://organizations.minnit.chat/420306182754595/Lobby?embed&dark&nickname=" data-style="width:90%;height:500px;max-height:90vh;"></minnit-chat>
+      <iframe src="https://organizations.minnit.chat/420306182754595/c/Lobby?embed&nickname=" style="border:none;width:90%;height:500px;max-height:90vh;" allowTransparency="true"></iframe>
     </div>
   `;
   menuContainer.appendChild(menuContent);
