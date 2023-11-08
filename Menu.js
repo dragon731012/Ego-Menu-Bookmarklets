@@ -1329,20 +1329,7 @@ javascript:(function(){
       <button id="saveConfigButton" class="EgoButton">Save Configuration</button>
       `
       
-      const togglePopup = (content) => {
-        const popupElement = document.createElement("div");
-        popupElement.classList.add("EgoWindowPopout");
-        popupElement.innerHTML = content;
-        document.body.appendChild(popupElement);
-        
-        const popupCloseButton = document.createElement("div");
-        popupCloseButton.classList.add("EgoWindowPopoutClose");
-        popupCloseButton.textContent = "×";
-        popupCloseButton.addEventListener("click", function() {
-          document.body.removeChild(popupElement);
-        });
-        popupElement.appendChild(popupCloseButton);
-      }
+
       
       togglePopup(egoPopupContent);
       
