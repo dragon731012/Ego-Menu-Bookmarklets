@@ -1339,25 +1339,7 @@ javascript:(function(){
         }
       });
       
-      const togglePopup = (content) => {
-        const popupElement = document.createElement("div");
-        popupElement.classList.add("ego-popup");
-      
-        const closeButton = document.createElement("button");
-        closeButton.classList.add("ego-popup-close");
-        closeButton.innerText = "x";
-        closeButton.addEventListener("click", () => {
-          document.body.removeChild(popupElement);
-        });
-      
-        const popupContent = document.createElement("div");
-        popupContent.innerHTML = content;
-      
-        popupElement.appendChild(closeButton);
-        popupElement.appendChild(popupContent);
-      
-        document.body.appendChild(popupElement);
-      };
+
       
       const popupContent = `
         <div class="EgoWindowPopoutTitle">Cover Classroom Settings</div>
