@@ -1259,6 +1259,11 @@ javascript:(function(){
       let originalTitle = document.title;
       let originalFavicon;
       
+      const images = {
+        disconnect: "https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true",
+        reset: "https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/reset.png?raw=true",
+      };
+      
       const coverClassroom = () => {
         if (isClassroomCovered) {
           document.body.style.overflow = "auto";
@@ -1286,10 +1291,8 @@ javascript:(function(){
           coverDiv.style.margin = "0";
       
           const coverImage = document.createElement("img");
-          const imageInput = document.getElementById("coverImageInput");
-          coverImage.src = imageInput.value
-            ? imageInput.value
-            : "https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true";
+          const imageSwitch = document.getElementById("imageSwitch");
+          coverImage.src = imageSwitch.checked ? images.reset : images.disconnect;
           coverImage.style.width = "100%";
           coverImage.style.height = "100%";
           coverImage.style.position = "absolute";
@@ -1331,6 +1334,33 @@ javascript:(function(){
       panicKeySwitch.addEventListener("change", (event) => {
         if (event.target.checked) {
           document.addEventListener("keydown", handleKeyDown);
+          const content = `
+            <div class="EgoWindowPopoutTitle">Cover Classroom Settings</div>
+          
+            <div class="EgoInputContainer">
+              <label for="coverKeyInput">Enter Panic Key:</label>
+              <input type="text" id="coverKeyInput" class="EgoInput" value="` +
+            "`" + `">
+            </div>
+          
+            <div class="EgoInputContainer">
+              <label for="imageSwitch">Choose Cover Image:</label>
+              <input type="checkbox" id="imageSwitch" class="EgoSwitch" checked>
+              <label for="imageSwitch">Reset</label>
+            </div>
+          
+            <button id="saveButton" class="EgoButton">Save Settings</button>
+          `;
+          togglePopup(content);
+          const saveButton = document.getElementById("saveButton");
+          saveButton.addEventListener("click", () => {
+            const savedKey = document.getElementById("coverKeyInput").value;
+            if (savedKey) coverKeyInput.value = savedKey;
+            const imageSwitch = document.getElementById("imageSwitch");
+            coverClassroom();
+            if (imageSwitch.checked) imageSwitch.nextElementSibling.innerText = "Reset";
+            else imageSwitch.nextElementSibling.innerText = "Disconnect";
+          });
         } else {
           document.removeEventListener("keydown", handleKeyDown);
           if (isClassroomCovered) {
@@ -1339,41 +1369,6 @@ javascript:(function(){
         }
       });
       
-
-      
-      const popupContent = `
-        <div class="EgoWindowPopoutTitle">Cover Classroom Settings</div>
-      
-        <div class="EgoInputContainer">
-          <label for="coverKeyInput">Enter Panic Key:</label>
-          <input type="text" id="coverKeyInput" class="EgoInput" value="` +
-        "`" + `">
-        </div>
-      
-        <div class="EgoInputContainer">
-          <label for="coverImageInput">Enter Image URL:</label>
-          <input type="text" id="coverImageInput" class="EgoInput">
-        </div>
-      
-        <button id="saveButton" class="EgoButton">Save Settings</button>
-      `;
-      
-      const openSettings = () => {
-        togglePopup(popupContent);
-        const saveButton = document.getElementById("saveButton");
-        saveButton.addEventListener("click", () => {
-          const savedKey = document.getElementById("coverKeyInput").value;
-          const savedImage = document.getElementById("coverImageInput").value;
-          if (savedKey) coverKeyInput.value = savedKey;
-          if (savedImage) coverClassroom();
-        });
-      };
-      
-      const settingsButton = document.createElement("button");
-      settingsButton.innerText = "Cover Classroom Settings";
-      settingsButton.classList.add("EgoButton");
-      document.body.appendChild(settingsButton);
-      settingsButton.addEventListener("click", openSettings);
 
 
 
