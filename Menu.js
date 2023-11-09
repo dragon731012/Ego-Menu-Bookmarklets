@@ -651,7 +651,7 @@ div#ego-stream-container {
   top: -4vmin;
   transform: translateX(-50%) skewx(-10deg);
   left: 50%;
-  width: 25vmin;
+  width: 35vmin;
   font-size: 2vmin;
   border-radius: 1mm;
 }
@@ -1325,7 +1325,7 @@ javascript:(function(){
       panicKeySwitch.addEventListener("change", (event) => {
         if (event.target.checked) {
           const popupContent = `
-            <div class="EgoWindowPopoutTitle">Cover Classroom Settings</div>
+            <div class="EgoWindowPopoutTitle">Panic Settings</div>
       
             <div>Choose a cover method:</div>
             <div class="EgoInputContainer egoPanicKeyRadios">
