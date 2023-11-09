@@ -84,6 +84,8 @@ javascript: (function() {
         margin: 5px;
         text-overflow: ellipsis;
         width: 10.9rem;
+        z-index: 10;
+        position: relative;
         overflow: hidden;
     }
       .EgoMenuContainer.active + .EgoMenuHoverArea {
@@ -1116,25 +1118,28 @@ const slopeGameBtn = document.getElementById("egoSlopeGame");
 
 slopeGameBtn.addEventListener("click", () => {
   const popupContent = `
-  <div class="EgoWindowPopoutTitle">Slope</div>
+    <div class="EgoWindowPopoutTitle">Slope</div>
 
-  <iframe src="https://slope-1.runningfred333.repl.co/" frameborder="0" style="width: 100vw;height: 100vh;transform: scale(0.45) translate(-41vmin, 10vmin);margin: -16vmax;"></iframe>
+    <iframe src="https://slope-1.runningfred333.repl.co/" frameborder="0" style="width: 100vw;height: 100vh;transform: scale(0.45) translate(-41vmin, 10vmin);margin: -16vmax;"></iframe>
+
+    <button id="showFrameSourceBtn" class="EgoMenuButton">Show Frame Source</button>
+    <button id="muteFrameBtn" class="EgoMenuButton">Mute Frame</button>
   `;
   togglePopup(popupContent, true);
 
-  const popupHeader = document.querySelector(".EgoWindowPopoutTitle");
-  const showFrameSourceBtn = document.createElement("button");
-  showFrameSourceBtn.className = "EgoWindowPopoutButton";
-  showFrameSourceBtn.textContent = "Show Frame Source";
-  popupHeader.appendChild(showFrameSourceBtn);
-
+  const showFrameSourceBtn = document.getElementById("showFrameSourceBtn");
   showFrameSourceBtn.addEventListener("click", () => {
     const iframe = document.querySelector("iframe");
     const frameSource = iframe.src;
     window.open(frameSource, "_blank");
   });
-});
 
+  const muteFrameBtn = document.getElementById("muteFrameBtn");
+  muteFrameBtn.addEventListener("click", () => {
+    const iframe = document.querySelector("iframe");
+    iframe.contentWindow.postMessage({ type: "mute" }, "*");
+  });
+});
 
 
       
