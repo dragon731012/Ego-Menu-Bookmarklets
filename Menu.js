@@ -1327,7 +1327,7 @@ javascript:(function(){
           const popupContent = `
             <div class="EgoWindowPopoutTitle">Cover Classroom Settings</div>
       
-            <p>Choose a cover type:</p>
+            <div>Choose a cover method:</div>
             <div class="EgoInputContainer egoPanicKeyRadios">
               <div>
                 <input type="radio" id="disconnectRadio" name="egoPanicKeyRadio" data-src="https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true" checked>
