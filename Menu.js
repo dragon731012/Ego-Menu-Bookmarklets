@@ -1301,9 +1301,23 @@ javascript:(function(){
         }
       };
       
+      const openClassroom = () => {
+        window.open("https://classroom.google.com", "_blank");
+      };
+      
       const handleKeyDown = (event) => {
         if (event.key === coverKey) {
-          coverClassroom();
+          if (document.activeElement.tagName === "INPUT") {
+            return;
+          }
+          const selectedImage = document.querySelector(
+            "input[name=egoPanicKeyRadio]:checked"
+          );
+          if (!selectedImage || selectedImage.value !== "other") {
+            coverClassroom();
+          } else {
+            openClassroom();
+          }
         }
       };
       
@@ -1358,22 +1372,6 @@ javascript:(function(){
           coverClassroom();
         }
       });
-      
-      const openClassroom = () => {
-        window.open("https://classroom.google.com/", "_blank");
-      };
-      
-      const handleSiteSelect = (event) => {
-        if (event.target.id === "siteRadio") {
-          openClassroom();
-        } else {
-          coverClassroom();
-        }
-      };
-      
-      document
-        .querySelector("input[name=egoPanicKeyRadio]:checked")
-        .addEventListener("change", handleSiteSelect);
 
 
 
