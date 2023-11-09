@@ -340,12 +340,12 @@ javascript: (function() {
   transform: scaleX(1);
   filter: drop-shadow(4vmax 0vmax 5vmax black);
 }
-        .EgoPage {
-          display: none;
-          height: 13.8vmax;
-          overflow-x: hidden;
-          overflow-y: auto;
-      }
+.EgoPage {
+  display: none;
+  height: 10.5vmax;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
         
         #EgoPage1 {
           display: block;
