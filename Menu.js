@@ -114,7 +114,11 @@ javascript: (function() {
         color: #fff;
         border: 1px solid #444;
         padding: 10px;
-        width: 100%;
+        min-width: 110%;
+        width: max-content;
+        max-width: 115%;
+        left: 2vmin;
+        position: relative;
         border-radius: 3mm;
         box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px 20px, rgba(0, 0, 0, 0.3) 0px 30px 60px 20px, inset 1vmin -1vmin 0px 1vmin #00000061;
     }
@@ -163,12 +167,16 @@ javascript: (function() {
       height: 3vmax;
       position: relative;
       background-position-x: center;
-      margin: 0 !important;
+      margin: 0vmin !important;
       top: -1vmin;
+      margin-bottom: -1vmin !important;
       right: 0;
       left: 0;
       width: 100%;
       transform: none !important;
+      font-size: 0;
+      font-weight: normal;
+      line-height: normal;
   }
       .EgoSmallImage {
           position: fixed;
@@ -190,7 +198,7 @@ javascript: (function() {
         flex-wrap: wrap;
         align-content: stretch;
         align-items: center;
-        gap: 3mm;
+        gap: 1mm;
     }
       .EgoSwitch {
           display: inline-block;
@@ -342,11 +350,10 @@ javascript: (function() {
 }
 .EgoPage {
   display: none;
-  height: 10.5vmax;
+  height: 88%;
   overflow-x: hidden;
   overflow-y: auto;
 }
-        
         #EgoPage1 {
           display: block;
         }
@@ -590,7 +597,7 @@ div#ego-stream-container {
 }
 .EgoMenuContentDIV {
   width: 100%;
-  height: 17vmax;
+  height: 100%;
 }
 .ego-others-message {
   background-color: #282828;
@@ -793,8 +800,9 @@ div#egoCookieClickerContainer {
 
       <button class="EgoMenuButton" id="RockPaperScissors">Rock/Paper/Scissors</button>
       <button class="EgoMenuButton" id="TotallyScienceGame">totallyscience.co</button>
+      <button class="EgoMenuButton" id="egoSlopeGame">Slope</button>
 
-      
+
       </div>
       </div>
       <div class="EgoPage" id="EgoPage5">
@@ -1099,6 +1107,34 @@ javascript:(function(){
       });
   });
 })();
+
+
+
+
+
+const slopeGameBtn = document.getElementById("egoSlopeGame");
+
+slopeGameBtn.addEventListener("click", () => {
+  const popupContent = `
+  <div class="EgoWindowPopoutTitle">Slope</div>
+
+  <iframe src="https://slope-1.runningfred333.repl.co/" frameborder="0" style="width: 100vw;height: 100vh;transform: scale(0.45) translate(-41vmin, 10vmin);margin: -16vmax;"></iframe>
+  `;
+  togglePopup(popupContent, true);
+
+  const popupHeader = document.querySelector(".EgoWindowPopoutTitle");
+  const showFrameSourceBtn = document.createElement("button");
+  showFrameSourceBtn.className = "EgoWindowPopoutButton";
+  showFrameSourceBtn.textContent = "Show Frame Source";
+  popupHeader.appendChild(showFrameSourceBtn);
+
+  showFrameSourceBtn.addEventListener("click", () => {
+    const iframe = document.querySelector("iframe");
+    const frameSource = iframe.src;
+    window.open(frameSource, "_blank");
+  });
+});
+
 
 
       
