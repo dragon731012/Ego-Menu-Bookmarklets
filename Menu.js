@@ -1339,18 +1339,17 @@ javascript:(function(){
               </div>
               <div>
                 <input type="radio" id="siteRadio" name="egoPanicKeyRadio" data-src="" value="other">
-                <label for="siteRadio">Open classroom.google.com</label>
+                <label for="siteRadio">Open google classroom</label>
               </div>
             </div>
       
             <div class="EgoInputContainer">
-              <label for="coverKeyInput">Enter Panic Key (max 2 characters, case sensitive):</label>
+              <label for="coverKeyInput">Enter Panic Key (case sensitive):</label>
               <input type="text" id="coverKeyInput" class="EgoInput" value="` +
             coverKey +
             `">
             </div>
       
-            <div>The settings will persist only during this session and will be reset when you close the tab.</div>
           `;
           togglePopup(popupContent);
       
