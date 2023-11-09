@@ -1233,13 +1233,15 @@ javascript:(function(){
       let isClassroomCovered = false;
       let originalTitle = document.title;
       let originalFavicon;
+      let coverKey = "`";
       
       const coverClassroom = () => {
         const coverDiv = document.createElement("div");
         const coverImage = document.createElement("img");
-        const coverKey = document.getElementById("coverKeyInput").value || "`";
         const selectedImage = document.querySelector("input[name=egoPanicKeyRadio]:checked");
-        const coverImageSrc = selectedImage ? selectedImage.value : undefined || "https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true";
+        const coverImageSrc =
+          selectedImage ? selectedImage.value : undefined ||
+          "https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true";
       
         coverDiv.id = "classroom-cover";
         coverDiv.style.width = "100vw";
@@ -1293,19 +1295,15 @@ javascript:(function(){
           document.body.appendChild(coverDiv);
           isClassroomCovered = true;
         }
+      };
       
-        const handleKeyDown = (event) => {
-          if (event.key === coverKey) {
-            coverClassroom();
-          }
-        };
-      
-        if (isClassroomCovered) {
-          document.addEventListener("keydown", handleKeyDown);
-        } else {
-          document.removeEventListener("keydown", handleKeyDown);
+      const handleKeyDown = (event) => {
+        if (event.key === coverKey) {
+          coverClassroom();
         }
       };
+      
+      document.addEventListener("keydown", handleKeyDown);
       
       const panicKeySwitch = document.getElementById("panicKeySwitch");
       
@@ -1328,7 +1326,9 @@ javascript:(function(){
       
             <div class="EgoInputContainer">
               <label for="coverKeyInput">Enter Panic Key:</label>
-              <input type="text" id="coverKeyInput" class="EgoInput" value="` + "`" + `">
+              <input type="text" id="coverKeyInput" class="EgoInput" value="` +
+            coverKey +
+            `">
             </div>
       
             <button id="saveButton" class="EgoButton">Save Settings</button>
@@ -1336,17 +1336,18 @@ javascript:(function(){
           togglePopup(popupContent);
           const saveButton = document.getElementById("saveButton");
           saveButton.addEventListener("click", () => {
-            document.body.removeChild(document.querySelector(".ego-popup"));
-            coverClassroom();
-            localStorage.setItem("coverKey", document.getElementById("coverKeyInput").value);
-            const selectedImage = document.querySelector("input[name=egoPanicKeyRadio]:checked");
+            coverKey = document.getElementById("coverKeyInput").value || "`";
+            localStorage.setItem("coverKey", coverKey);
+            const selectedImage = document.querySelector(
+              "input[name=egoPanicKeyRadio]:checked"
+            );
             localStorage.setItem("coverImage", selectedImage.value);
+            document.body.removeChild(document.querySelector(".ego-popup"));
           });
         } else {
           coverClassroom();
         }
       });
-      
 
 
 
