@@ -1235,24 +1235,6 @@ javascript:(function(){
       let originalFavicon;
       let coverKey = "`";
       
-       const preloadImage = (src) => {
-        return new Promise((resolve, reject) => {
-          const img = new Image();
-          img.onload = () => {
-            resolve();
-          };
-          img.onerror = reject;
-          img.src = src;
-        });
-      };
-      
-      Promise.all([
-        preloadImage("https://i.imgur.com/acGeVwL.png"),
-        preloadImage("https://i.imgur.com/XPz0xvU.png"),
-      ]).then(() => {
-        console.log("Images preloaded!");
-      });
-      
       const coverClassroom = () => {
         const coverDiv = document.createElement("div");
         const coverImage = document.createElement("img");
@@ -1261,8 +1243,8 @@ javascript:(function(){
         );
         
         const coverImageSrc = selectedImage && selectedImage.value !== "other" 
-          ? selectedImage.dataset.srccompressed
-          : undefined || "https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true";
+            ? selectedImage.dataset.src
+            : undefined || "https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true";
       
         coverDiv.id = "classroom-cover";
         coverDiv.style.width = "100vw";
@@ -1350,15 +1332,15 @@ javascript:(function(){
             <p>Choose a cover type:</p>
             <div class="EgoInputContainer egoPanicKeyRadios">
               <div>
-                <input type="radio" id="disconnectRadio" name="egoPanicKeyRadio" data-srccompressed="https://i.imgur.com/acGeVwL.png" value="https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true" checked>
+                <input type="radio" id="disconnectRadio" name="egoPanicKeyRadio" data-src="https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true" checked>
                 <label for="disconnectRadio">Disconnect</label>
               </div>
               <div>
-                <input type="radio" id="resetRadio" name="egoPanicKeyRadio" data-srccompressed="https://i.imgur.com/XPz0xvU.png" value="https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/reset.png?raw=true" >
+                <input type="radio" id="resetRadio" name="egoPanicKeyRadio" data-src="https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/reset.png?raw=true" >
                 <label for="resetRadio">Reset</label>
               </div>
               <div>
-                <input type="radio" id="siteRadio" name="egoPanicKeyRadio" data-srccompressed="" value="other">
+                <input type="radio" id="siteRadio" name="egoPanicKeyRadio" data-src="" value="other">
                 <label for="siteRadio">Open classroom.google.com</label>
               </div>
             </div>
@@ -1383,9 +1365,18 @@ javascript:(function(){
             "input[name='egoPanicKeyRadio']"
           );
           for (let coverImageRadio of coverImageRadios) {
+            if (coverImageRadio.dataset.src) {
+              const coverImage = new Image();
+              coverImage.src = coverImageRadio.dataset.src;
+            }
+      
             coverImageRadio.addEventListener("change", () => {
-              if (coverImageRadio.value !== "other") {
-                coverImageRadio.setAttribute("data-srccompressed", coverImageRadio.value);
+              const selectedImage = document.querySelector(
+                "input[name=egoPanicKeyRadio]:checked"
+              );
+              if (selectedImage.dataset.src) {
+                const coverImage = new Image();
+                coverImage.src = selectedImage.dataset.src;
               }
             });
           }
@@ -1393,6 +1384,15 @@ javascript:(function(){
           coverClassroom();
         }
       });
+      
+      // Preload the initial cover images
+      const coverImages = document.querySelectorAll(
+        "input[name='egoPanicKeyRadio'][data-src]"
+      );
+      for (let coverImage of coverImages) {
+        const image = new Image();
+        image.src = coverImage.dataset.src;
+      }
 
 
 
