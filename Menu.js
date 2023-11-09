@@ -1235,6 +1235,24 @@ javascript:(function(){
       let originalFavicon;
       let coverKey = "`";
       
+       const preloadImage = (src) => {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.onload = () => {
+            resolve();
+          };
+          img.onerror = reject;
+          img.src = src;
+        });
+      };
+      
+      Promise.all([
+        preloadImage("https://i.imgur.com/acGeVwL.png"),
+        preloadImage("https://i.imgur.com/XPz0xvU.png"),
+      ]).then(() => {
+        console.log("Images preloaded!");
+      });
+      
       const coverClassroom = () => {
         const coverDiv = document.createElement("div");
         const coverImage = document.createElement("img");
@@ -1243,8 +1261,8 @@ javascript:(function(){
         );
         
         const coverImageSrc = selectedImage && selectedImage.value !== "other" 
-            ? selectedImage.dataset.srccompressed
-            : undefined || "https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true";
+          ? selectedImage.dataset.srccompressed
+          : undefined || "https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true";
       
         coverDiv.id = "classroom-cover";
         coverDiv.style.width = "100vw";
