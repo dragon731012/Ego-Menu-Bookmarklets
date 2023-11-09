@@ -1238,10 +1238,14 @@ javascript:(function(){
       const coverClassroom = () => {
         const coverDiv = document.createElement("div");
         const coverImage = document.createElement("img");
-        const selectedImage = document.querySelector("input[name=egoPanicKeyRadio]:checked");
+        const selectedImage = document.querySelector(
+          "input[name=egoPanicKeyRadio]:checked"
+        );
         const coverImageSrc =
-          selectedImage ? selectedImage.value : undefined ||
-          "https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true";
+          selectedImage && selectedImage.value !== "other"
+            ? selectedImage.value
+            : undefined ||
+              "https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true";
       
         coverDiv.id = "classroom-cover";
         coverDiv.style.width = "100vw";
@@ -1312,7 +1316,7 @@ javascript:(function(){
           const popupContent = `
             <div class="EgoWindowPopoutTitle">Cover Classroom Settings</div>
       
-            <p>Choose a cover image:</p>
+            <p>Choose a cover type:</p>
             <div class="EgoInputContainer egoPanicKeyRadios">
               <div>
                 <input type="radio" id="disconnectRadio" name="egoPanicKeyRadio" value="https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true" checked>
@@ -1322,13 +1326,18 @@ javascript:(function(){
                 <input type="radio" id="resetRadio" name="egoPanicKeyRadio" value="https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/reset.png?raw=true">
                 <label for="resetRadio">Reset</label>
               </div>
+              <div>
+                <input type="radio" id="siteRadio" name="egoPanicKeyRadio" value="other">
+                <label for="siteRadio">Open classroom.google.com</label>
+              </div>
             </div>
       
             <div class="EgoInputContainer">
-              <label for="coverKeyInput">Enter Panic Key:</label>
+              <label for="coverKeyInput">Enter Panic Key (max 2 characters, case sensitive):</label>
               <input type="text" id="coverKeyInput" class="EgoInput" value="` +
             coverKey +
             `">
+              <p style="color: red; font-size: 14px; margin-top: 5px;">Note: Only 2 characters allowed and key is case sensitive</p>
             </div>
       
             <button id="saveButton" class="EgoButton">Save Settings</button>
@@ -1336,7 +1345,9 @@ javascript:(function(){
           togglePopup(popupContent);
           const saveButton = document.getElementById("saveButton");
           saveButton.addEventListener("click", () => {
-            coverKey = document.getElementById("coverKeyInput").value || "`";
+            coverKey = document
+              .getElementById("coverKeyInput")
+              .value.slice(0, 2);
             localStorage.setItem("coverKey", coverKey);
             const selectedImage = document.querySelector(
               "input[name=egoPanicKeyRadio]:checked"
