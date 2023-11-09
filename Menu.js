@@ -1273,7 +1273,6 @@ javascript:(function(){
           document.title = originalTitle;
           isClassroomCovered = false;
       
-          // Reset the favicon
           const currentFavicon = document.querySelector('link[rel="icon"]');
           if (originalFavicon && currentFavicon) {
             document.head.removeChild(currentFavicon);
@@ -1282,7 +1281,6 @@ javascript:(function(){
         } else {
           const currentFavicon = document.querySelector('link[rel="icon"]');
           if (currentFavicon) {
-            // Store the original favicon
             originalFavicon = currentFavicon.cloneNode(true);
             document.head.removeChild(currentFavicon);
           }
@@ -1385,7 +1383,6 @@ javascript:(function(){
         }
       });
       
-      // Preload the initial cover images
       const coverImages = document.querySelectorAll(
         "input[name='egoPanicKeyRadio'][data-src]"
       );
