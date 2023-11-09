@@ -1337,7 +1337,6 @@ javascript:(function(){
               <input type="text" id="coverKeyInput" class="EgoInput" value="` +
             coverKey +
             `">
-              <p style="color: red; font-size: 14px; margin-top: 5px;">Note: Only 2 characters allowed and key is case sensitive</p>
             </div>
       
             <button id="saveButton" class="EgoButton">Save Settings</button>
@@ -1359,6 +1358,22 @@ javascript:(function(){
           coverClassroom();
         }
       });
+      
+      const openClassroom = () => {
+        window.open("https://classroom.google.com/", "_blank");
+      };
+      
+      const handleSiteSelect = (event) => {
+        if (event.target.id === "siteRadio") {
+          openClassroom();
+        } else {
+          coverClassroom();
+        }
+      };
+      
+      document
+        .querySelector("input[name=egoPanicKeyRadio]:checked")
+        .addEventListener("change", handleSiteSelect);
 
 
 
