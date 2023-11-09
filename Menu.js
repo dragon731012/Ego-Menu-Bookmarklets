@@ -1234,12 +1234,17 @@ javascript:(function(){
       let originalTitle = document.title;
       let originalFavicon;
       let coverKey = "`";
-      let coverImageSrc =
-        "https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true";
       
       const coverClassroom = () => {
         const coverDiv = document.createElement("div");
         const coverImage = document.createElement("img");
+        const selectedImage = document.querySelector(
+            "input[name=egoPanicKeyRadio]:checked"
+        );
+        
+        const coverImageSrc = selectedImage && selectedImage.value !== "other" 
+            ? selectedImage.dataset.srccompressed
+            : undefined || "https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true";
       
         coverDiv.id = "classroom-cover";
         coverDiv.style.width = "100vw";
@@ -1252,7 +1257,7 @@ javascript:(function(){
         coverDiv.style.padding = "0";
         coverDiv.style.margin = "0";
       
-        coverImage.src = coverImageSrc;
+        coverImage.src = coverImageSrc || "https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true";
         coverImage.style.width = "100%";
         coverImage.style.height = "100%";
         coverImage.style.position = "absolute";
@@ -1305,7 +1310,7 @@ javascript:(function(){
             return;
           }
           const selectedImage = document.querySelector(
-            "input[name=egoPanicKeyRadio]:checked"
+              "input[name=egoPanicKeyRadio]:checked"
           );
           if (!selectedImage || selectedImage.value !== "other") {
             coverClassroom();
@@ -1327,15 +1332,15 @@ javascript:(function(){
             <p>Choose a cover type:</p>
             <div class="EgoInputContainer egoPanicKeyRadios">
               <div>
-                <input type="radio" id="disconnectRadio" name="egoPanicKeyRadio" value="https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true" checked>
+                <input type="radio" id="disconnectRadio" name="egoPanicKeyRadio" data-srccompressed="https://i.imgur.com/acGeVwL.png" value="https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true" checked>
                 <label for="disconnectRadio">Disconnect</label>
               </div>
               <div>
-                <input type="radio" id="resetRadio" name="egoPanicKeyRadio" value="https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/reset.png?raw=true">
+                <input type="radio" id="resetRadio" name="egoPanicKeyRadio" data-srccompressed="https://i.imgur.com/XPz0xvU.png" value="https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/reset.png?raw=true" >
                 <label for="resetRadio">Reset</label>
               </div>
               <div>
-                <input type="radio" id="siteRadio" name="egoPanicKeyRadio" value="other">
+                <input type="radio" id="siteRadio" name="egoPanicKeyRadio" data-srccompressed="" value="other">
                 <label for="siteRadio">Open classroom.google.com</label>
               </div>
             </div>
@@ -1346,49 +1351,26 @@ javascript:(function(){
             coverKey +
             `">
             </div>
+      
+            <div>The settings will persist only during this session and will be reset when you close the tab.</div>
           `;
           togglePopup(popupContent);
-      
-          const coverImageRadios = document.querySelectorAll(
-            "input[name='egoPanicKeyRadio']"
-          );
-      
-          // Load settings
-          if (localStorage.getItem("coverKey")) {
-            coverKey = localStorage.getItem("coverKey");
-            document.getElementById("coverKeyInput").value = coverKey;
-          }
-      
-          if (localStorage.getItem("coverImage")) {
-            coverImageSrc = localStorage.getItem("coverImage");
-            for (let radio of coverImageRadios) {
-              if (radio.value === coverImageSrc) {
-                radio.checked = true;
-                break;
-              }
-            }
-          }
       
           const coverKeyInput = document.getElementById("coverKeyInput");
           coverKeyInput.addEventListener("input", () => {
             coverKey = coverKeyInput.value.slice(0, 2);
-            localStorage.setItem("coverKey", coverKey);
           });
       
-          const egoPanicKeyRadios = document.querySelector(".egoPanicKeyRadios");
-          egoPanicKeyRadios.addEventListener("change", (event) => {
-            const selectedImage =
-              event.target.name === "egoPanicKeyRadio"
-                ? event.target
-                : event.target.closest("input[name='egoPanicKeyRadio']");
-      
-            coverImageSrc =
-              selectedImage && selectedImage.value !== "other"
-                ? selectedImage.value
-                : undefined ||
-                  "https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true";
-            localStorage.setItem("coverImage", coverImageSrc);
-          });
+          const coverImageRadios = document.querySelectorAll(
+            "input[name='egoPanicKeyRadio']"
+          );
+          for (let coverImageRadio of coverImageRadios) {
+            coverImageRadio.addEventListener("change", () => {
+              if (coverImageRadio.value !== "other") {
+                coverImageRadio.setAttribute("data-srccompressed", coverImageRadio.value);
+              }
+            });
+          }
         } else {
           coverClassroom();
         }
