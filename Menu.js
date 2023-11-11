@@ -1120,10 +1120,9 @@ slopeGameBtn.addEventListener("click", () => {
   const popupContent = `
     <div class="EgoWindowPopoutTitle">Slope</div>
 
-    <iframe src="https://slope-1.runningfred333.repl.co/" frameborder="0" style="width: 100vw;height: 100vh;transform: scale(0.45) translate(-41vmin, 10vmin);margin: -16vmax;"></iframe>
+    <iframe src="https://slope-1.runningfred333.repl.co/" frameborder="0" style="width: 100vw;height: 100vh;transform: scale(0.45) translate(-22vmax, 10vmin);margin: -16vmax;overflow: clip;"></iframe>
 
     <button id="showFrameSourceBtn" class="EgoMenuButton">Show Frame Source</button>
-    <button id="muteFrameBtn" class="EgoMenuButton">Mute Frame</button>
   `;
   togglePopup(popupContent, true);
 
@@ -1134,11 +1133,8 @@ slopeGameBtn.addEventListener("click", () => {
     window.open(frameSource, "_blank");
   });
 
-  const muteFrameBtn = document.getElementById("muteFrameBtn");
-  muteFrameBtn.addEventListener("click", () => {
-    const iframe = document.querySelector("iframe");
-    iframe.contentWindow.postMessage({ type: "mute" }, "*");
-  });
+
+
 });
 
 
@@ -1275,15 +1271,17 @@ slopeGameBtn.addEventListener("click", () => {
       let originalTitle = document.title;
       let originalFavicon;
       let coverKey = "`";
+      let isSiteMuted = false;
       
       const coverClassroom = () => {
         const coverDiv = document.createElement("div");
         const coverImage = document.createElement("img");
         const selectedImage = document.querySelector(
-            "input[name=egoPanicKeyRadio]:checked"
+          "input[name=egoPanicKeyRadio]:checked"
         );
-        
-        const coverImageSrc = selectedImage && selectedImage.value !== "other" 
+      
+        const coverImageSrc =
+          selectedImage && selectedImage.value !== "other"
             ? selectedImage.dataset.src
             : undefined || "https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true";
       
@@ -1298,7 +1296,8 @@ slopeGameBtn.addEventListener("click", () => {
         coverDiv.style.padding = "0";
         coverDiv.style.margin = "0";
       
-        coverImage.src = coverImageSrc || "https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true";
+        coverImage.src =
+          coverImageSrc || "https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/disconnect.png?raw=true";
         coverImage.style.width = "100%";
         coverImage.style.height = "100%";
         coverImage.style.position = "absolute";
@@ -1319,6 +1318,13 @@ slopeGameBtn.addEventListener("click", () => {
             document.head.removeChild(currentFavicon);
             document.head.appendChild(originalFavicon);
           }
+          if (isSiteMuted) {
+            const allVideos = Array.from(document.querySelectorAll('video'));
+            allVideos.forEach(video => video.muted = false);
+            const allAudio = Array.from(document.querySelectorAll('audio'));
+            allAudio.forEach(audio => audio.muted = false);
+            isSiteMuted = false;
+          }
         } else {
           const currentFavicon = document.querySelector('link[rel="icon"]');
           if (currentFavicon) {
@@ -1336,6 +1342,13 @@ slopeGameBtn.addEventListener("click", () => {
           document.body.style.overflow = "hidden";
           document.body.appendChild(coverDiv);
           isClassroomCovered = true;
+          if (!isSiteMuted) {
+            const allVideos = Array.from(document.querySelectorAll('video'));
+            allVideos.forEach(video => video.muted = true);
+            const allAudio = Array.from(document.querySelectorAll('audio'));
+            allAudio.forEach(audio => audio.muted = true);
+            isSiteMuted = true;
+          }
         }
       };
       
@@ -1430,8 +1443,6 @@ slopeGameBtn.addEventListener("click", () => {
         const image = new Image();
         image.src = coverImage.dataset.src;
       }
-
-
 
 
 
