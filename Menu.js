@@ -1128,9 +1128,7 @@ slopeGameBtn.addEventListener("click", () => {
 
   const showFrameSourceBtn = document.getElementById("showFrameSourceBtn");
   showFrameSourceBtn.addEventListener("click", () => {
-    const iframe = document.querySelector("iframe");
-    const frameSource = iframe.src;
-    window.open(frameSource, "_blank");
+    window.open("https://slope-1.runningfred333.repl.co/", "_blank");
   });
 
 
