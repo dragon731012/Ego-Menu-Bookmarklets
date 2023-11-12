@@ -725,6 +725,12 @@ div#egoCookieClickerContainer {
   border-radius: 3vmin;
   padding: 2mm;
 }
+
+iframe#dressUpIframe {
+  width: 100%;
+  height: 25vmax;
+  border-radius: 2vmax;
+}
   `;
 
 
@@ -828,12 +834,14 @@ div#egoCookieClickerContainer {
       <button class="EgoMenuButton" id="BreakoutGame">Breakout</button>
       <button class="EgoMenuButton" id="AsteroidGame">Asteroid</button>
       <button class="EgoMenuButton" id="DinoGameCloaked">Dino Game (cloaked)</button>
+      
       <button class="EgoMenuButton" id="CookieClickeGamer">Clicker Game</button>
       <button class="EgoMenuButton" id="EgoGuessTheNumberGame">Guess The Number!</button>
 
       <button class="EgoMenuButton" id="RockPaperScissors">Rock/Paper/Scissors</button>
       <button class="EgoMenuButton" id="TotallyScienceGame">totallyscience.co</button>
       <button class="EgoMenuButton" id="egoSlopeGame">Slope</button>
+      <button class="EgoMenuButton" id="egoDressUpGame">Dress Up Game</button>
       <button class="EgoMenuButton" id="egoAmongUsOffline">Among Us (offline)</button>
 
       </div>
@@ -1172,6 +1180,40 @@ slopeGameBtn.addEventListener("click", () => {
   });
 });
 
+
+
+const egoDressUpGameBtn = document.getElementById("egoDressUpGame");
+
+egoDressUpGameBtn.addEventListener("click", () => {
+  const popupContent = `
+    <div class="EgoWindowPopoutTitle">Dress Up (Community)</div>
+
+    <iframe id="dressUpIframe" src="https://www.figma.com/embed?embed_host=astra&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FEzUheSPueQG16xmy20lvP7%2FDress-Up-Game-(Community)%3Fnode-id%3D1%253A3%26scaling%3Dscale-down%26page-id%3D0%253A1%26starting-point-node-id%3D1%253A3%26show-proto-sidebar%3Dtrue&chrome=DOCUMENTATION" width="800" height="600" allowfullscreen></iframe>
+    <button id="showDressUpSource" class="EgoMenuButton">Show Frame Source</button>
+    <button id="toggleDressUpGameFullscreen" class="EgoMenuButton">Full Screen</button>
+  `;
+  togglePopup(popupContent, true);
+
+  const showDressUpSource = document.getElementById("showDressUpSource");
+  showDressUpSource.addEventListener("click", () => {
+    window.open("https://www.figma.com/proto/EzUheSPueQG16xmy20lvP7/Dress-Up-Game-(Community)?chrome=DOCUMENTATION&embed_host=astra&kind=&node-id=1-3&page-id=0%3A1&scaling=scale-down&starting-point-node-id=1%3A3", "_blank");
+  });
+
+  const toggleDressUpGameFullscreen = document.getElementById("toggleDressUpGameFullscreen");
+  const dressUpIframe = document.getElementById("dressUpIframe");
+
+  toggleDressUpGameFullscreen.addEventListener("click", () => {
+    if (dressUpIframe.requestFullscreen) {
+      dressUpIframe.requestFullscreen();
+    } else if (dressUpIframe.mozRequestFullScreen) { 
+      dressUpIframe.mozRequestFullScreen();
+    } else if (dressUpIframe.webkitRequestFullscreen) { 
+      dressUpIframe.webkitRequestFullscreen();
+    } else if (dressUpIframe.msRequestFullscreen) { 
+      dressUpIframe.msRequestFullscreen();
+    }
+  });
+});
 
 
 const amongUsBtn = document.getElementById("egoAmongUsOffline");
