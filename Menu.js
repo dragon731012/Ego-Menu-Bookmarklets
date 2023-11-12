@@ -93,20 +93,21 @@ javascript: (function() {
           height: 15vmax;
       }
       .EgoPopupContainer {
-          position: fixed;
-          bottom: -200px;
-          left: 5mm;
-          padding: 10px;
-          width: 25vmax;
-          z-index: 9998;
-          transition: bottom 0.3s;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          flex-wrap: nowrap;
-          align-content: center;
-          justify-content: center;
-      }
+        position: fixed;
+        bottom: -200px;
+        left: 5mm;
+        padding: 10px;
+        width: 25vmax;
+        z-index: 9998;
+        transition: bottom 0.3s;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: center;
+        border-bottom: none;
+    }
       .EgoPopupContainer.active {
           bottom: 35vh;
       }
@@ -679,7 +680,7 @@ div#egoCookieClickerContainer {
   flex-direction: row;
   width: 100%;
   height: max-content;
-  max-height: 13vmax;
+  max-height: max-content;
   overflow-x: hidden;
   border-radius: 2vmin;
   align-content: stretch;
@@ -713,6 +714,17 @@ div#egoCookieClickerContainer {
   transform: translate(-3.2vmax, 1vmin);
   filter: drop-shadow(-3px 3px 2px green) drop-shadow(1px 1px 0px white);
 }
+.matched {
+  background-color: #2b6928;
+  transform: translate(0vmin, -1vmin) scale(1.2);
+}
+.egoSearchInput {
+  width: 65%;
+  background-color: #5c5c5ca8;
+  border: 1mm black solid;
+  border-radius: 3vmin;
+  padding: 2mm;
+}
   `;
 
 
@@ -745,37 +757,47 @@ div#egoCookieClickerContainer {
       </div>
       <h2 class="EgoLogo"></h2>
       <div class="EgoPage" id="EgoPage1">
-      <div class="egoButtonHolder">
-      <button class="EgoMenuButton" id="egoToggleChatroom">Ego chatroom</button>
-      <button class="EgoMenuButton" id="floodingOption">Flood History</button>
-      <button class="EgoMenuButton" id="calculatorOption">Calculator</button>
-      <button class="EgoMenuButton" id="AutoClickerOption">Autoclicker</button>
+        <input class="egoSearchInput" type="text" id="searchInput" placeholder="Search...">
+      
+        <div class="egoButtonHolder">
+          <button class="EgoMenuButton" id="egoToggleChatroom">Ego chatroom</button>
+          <button class="EgoMenuButton" id="floodingOption">Flood History</button>
+          <button class="EgoMenuButton" id="calculatorOption">Calculator</button>
+          <button class="EgoMenuButton" id="AutoClickerOption">Autoclicker</button>
+        </div>
+        
+        <div class="EgoSwitchContainer">
+            <div class="EgoSwitch">
+              <input type="checkbox" id="editPageSwitch">
+              <span class="slider round"></span>
+            </div>
+             <label for="editPageSwitch">Edit Page</label>
+          
+          <div class="EgoSwitch">
+            <input type="checkbox" id="toggleCheckbox">
+            <span class="slider round"></span>
+          </div>
+          <label for="toggleCheckbox">Show logo</label>
+          
+          <div class="EgoSwitch">
+            <input type="checkbox" id="panicKeySwitch">
+            <span class="slider round"></span>
+          </div>
+          <label for="panicKeySwitch">Panic Key</label>
+        </div>
     </div>
-    <div class="EgoSwitchContainer">
-    <label class="EgoSwitch">
-      <input type="checkbox" id="editPageSwitch">
-      <span class="slider round"></span>
-    </label>
-    Edit Page
-    <label class="EgoSwitch">
-      <input type="checkbox" id="toggleCheckbox">
-      <span class="slider round"></span>
-    </label>
-    Show logo
-    <label class="EgoSwitch">
-      <input type="checkbox" id="panicKeySwitch">
-      <span class="slider round"></span>
-    </label>
-    Panic Key
-  </div>
       </div>
       <div class="EgoPage" id="EgoPage2">
+      <input class="egoSearchInput" type="text" id="searchInput" placeholder="Search...">
+
       <div class="egoButtonHolder">
 
       <button class="EgoMenuButton" id="fetchButton">EdPuzzle Hacks</button>
       </div>
       </div>
       <div class="EgoPage" id="EgoPage3">
+      <input class="egoSearchInput" type="text" id="searchInput" placeholder="Search...">
+
       <div class="egoButtonHolder">
 
       <button class="EgoMenuButton" id="unblockedYouTube" data-text="Unblocked YouTube">Unblocked YouTube</button>
@@ -786,6 +808,11 @@ div#egoCookieClickerContainer {
       <button class="EgoMenuButton" id="unblockerMetallic" data-text="metallic.xyz.wf">metallic.xyz.wf</button>
       <button class="EgoMenuButton" id="unblockerMetallic2" data-text="metalli.zc.al">metalli.zc.al</button>
       <button class="EgoMenuButton" id="unblockerGalaxy" data-text="galaxy.lag.tf">galaxy.lag.tf</button>
+      <button class="EgoMenuButton" id="unblockerHammerhead" data-text="typeracer.gq">typeracer.gq</button>
+      <button class="EgoMenuButton" id="unblockerHammerhead2" data-text="quizlet.gq">quizlet.gq</button>
+      <button class="EgoMenuButton" id="unblockerHammerhead3" data-text="flipgrid.cf">flipgrid.cf</button>
+      <button class="EgoMenuButton" id="unblockerHammerhead4" data-text="r.pluralsight.gq">r.pluralsight.gq</button>
+      <button class="EgoMenuButton" id="unblockerHammerhead5" data-text="coursera.cf">coursera.cf</button>
 
       
       
@@ -793,7 +820,11 @@ div#egoCookieClickerContainer {
       </div>
       </div>
       <div class="EgoPage" id="EgoPage4">
+      <input class="egoSearchInput" type="text" id="searchInput" placeholder="Search...">
+
       <div class="egoButtonHolder">
+      <button class="EgoMenuButton" id="UnblockedGamesWorld">Unblocked Games World</button>
+      <button class="EgoMenuButton" id="slopeCityPortal">Slope City</button>
       <button class="EgoMenuButton" id="BreakoutGame">Breakout</button>
       <button class="EgoMenuButton" id="AsteroidGame">Asteroid</button>
       <button class="EgoMenuButton" id="DinoGameCloaked">Dino Game (cloaked)</button>
@@ -803,11 +834,13 @@ div#egoCookieClickerContainer {
       <button class="EgoMenuButton" id="RockPaperScissors">Rock/Paper/Scissors</button>
       <button class="EgoMenuButton" id="TotallyScienceGame">totallyscience.co</button>
       <button class="EgoMenuButton" id="egoSlopeGame">Slope</button>
-
+      <button class="EgoMenuButton" id="egoAmongUsOffline">Among Us (offline)</button>
 
       </div>
       </div>
       <div class="EgoPage" id="EgoPage5">
+      <input class="egoSearchInput" type="text" id="searchInput" placeholder="Search...">
+
       <div>Made by ego. <a href="https://yeahbread.github.io/#ego-menu" target="_blank">Project page</a>.</div>
 
     </div>
@@ -1006,111 +1039,102 @@ div#egoCookieClickerContainer {
 
 
 
-javascript:(function(){
   var abcScript = document.createElement('script');
   abcScript.src = 'https://cdn.jsdelivr.net/gh/FogNetwork/ABC/index.js';
   var head = document.getElementsByTagName('head')[0];
   head.insertBefore(abcScript,head.firstChild);
   
-  document.querySelectorAll("#unblockerNebula").forEach(function(element) {
-      element.addEventListener("click", function(e) {
-          e.preventDefault();
-          var page = new ABC({
-              "type": "blank",
-              "url": "https://nebulaproxy.io/"
-          });
-          page.open();
-      });
-  });
-  document.querySelectorAll("#unblockedYouTube").forEach(function(element) {
+  function openABCPage(element, url) {
     element.addEventListener("click", function(e) {
       e.preventDefault();
       var page = new ABC({
-          "type": "blank",
-          "url": "https://piped.kavin.rocks/"
+        "type": "blank",
+        "url": url
       });
       page.open();
+    });
+  }
+  
+  var sites = [
+    { id: "#unblockerNebula", url: "https://nebulaproxy.io/" },
+    { id: "#unblockedYouTube", url: "https://piped.kavin.rocks/" },
+    { id: "#unblockerHolyUnblocker", url: "https://holyubofficial.net/" },
+    { id: "#unblockerTotallyScience", url: "https://totallyscience.co/apps.php" },
+    { id: "#TotallyScienceGame", url: "https://totallyscience.co/" },
+    { id: "#unblockerMetallic", url: "https://metallic.xyz.wf" },
+    { id: "#unblockerMetallic2", url: "https://metalli.zc.al" },
+    { id: "#unblockerHammerhead", url: "https://www.typeracer.gq/" },
+    { id: "#unblockerHammerhead2", url: "https://www.quizlet.gq/" },
+    { id: "#unblockerHammerhead3", url: "https://flipgrid.cf/" },
+    { id: "#unblockerHammerhead4", url: "https://r.pluralsight.gq" },
+    { id: "#unblockerHammerhead5", url: "https://www.coursera.cf/" },
+    { id: "#unblockerHammerhead6", url: "https://search.mugmovies.pics/" },
+
+
+
+    { id: "#unblockerGalaxy", url: "https://galaxy.lag.tf" }
+  ];
+  
+  sites.forEach(function(site) {
+    document.querySelectorAll(site.id).forEach(function(element) {
+      openABCPage(element, site.url);
+    });
+  });
+
+
+  document.getElementById("unblockerKazwire").addEventListener("click", function(e) {
+    window.open("https://kazwire.com/", "_blank");
+  });
+
+
+
+
+var searchInputs = document.querySelectorAll('.egoSearchInput');
+var egoPages = document.getElementsByClassName('EgoPage');
+
+searchInputs.forEach(function(searchInput) {
+  searchInput.addEventListener('input', function() {
+    var searchValue = this.value.toLowerCase();
+    var egoPage = this.closest('.EgoPage');
+    var egoMenuButtons = egoPage.querySelectorAll('.egoButtonHolder .EgoMenuButton');
+    var matchedButtons = [];
+    var unmatchedButtons = [];
+
+    for (var i = 0; i < egoMenuButtons.length; i++) {
+      var menuButton = egoMenuButtons[i];
+      var buttonText = menuButton.textContent.toLowerCase();
+
+      if (searchValue === '') {
+        menuButton.classList.remove('matched');
+        menuButton.parentElement.appendChild(menuButton);
+      } else if (buttonText.includes(searchValue)) {
+        matchedButtons.push(menuButton);
+        menuButton.classList.add('matched');
+      } else {
+        unmatchedButtons.push(menuButton);
+        menuButton.classList.remove('matched');
+      }
+    }
+
+    if (searchValue !== '') {
+      Array.from(matchedButtons).sort(function(a, b) {
+        var aText = a.textContent.toLowerCase();
+        var bText = b.textContent.toLowerCase();
+
+        var aMatchCount = (aText.match(new RegExp(searchValue, 'gi')) || []).length;
+        var bMatchCount = (bText.match(new RegExp(searchValue, 'gi')) || []).length;
+
+        return bMatchCount - aMatchCount;
+      }).forEach(function(button) {
+        button.parentElement.appendChild(button);
+      });
+    }
+
+    Array.from(unmatchedButtons).forEach(function(button) {
+      button.parentElement.appendChild(button);
+    });
   });
 });
-  document.querySelectorAll("#unblockerHolyUnblocker").forEach(function(element) {
-      element.addEventListener("click", function(e) {
-          e.preventDefault();
-          var page = new ABC({
-              "type": "blank",
-              "url": "https://holyubofficial.net/"
-          });
-          page.open();
-      });
-  });
-
-  document.querySelectorAll("#unblockerKazwire").forEach(function(element) {
-      element.addEventListener("click", function(e) {
-          e.preventDefault();
-          var page = new ABC({
-              "type": "blank",
-              "url": "https://kazwire.com"
-          });
-          page.open();
-      });
-  });
-
-  document.querySelectorAll("#unblockerTotallyScience").forEach(function(element) {
-      element.addEventListener("click", function(e) {
-          e.preventDefault();
-          var page = new ABC({
-              "type": "blank",
-              "url": "https://totallyscience.co/apps.php"
-          });
-          page.open();
-      });
-  });
-
-  document.querySelectorAll("#TotallyScienceGame").forEach(function(element) {
-      element.addEventListener("click", function(e) {
-          e.preventDefault();
-          var page = new ABC({
-              "type": "blank",
-              "url": "https://totallyscience.co/"
-          });
-          page.open();
-      });
-  });
-
-  document.querySelectorAll("#unblockerMetallic").forEach(function(element) {
-      element.addEventListener("click", function(e) {
-          e.preventDefault();
-          var page = new ABC({
-              "type": "blank",
-              "url": "https://metallic.xyz.wf"
-          });
-          page.open();
-      });
-  });
-
-  document.querySelectorAll("#unblockerMetallic2").forEach(function(element) {
-      element.addEventListener("click", function(e) {
-          e.preventDefault();
-          var page = new ABC({
-              "type": "blank",
-              "url": "https://metalli.zc.al"
-          });
-          page.open();
-      });
-  });
-
-  document.querySelectorAll("#unblockerGalaxy").forEach(function(element) {
-      element.addEventListener("click", function(e) {
-          e.preventDefault();
-          var page = new ABC({
-              "type": "blank",
-              "url": "https://galaxy.lag.tf"
-          });
-          page.open();
-      });
-  });
-})();
-
-
 
 
 
@@ -1120,22 +1144,85 @@ slopeGameBtn.addEventListener("click", () => {
   const popupContent = `
     <div class="EgoWindowPopoutTitle">Slope</div>
 
-    <iframe src="https://slope-1.runningfred333.repl.co/" frameborder="0" style="width: 100vw;height: 100vh;transform: scale(0.45) translate(-22vmax, 10vmin);margin: -16vmax;overflow: clip;"></iframe>
+    <iframe id="slopeGameIframe" src="https://slope-1.runningfred333.repl.co/" frameborder="0" style="width: 100vw; height: 100vh; transform: scale(0.45) translate(-22vmax, 10vmin); margin: -16vmax; overflow: clip;"></iframe>
 
-    <button id="showFrameSourceBtn" class="EgoMenuButton">Show Frame Source</button>
+    <button id="showSlopeGameSource" class="EgoMenuButton">Show Frame Source</button>
+    <button id="toggleSlopeFullScreen" class="EgoMenuButton">Full Screen</button>
   `;
   togglePopup(popupContent, true);
 
-  const showFrameSourceBtn = document.getElementById("showFrameSourceBtn");
-  showFrameSourceBtn.addEventListener("click", () => {
+  const showSlopeGameIframeSource = document.getElementById("showSlopeGameSource");
+  showSlopeGameIframeSource.addEventListener("click", () => {
     window.open("https://slope-1.runningfred333.repl.co/", "_blank");
   });
 
+  const toggleFullScreenBtn = document.getElementById("toggleSlopeFullScreen");
+  const slopeGameIframe = document.getElementById("slopeGameIframe");
 
-
+  toggleFullScreenBtn.addEventListener("click", () => {
+    if (slopeGameIframe.requestFullscreen) {
+      slopeGameIframe.requestFullscreen();
+    } else if (slopeGameIframe.mozRequestFullScreen) { 
+      slopeGameIframe.mozRequestFullScreen();
+    } else if (slopeGameIframe.webkitRequestFullscreen) { 
+      slopeGameIframe.webkitRequestFullscreen();
+    } else if (slopeGameIframe.msRequestFullscreen) { 
+      slopeGameIframe.msRequestFullscreen();
+    }
+  });
 });
 
 
+
+const amongUsBtn = document.getElementById("egoAmongUsOffline");
+
+amongUsBtn.addEventListener("click", () => {
+  const popupContent = `
+    <div class="EgoWindowPopoutTitle">Among Us</div>
+
+    <iframe id="amongUsIframe" src="https://webglmath.github.io/among-us/" frameborder="0" style="width: 100%; height: 15rem; border-radius: 2vmin;"></iframe>
+    <button id="showAmongUsFrameSrc" class="EgoMenuButton">Show Frame Source</button>
+    <button id="toggleFullScreen" class="EgoMenuButton">Full Screen</button>
+  `;
+  togglePopup(popupContent, true);
+
+  const showAmongUsFrameSource = document.getElementById("showAmongUsFrameSrc");
+  showAmongUsFrameSource.addEventListener("click", () => {
+    window.open("https://webglmath.github.io/among-us/", "_blank");
+  });
+
+  const toggleFullScreenBtn = document.getElementById("toggleFullScreen");
+  const amongUsIframe = document.getElementById("amongUsIframe");
+
+  toggleFullScreenBtn.addEventListener("click", () => {
+    if (amongUsIframe.requestFullscreen) {
+      amongUsIframe.requestFullscreen();
+    } else if (amongUsIframe.mozRequestFullScreen) { 
+      amongUsIframe.mozRequestFullScreen();
+    } else if (amongUsIframe.webkitRequestFullscreen) { 
+      amongUsIframe.webkitRequestFullscreen();
+    } else if (amongUsIframe.msRequestFullscreen) { 
+      amongUsIframe.msRequestFullscreen();
+    }
+  });
+});
+
+
+
+
+
+document.getElementById("UnblockedGamesWorld").addEventListener("click", function(e) {
+  window.open("https://sites.google.com/site/thegamecompilation/home", "_blank");
+});
+
+document.getElementById("slopeCityPortal").addEventListener("click", function(e) {
+  e.preventDefault();
+  var page = new ABC({
+    "type": "blank",
+    "url": "https://slope-city.github.io/"
+  });
+  page.open();
+});
       
       const breakoutButton = document.querySelector('#BreakoutGame');
 
@@ -1151,6 +1238,7 @@ slopeGameBtn.addEventListener("click", () => {
             });
         }
       });
+      
       
       
     function startGame() {
