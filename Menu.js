@@ -730,6 +730,7 @@ iframe#dressUpIframe {
   width: 100%;
   height: 25vmax;
   border-radius: 2vmax;
+  border: none;
 }
   `;
 
@@ -1188,7 +1189,7 @@ egoDressUpGameBtn.addEventListener("click", () => {
   const popupContent = `
     <div class="EgoWindowPopoutTitle">Dress Up (Community)</div>
 
-    <iframe id="dressUpIframe" src="https://www.figma.com/embed?embed_host=astra&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FEzUheSPueQG16xmy20lvP7%2FDress-Up-Game-(Community)%3Fnode-id%3D1%253A3%26scaling%3Dscale-down%26page-id%3D0%253A1%26starting-point-node-id%3D1%253A3%26show-proto-sidebar%3Dtrue&chrome=DOCUMENTATION" width="800" height="600" allowfullscreen></iframe>
+    <iframe id="dressUpIframe" src="https://www.figma.com/embed?embed_host=astra&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FEzUheSPueQG16xmy20lvP7%2FDress-Up-Game-(Community)%3Fnode-id%3D1%253A3%26scaling%3Dscale-down%26page-id%3D0%253A1%26starting-point-node-id%3D1%253A3%26show-proto-sidebar%3Dtrue&chrome=DOCUMENTATION" allowfullscreen></iframe>
     <button id="showDressUpSource" class="EgoMenuButton">Show Frame Source</button>
     <button id="toggleDressUpGameFullscreen" class="EgoMenuButton">Full Screen</button>
   `;
