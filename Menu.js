@@ -785,27 +785,24 @@ iframe#dressUpIframe {
         </div>
         
         <div class="EgoSwitchContainer">
-            <div class="EgoSwitch">
-              <input type="checkbox" id="editPageSwitch">
-              <span class="slider round"></span>
-            </div>
-             <label for="editPageSwitch">Edit Page</label>
-          
-          <div class="EgoSwitch">
-            <input type="checkbox" id="toggleCheckbox">
-            <span class="slider round"></span>
-          </div>
-          <label for="toggleCheckbox">Show logo</label>
-          
-          <div class="EgoSwitch">
-            <input type="checkbox" id="panicKeySwitch">
-            <span class="slider round"></span>
-          </div>
-          <label for="panicKeySwitch">Panic Key</label>
-        </div>
-    </div>
+        <label class="EgoSwitch">
+          <input type="checkbox" id="editPageSwitch">
+          <span class="slider round"></span>
+        </label>
+        Edit Page
+        <label class="EgoSwitch">
+          <input type="checkbox" id="toggleCheckbox">
+          <span class="slider round"></span>
+        </label>
+        Show logo
+        <label class="EgoSwitch">
+          <input type="checkbox" id="panicKeySwitch">
+          <span class="slider round"></span>
+        </label>
+        Panic Key
       </div>
-      <div class="EgoPage" id="EgoPage2">
+          </div>
+          <div class="EgoPage" id="EgoPage2">
       <input class="egoSearchInput" type="text" id="searchInput" placeholder="Search...">
 
       <div class="egoButtonHolder">
@@ -1947,7 +1944,15 @@ document.getElementById("slopeCityPortal").addEventListener("click", function(e)
         }
       };
       
-      document.addEventListener("keydown", handleKeyDown);
+      const enableEventListeners = () => {
+        document.addEventListener("keydown", handleKeyDown);
+      };
+      
+      const disableEventListeners = () => {
+        document.removeEventListener("keydown", handleKeyDown);
+      };
+      
+      disableEventListeners();
       
       const panicKeySwitch = document.getElementById("panicKeySwitch");
       
@@ -2006,8 +2011,11 @@ document.getElementById("slopeCityPortal").addEventListener("click", function(e)
               }
             });
           }
+      
+          enableEventListeners();
         } else {
           coverClassroom();
+          disableEventListeners();
         }
       });
       
