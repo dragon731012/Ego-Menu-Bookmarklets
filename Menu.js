@@ -74,20 +74,31 @@ javascript: (function() {
       }
       .EgoMenuButton {
         background-color: #5b9258;
-        box-shadow: inset 1mm -1mm 0 #00000096;
-        color: #fff;
+        box-shadow: inset 1mm -1mm 0 #00000096, -0.2mm 0.2mm 0 0.3mm #000000;
         border: none;
-        padding: 1mm 2mm;
+        color: white;
+        padding: 1.5mm 1mm;
         cursor: pointer;
-        border-radius: 5px;
-        font-size: 14px;
-        margin: 5px;
+        border-radius: 1.1vmin;
+        font-size: 2vmin;
+        margin: 1.2mm;
         text-overflow: ellipsis;
-        width: 10.9rem;
+        width: 15vmax;
         z-index: 10;
         position: relative;
         overflow: hidden;
+        line-height: normal;
     }
+    .EgoMenuButton:active {
+      box-shadow: inset 1mm -1mm 0 #000000c7, -0.3mm 0.3mm 0 0 #000000, -1mm 2mm 1mm 0mm #000000b5 !important;
+      transform: translate(-0.2mm, 0mm) !important;
+      background-color: #417f3e;
+  }
+  .EgoMenuButton:hover {
+    box-shadow: inset 1mm -1mm 0 #0000001f, -1mm 1mm 0 0.3mm #000000, -1mm 2mm 1mm 0mm #0000006b;
+    transform: translate(1mm, -1mm);
+    background-color: #75b472;
+}
       .EgoMenuContainer.active + .EgoMenuHoverArea {
           width: 15vmax;
           height: 15vmax;
@@ -844,6 +855,19 @@ iframe#dressUpIframe {
       <button class="EgoMenuButton" id="egoSlopeGame">Slope</button>
       <button class="EgoMenuButton" id="egoDressUpGame">Dress Up Game</button>
       <button class="EgoMenuButton" id="egoAmongUsOffline">Among Us (offline)</button>
+      <button class="EgoMenuButton" id="egoConnectFour">Connect Four</button>
+      <button class="EgoMenuButton" id="egoMobileGames">Mobile Games (yad)</button>
+      <button class="EgoMenuButton" id="egoMidTierGames">Yiv Games</button>
+      <button class="EgoMenuButton" id="egoRun3">Run 3</button>
+      <button class="EgoMenuButton" id="egoPacMan">Pac Man</button>
+      <button class="EgoMenuButton" id="egoCheckers">Checkers</button>
+      <button class="EgoMenuButton" id="egoChess">Chess</button>
+      <button class="EgoMenuButton" id="egoFNAFWeb">FNAF Web</button>
+
+
+
+      
+      <button class="EgoMenuButton" id="egoTicTacToe">Tic Tac Toe</button>
 
       </div>
       </div>
@@ -1217,6 +1241,20 @@ egoDressUpGameBtn.addEventListener("click", () => {
 });
 
 
+
+
+
+
+
+
+const egoTicTacToe = document.getElementById("egoTicTacToe");
+
+egoTicTacToe.addEventListener("click", () => {
+  window.open("https://playtictactoe.org/", "_blank");
+});
+      
+
+
 const amongUsBtn = document.getElementById("egoAmongUsOffline");
 
 amongUsBtn.addEventListener("click", () => {
@@ -1250,6 +1288,414 @@ amongUsBtn.addEventListener("click", () => {
   });
 });
 
+
+
+const egoConnectFour = document.getElementById("egoConnectFour");
+
+egoConnectFour.addEventListener("click", () => {
+  const popupContent = `
+    <div class="EgoWindowPopoutTitle">Connect Four</div>
+
+    <iframe id="connectFourFrame" src="https://www.yiv.com/games/Connect-4/index.html?yad" frameborder="0" style="width: 100%; height: 15rem; border-radius: 2vmin;"></iframe>
+    <button id="showConnectFourSrc" class="EgoMenuButton">Show Frame Source</button>
+    <button id="toggleConnectFourFullScreen" class="EgoMenuButton">Full Screen</button>
+  `;
+  togglePopup(popupContent, true);
+
+  const showConnectFourSrc = document.getElementById("showConnectFourSrc");
+  showConnectFourSrc.addEventListener("click", () => {
+    window.open("https://www.yiv.com/games/Connect-4/index.html?yad", "_blank");
+  });
+
+  const toggleConnectFourFullScreen = document.getElementById("toggleConnectFourFullScreen");
+  const connectFourFrame = document.getElementById("connectFourFrame");
+
+  toggleConnectFourFullScreen.addEventListener("click", () => {
+    if (connectFourFrame.requestFullscreen) {
+      connectFourFrame.requestFullscreen();
+    } else if (connectFourFrame.mozRequestFullScreen) { 
+      connectFourFrame.mozRequestFullScreen();
+    } else if (connectFourFrame.webkitRequestFullscreen) { 
+      connectFourFrame.webkitRequestFullscreen();
+    } else if (connectFourFrame.msRequestFullscreen) { 
+      connectFourFrame.msRequestFullscreen();
+    }
+  });
+});
+
+
+
+
+
+const egoMobileGames = document.getElementById("egoMobileGames");
+
+egoMobileGames.addEventListener("click", () => {
+  const popupContent = `
+    <div class="EgoWindowPopoutTitle">Yad</div>
+
+    <iframe id="mobileGameFrame" src="https://www.yad.com/" frameborder="0" style="width: 100%;height: 25rem;border-radius: 2vmin;"></iframe>
+    <button id="showMobileGamesSrc" class="EgoMenuButton">Show Page</button>
+    <button id="toggleMobileGamesFullscreen" class="EgoMenuButton">Full Screen</button>
+    <div id="errorDiv" style="display: none;color: #ff7272;font-weight: bold;padding: 3vmin;font-family: monospace;font-size: 3vmin;">Error: The iframe failed to load.</div>
+  `;
+  togglePopup(popupContent, true);
+
+  const showMobileGamesSrc = document.getElementById("showMobileGamesSrc");
+  showMobileGamesSrc.addEventListener("click", () => {
+    window.open("https://www.yad.com/", "_blank");
+  });
+
+  const toggleMobileGamesFullscreen = document.getElementById("toggleMobileGamesFullscreen");
+  const mobileGameFrame = document.getElementById("mobileGameFrame");
+  const errorDiv = document.getElementById("errorDiv");
+
+  toggleMobileGamesFullscreen.addEventListener("click", () => {
+    if (mobileGameFrame.requestFullscreen) {
+      mobileGameFrame.requestFullscreen();
+    } else if (mobileGameFrame.mozRequestFullScreen) { 
+      mobileGameFrame.mozRequestFullScreen();
+    } else if (mobileGameFrame.webkitRequestFullscreen) { 
+      mobileGameFrame.webkitRequestFullscreen();
+    } else if (mobileGameFrame.msRequestFullscreen) { 
+      mobileGameFrame.msRequestFullscreen();
+    }
+  });
+
+  mobileGameFrame.addEventListener("load", () => {
+    errorDiv.style.display = "none";
+    mobileGameFrame.style.display = "block";
+  });
+
+  mobileGameFrame.onerror = () => {
+    errorDiv.style.display = "block";
+    mobileGameFrame.style.display = "none";
+  };
+  
+  window.addEventListener("message", (event) => {
+    if (event.origin === "https://www.yad.com") {
+      if (event.data === "errorDivVisible") {
+        errorDiv.style.display = "block";
+        mobileGameFrame.style.display = "none";
+      }
+    }
+  });
+});
+
+const egoMidTierGames = document.getElementById("egoMidTierGames");
+
+egoMidTierGames.addEventListener("click", () => {
+  const popupContent = `
+    <div class="EgoWindowPopoutTitle">Yiv Games</div>
+
+    <iframe id="egoMidTierGameFrame" src="https://www.yiv.com/" frameborder="0" style="width: 100%;height: 25rem;border-radius: 2vmin;"></iframe>
+    <button id="showMidTierGameSource" class="EgoMenuButton">Show Page</button>
+    <button id="toggleMidTierGameFullScreen" class="EgoMenuButton">Full Screen</button>
+  `;
+  togglePopup(popupContent, true);
+
+  const showMidTierGameSource = document.getElementById("showMidTierGameSource");
+  showMidTierGameSource.addEventListener("click", () => {
+    window.open("https://www.yiv.com/", "_blank");
+  });
+
+  const toggleMidTierGameFullScreen = document.getElementById("toggleMidTierGameFullScreen");
+  const egoMidTierGameFrame = document.getElementById("egoMidTierGameFrame");
+
+  toggleMidTierGameFullScreen.addEventListener("click", () => {
+    if (egoMidTierGameFrame.requestFullscreen) {
+      egoMidTierGameFrame.requestFullscreen();
+    } else if (egoMidTierGameFrame.mozRequestFullScreen) { 
+      egoMidTierGameFrame.mozRequestFullScreen();
+    } else if (egoMidTierGameFrame.webkitRequestFullscreen) { 
+      egoMidTierGameFrame.webkitRequestFullscreen();
+    } else if (egoMidTierGameFrame.msRequestFullscreen) { 
+      egoMidTierGameFrame.msRequestFullscreen();
+    }
+  });
+});
+
+
+
+
+const egoRun3 = document.getElementById("egoRun3");
+
+egoRun3.addEventListener("click", () => {
+  const popupContent = `
+    <div class="EgoWindowPopoutTitle">Run 3</div>
+
+    <iframe id="egoRun3Iframe" src="https://lekug.github.io/tn6pS9dCf37xAhkJv/" frameborder="0" style="width: 100%;height: 20rem;border-radius: 2vmin;"></iframe>
+    <button id="showRun3Source" class="EgoMenuButton">Show Frame Source</button>
+    <button id="toggleRun3Fullscreen" class="EgoMenuButton">Full Screen</button>
+  `;
+  togglePopup(popupContent, true);
+
+  const showRun3Source = document.getElementById("showRun3Source");
+  showRun3Source.addEventListener("click", () => {
+    window.open("https://lekug.github.io/tn6pS9dCf37xAhkJv/", "_blank");
+  });
+
+  const toggleRun3Fullscreen = document.getElementById("toggleRun3Fullscreen");
+  const egoRun3Iframe = document.getElementById("egoRun3Iframe");
+
+  toggleRun3Fullscreen.addEventListener("click", () => {
+    if (egoRun3Iframe.requestFullscreen) {
+      egoRun3Iframe.requestFullscreen();
+    } else if (egoRun3Iframe.mozRequestFullScreen) { 
+      egoRun3Iframe.mozRequestFullScreen();
+    } else if (egoRun3Iframe.webkitRequestFullscreen) { 
+      egoRun3Iframe.webkitRequestFullscreen();
+    } else if (egoRun3Iframe.msRequestFullscreen) { 
+      egoRun3Iframe.msRequestFullscreen();
+    }
+  });
+});
+
+
+
+
+const egoPacMan = document.getElementById("egoPacMan");
+
+egoPacMan.addEventListener("click", () => {
+  let isLocalStorageAllowed = true;
+  try {
+    localStorage.setItem("test", "test");
+    localStorage.removeItem("test");
+  } catch (error) {
+    isLocalStorageAllowed = false;
+  }
+
+  const popupContent = `
+    <div class="EgoWindowPopoutTitle">Pac Man</div>
+    
+    ${isLocalStorageAllowed ? `
+      <iframe id="egoPacManIframe" src="https://masonicgit.github.io/pacman/" frameborder="0" style="width: 100%;height: 20rem;border-radius: 2vmin;"></iframe>
+      <button id="showPacManSource" class="EgoMenuButton">Show Frame Source</button>
+      <button id="togglePacManFullscreen" class="EgoMenuButton">Full Screen</button>
+    ` :
+    `<div id="errorDiv" style="color: #ff7272;font-weight: bold;padding: 3vmin;font-family: monospace;font-size: 3vmin;">Error: LocalStorage is not allowed on this webpage. Try running this on a different page, or press show frame source.</div>`
+    }
+  `;
+  
+  togglePopup(popupContent, true);
+
+  if (isLocalStorageAllowed) {
+    const showPacManSource = document.getElementById("showPacManSource");
+    showPacManSource.addEventListener("click", () => {
+      window.open("https://masonicgit.github.io/pacman/", "_blank");
+    });
+
+    const togglePacManFullscreen = document.getElementById("togglePacManFullscreen");
+    const egoPacManIframe = document.getElementById("egoPacManIframe");
+
+    togglePacManFullscreen.addEventListener("click", () => {
+      if (egoPacManIframe.requestFullscreen) {
+        egoPacManIframe.requestFullscreen();
+      } else if (egoPacManIframe.mozRequestFullScreen) { 
+        egoPacManIframe.mozRequestFullScreen();
+      } else if (egoPacManIframe.webkitRequestFullscreen) { 
+        egoPacManIframe.webkitRequestFullscreen();
+      } else if (egoPacManIframe.msRequestFullscreen) { 
+        egoPacManIframe.msRequestFullscreen();
+      }
+    });
+  }
+});
+
+
+
+
+const egoCheckers = document.getElementById("egoCheckers");
+
+egoCheckers.addEventListener("click", () => {
+  const popupContent = `
+    <div class="EgoWindowPopoutTitle">Checkers</div>
+
+    <iframe id="egoCheckersIframe" src="https://kschuetz.github.io/checkers/" frameborder="0" style="width: 190%;height: 35vmax;border-radius: 2vmin;display: block;transform: scale(0.52) translate(-15vw, 10vh);margin: -5vmax;margin-bottom: -5vmax;margin-top: -10vmax;"></iframe>
+    <button id="showEgoCheckersSource" class="EgoMenuButton">Show Page</button>
+    <button id="toggleEgoCheckersFullscreen" class="EgoMenuButton">Full Screen</button>
+    <div style="
+    text-align: left;
+    padding: 2mm;
+    font-family: monospace;
+    font-size: 2vmin;
+">When game doesn't load. Webpage must be blocking it. Retry on a different site."</div>
+    <div id="egoCheckersErrorDiv" style="display: none;color: #ff7272;font-weight: bold;padding: 3vmin;font-family: monospace;font-size: 3vmin;">Error: The iframe failed to load.</div>
+  `;
+  togglePopup(popupContent, true);
+
+  const showEgoCheckersSource = document.getElementById("showEgoCheckersSource");
+  showEgoCheckersSource.addEventListener("click", () => {
+    window.open("https://kschuetz.github.io/checkers/", "_blank");
+  });
+
+  const toggleEgoCheckersFullscreen = document.getElementById("toggleEgoCheckersFullscreen");
+  const egoCheckersIframe = document.getElementById("egoCheckersIframe");
+  const egoCheckersErrorDiv = document.getElementById("egoCheckersErrorDiv");
+
+  toggleEgoCheckersFullscreen.addEventListener("click", () => {
+    if (egoCheckersIframe.requestFullscreen) {
+      egoCheckersIframe.requestFullscreen();
+    } else if (egoCheckersIframe.mozRequestFullScreen) { 
+      egoCheckersIframe.mozRequestFullScreen();
+    } else if (egoCheckersIframe.webkitRequestFullscreen) { 
+      egoCheckersIframe.webkitRequestFullscreen();
+    } else if (egoCheckersIframe.msRequestFullscreen) { 
+      egoCheckersIframe.msRequestFullscreen();
+    }
+  });
+
+  egoCheckersIframe.addEventListener("load", () => {
+    egoCheckersErrorDiv.style.display = "none";
+    egoCheckersIframe.style.display = "block";
+  });
+
+  egoCheckersIframe.onerror = () => {
+    egoCheckersErrorDiv.style.display = "block";
+    egoCheckersIframe.style.display = "none";
+  };
+  
+  window.addEventListener("message", (event) => {
+    if (event.origin === "https://kschuetz.github.io/checkers/") {
+      if (event.data === "errorDivVisible") {
+        egoCheckersErrorDiv.style.display = "block";
+        egoCheckersIframe.style.display = "none";
+      }
+    }
+  });
+});
+
+
+const egoChess = document.getElementById("egoChess");
+
+egoChess.addEventListener("click", () => {
+  const popupContent = `
+    <div class="EgoWindowPopoutTitle">Chess</div>
+
+    <iframe id="egoChessIframe" src="https://mhonert.github.io/chess/" frameborder="0" style="width: 100%;height: 20rem;border-radius: 2vmin;display: block;"></iframe>
+    <button id="showChessSource" class="EgoMenuButton">Show Page</button>
+    <button id="toggleChessFullscreen" class="EgoMenuButton">Full Screen</button>
+    <div id="egoChessErrorDiv" style="display: none;color: #ff7272;font-weight: bold;padding: 3vmin;font-family: monospace;font-size: 3vmin;">Error: The iframe failed to load.</div>
+  `;
+  togglePopup(popupContent, true);
+
+  const showChessSource = document.getElementById("showChessSource");
+  showChessSource.addEventListener("click", () => {
+    window.open("https://mhonert.github.io/chess/", "_blank");
+  });
+
+  const toggleChessFullscreen = document.getElementById("toggleChessFullscreen");
+  const egoChessIframe = document.getElementById("egoChessIframe");
+  const egoChessErrorDiv = document.getElementById("egoChessErrorDiv");
+
+  toggleChessFullscreen.addEventListener("click", () => {
+    if (egoChessIframe.requestFullscreen) {
+      egoChessIframe.requestFullscreen();
+    } else if (egoChessIframe.mozRequestFullScreen) { 
+      egoChessIframe.mozRequestFullScreen();
+    } else if (egoChessIframe.webkitRequestFullscreen) { 
+      egoChessIframe.webkitRequestFullscreen();
+    } else if (egoChessIframe.msRequestFullscreen) { 
+      egoChessIframe.msRequestFullscreen();
+    }
+  });
+
+  egoChessIframe.addEventListener("load", () => {
+    egoChessErrorDiv.style.display = "none";
+    egoChessIframe.style.display = "block";
+  });
+
+  egoChessIframe.onerror = () => {
+    egoChessErrorDiv.style.display = "block";
+    egoChessIframe.style.display = "none";
+  };
+  
+  window.addEventListener("message", (event) => {
+    if (event.origin === "https://mhonert.github.io/chess/") {
+      if (event.data === "errorDivVisible") {
+        egoChessErrorDiv.style.display = "block";
+        egoChessIframe.style.display = "none";
+      }
+    }
+  });
+});
+
+
+
+
+
+const egoFNAFWeb = document.getElementById("egoFNAFWeb");
+
+egoFNAFWeb.addEventListener("click", () => {
+  let isLocalStorageAllowed = true;
+  try {
+    localStorage.setItem("test", "test");
+    localStorage.removeItem("test");
+  } catch (error) {
+    isLocalStorageAllowed = false;
+  }
+
+  const errorDivContent = `
+    <div id="errorDiv" style="color: #ff7272;font-weight: bold;padding: 3vmin;font-family: monospace;font-size: 3vmin;">
+      Error: LocalStorage is not allowed on this webpage. Try running this on a different page, or press show frame source.
+    </div>
+  `;
+  
+  const popupContent = `
+    <div class="EgoWindowPopoutTitle">FNAF Web</div>
+
+    ${isLocalStorageAllowed ? `
+      <iframe id="FNAFWebFrame" src="https://dorukyum.github.io/FNAF-Web/" frameborder="0" style="width: 100%;height: 25rem;border-radius: 2vmin;"></iframe>
+      <button id="showFNAFWebSource" class="EgoMenuButton">Show Page</button>
+      <button id="toggleFNAFWebFullscreen" class="EgoMenuButton">Full Screen</button>
+      <div id="FNAFWebErrorDiv" style="display: none;color: #ff7272;font-weight: bold;padding: 3vmin;font-family: monospace;font-size: 3vmin;">Error: The iframe failed to load.</div>
+    ` :
+    errorDivContent
+    }
+  `;
+  togglePopup(popupContent, true);
+
+  if (isLocalStorageAllowed) {
+    const showFNAFWebSource = document.getElementById("showFNAFWebSource");
+    showFNAFWebSource.addEventListener("click", () => {
+      window.open("https://dorukyum.github.io/FNAF-Web/", "_blank");
+    });
+
+    const toggleFNAFWebFullscreen = document.getElementById("toggleFNAFWebFullscreen");
+    const FNAFWebFrame = document.getElementById("FNAFWebFrame");
+    const FNAFWebErrorDiv = document.getElementById("FNAFWebErrorDiv");
+
+    toggleFNAFWebFullscreen.addEventListener("click", () => {
+      if (FNAFWebFrame.requestFullscreen) {
+        FNAFWebFrame.requestFullscreen();
+      } else if (FNAFWebFrame.mozRequestFullScreen) { 
+        FNAFWebFrame.mozRequestFullScreen();
+      } else if (FNAFWebFrame.webkitRequestFullscreen) { 
+        FNAFWebFrame.webkitRequestFullscreen();
+      } else if (FNAFWebFrame.msRequestFullscreen) { 
+        FNAFWebFrame.msRequestFullscreen();
+      }
+    });
+
+    FNAFWebFrame.addEventListener("load", () => {
+      FNAFWebErrorDiv.style.display = "none";
+      FNAFWebFrame.style.display = "block";
+    });
+
+    FNAFWebFrame.onerror = () => {
+      FNAFWebErrorDiv.style.display = "block";
+      FNAFWebFrame.style.display = "none";
+    };
+    
+    window.addEventListener("message", (event) => {
+      if (event.origin === "https://dorukyum.github.io/FNAF-Web/") {
+        if (event.data === "errorDivVisible") {
+          FNAFWebErrorDiv.style.display = "block";
+          FNAFWebFrame.style.display = "none";
+        }
+      }
+    });
+  }
+});
 
 
 
