@@ -726,7 +726,6 @@ div#egoCookieClickerContainer {
   filter: drop-shadow(-3px 3px 2px green) drop-shadow(1px 1px 0px white);
 }
 .matched {
-  background-color: #2b6928;
   transform: translate(0vmin, -1vmin) scale(1.2);
 }
 .egoSearchInput {
@@ -854,6 +853,8 @@ iframe#dressUpIframe {
       <button class="EgoMenuButton" id="egoAmongUsOffline">Among Us (offline)</button>
       <button class="EgoMenuButton" id="egoConnectFour">Connect Four</button>
       <button class="EgoMenuButton" id="egoMobileGames">Mobile Games (yad)</button>
+      <button class="EgoMenuButton" id="egoUnblockedGames66">Unblocked Games 66</button>
+
       <button class="EgoMenuButton" id="egoMidTierGames">Yiv Games</button>
       <button class="EgoMenuButton" id="egoRun3">Run 3</button>
       <button class="EgoMenuButton" id="egoPacMan">Pac Man</button>
@@ -1119,52 +1120,66 @@ iframe#dressUpIframe {
 
 
 
-var searchInputs = document.querySelectorAll('.egoSearchInput');
-var egoPages = document.getElementsByClassName('EgoPage');
-
-searchInputs.forEach(function(searchInput) {
-  searchInput.addEventListener('input', function() {
-    var searchValue = this.value.toLowerCase();
-    var egoPage = this.closest('.EgoPage');
-    var egoMenuButtons = egoPage.querySelectorAll('.egoButtonHolder .EgoMenuButton');
-    var matchedButtons = [];
-    var unmatchedButtons = [];
-
-    for (var i = 0; i < egoMenuButtons.length; i++) {
-      var menuButton = egoMenuButtons[i];
-      var buttonText = menuButton.textContent.toLowerCase();
-
-      if (searchValue === '') {
-        menuButton.classList.remove('matched');
-        menuButton.parentElement.appendChild(menuButton);
-      } else if (buttonText.includes(searchValue)) {
-        matchedButtons.push(menuButton);
-        menuButton.classList.add('matched');
-      } else {
-        unmatchedButtons.push(menuButton);
-        menuButton.classList.remove('matched');
+  var searchInputs = document.querySelectorAll('.egoSearchInput');
+  var egoPages = document.getElementsByClassName('EgoPage');
+  
+  searchInputs.forEach(function(searchInput) {
+    searchInput.addEventListener('input', function() {
+      var searchValue = this.value.toLowerCase();
+      var egoPage = this.closest('.EgoPage');
+      var egoMenuButtons = egoPage.querySelectorAll('.egoButtonHolder .EgoMenuButton');
+      var matchedButtons = [];
+      var unmatchedButtons = [];
+  
+      for (var i = 0; i < egoMenuButtons.length; i++) {
+        var menuButton = egoMenuButtons[i];
+        var buttonText = menuButton.textContent.toLowerCase();
+        var defaultOrder = menuButton.getAttribute('data-default-order');
+  
+        if (searchValue === '') {
+          menuButton.classList.remove('matched');
+          menuButton.style.order = defaultOrder;
+        } else if (buttonText.includes(searchValue)) {
+          matchedButtons.push(menuButton);
+          menuButton.classList.add('matched');
+        } else {
+          unmatchedButtons.push(menuButton);
+          menuButton.classList.remove('matched');
+          menuButton.style.order = defaultOrder;
+        }
       }
-    }
-
-    if (searchValue !== '') {
-      Array.from(matchedButtons).sort(function(a, b) {
-        var aText = a.textContent.toLowerCase();
-        var bText = b.textContent.toLowerCase();
-
-        var aMatchCount = (aText.match(new RegExp(searchValue, 'gi')) || []).length;
-        var bMatchCount = (bText.match(new RegExp(searchValue, 'gi')) || []).length;
-
-        return bMatchCount - aMatchCount;
-      }).forEach(function(button) {
-        button.parentElement.appendChild(button);
-      });
-    }
-
-    Array.from(unmatchedButtons).forEach(function(button) {
-      button.parentElement.appendChild(button);
+  
+      if (searchValue !== '') {
+        Array.from(matchedButtons).sort(function(a, b) {
+          var aText = a.textContent.toLowerCase();
+          var bText = b.textContent.toLowerCase();
+  
+          var aMatchCount = (aText.match(new RegExp(searchValue, 'gi')) || []).length;
+          var bMatchCount = (bText.match(new RegExp(searchValue, 'gi')) || []).length;
+  
+          return bMatchCount - aMatchCount;
+        }).forEach(function(button) {
+          button.style.order = -1;
+        });
+      }
     });
   });
-});
+  
+  searchInputs.forEach(function(searchInput) {
+    searchInput.addEventListener('input', function() {
+      var searchValue = this.value.toLowerCase();
+      var egoPage = this.closest('.EgoPage');
+      var egoMenuButtons = egoPage.querySelectorAll('.egoButtonHolder .EgoMenuButton');
+  
+      if (searchValue === '') {
+        for (var i = 0; i < egoMenuButtons.length; i++) {
+          var menuButton = egoMenuButtons[i];
+          var defaultOrder = menuButton.getAttribute('data-default-order');
+          menuButton.style.order = defaultOrder;
+        }
+      }
+    });
+  });
 
 
 
@@ -1377,6 +1392,20 @@ egoMobileGames.addEventListener("click", () => {
     }
   });
 });
+
+
+
+
+
+
+
+const egoUnblockedGames66 = document.getElementById("egoUnblockedGames66");
+egoUnblockedGames66.addEventListener("click", () => {
+  window.open("https://sites.google.com/view/classroom66", "_blank");
+});
+
+
+
 
 const egoMidTierGames = document.getElementById("egoMidTierGames");
 
