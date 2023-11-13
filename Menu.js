@@ -1333,7 +1333,7 @@ egoMobileGames.addEventListener("click", () => {
   const popupContent = `
     <div class="EgoWindowPopoutTitle">Yad</div>
 
-    <iframe id="mobileGameFrame" src="https://www.yad.com/" frameborder="0" style="width: 100%;height: 25rem;border-radius: 2vmin;"></iframe>
+    <iframe id="mobileGameFrame" src="https://www.yad.com/" frameborder="0" style="width: 100%;height: 20rem;border-radius: 2vmin;"></iframe>
     <button id="showMobileGamesSrc" class="EgoMenuButton">Show Page</button>
     <button id="toggleMobileGamesFullscreen" class="EgoMenuButton">Full Screen</button>
     <div id="errorDiv" style="display: none;color: #ff7272;font-weight: bold;padding: 3vmin;font-family: monospace;font-size: 3vmin;">Error: The iframe failed to load.</div>
@@ -1387,7 +1387,7 @@ egoMidTierGames.addEventListener("click", () => {
   const popupContent = `
     <div class="EgoWindowPopoutTitle">Yiv Games</div>
 
-    <iframe id="egoMidTierGameFrame" src="https://www.yiv.com/" frameborder="0" style="width: 100%;height: 25rem;border-radius: 2vmin;"></iframe>
+    <iframe id="egoMidTierGameFrame" src="https://www.yiv.com/" frameborder="0" style="width: 100%;height: 20rem;border-radius: 2vmin;"></iframe>
     <button id="showMidTierGameSource" class="EgoMenuButton">Show Page</button>
     <button id="toggleMidTierGameFullScreen" class="EgoMenuButton">Full Screen</button>
   `;
@@ -1644,7 +1644,7 @@ egoFNAFWeb.addEventListener("click", () => {
     <div class="EgoWindowPopoutTitle">FNAF Web</div>
 
     ${isLocalStorageAllowed ? `
-      <iframe id="FNAFWebFrame" src="https://dorukyum.github.io/FNAF-Web/" frameborder="0" style="width: 100%;height: 25rem;border-radius: 2vmin;"></iframe>
+      <iframe id="FNAFWebFrame" src="https://dorukyum.github.io/FNAF-Web/" frameborder="0" style="width: 100%;height: 20rem;border-radius: 2vmin;"></iframe>
       <button id="showFNAFWebSource" class="EgoMenuButton">Show Page</button>
       <button id="toggleFNAFWebFullscreen" class="EgoMenuButton">Full Screen</button>
       <div id="FNAFWebErrorDiv" style="display: none;color: #ff7272;font-weight: bold;padding: 3vmin;font-family: monospace;font-size: 3vmin;">Error: The iframe failed to load.</div>
