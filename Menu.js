@@ -1973,7 +1973,15 @@ document.getElementById("slopeCityPortal").addEventListener("click", function(e)
         }
       };
       
-      document.addEventListener("keydown", handleKeyDown);
+      const enableEventListeners = () => {
+        document.addEventListener("keydown", handleKeyDown);
+      };
+      
+      const disableEventListeners = () => {
+        document.removeEventListener("keydown", handleKeyDown);
+      };
+      
+      disableEventListeners();
       
       const panicKeySwitch = document.getElementById("panicKeySwitch");
       
@@ -2032,8 +2040,10 @@ document.getElementById("slopeCityPortal").addEventListener("click", function(e)
               }
             });
           }
+      
+          enableEventListeners();
         } else {
-          coverClassroom();
+          disableEventListeners();
         }
       });
       
