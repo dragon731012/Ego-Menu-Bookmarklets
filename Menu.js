@@ -889,6 +889,10 @@ button.egoActiveMinimizedPrompt {
       <button class="EgoMenuButton" id="egoFNAF1PORT">FNAF Port</button>
       <button class="EgoMenuButton" id="egoFNAF2">FNAF 2</button>
       <button class="EgoMenuButton" id="egoFNAF3">FNAF 3</button>
+      <button class="EgoMenuButton" id="egoFNAF4">FNAF 4</button>
+      <button class="EgoMenuButton" id="egoFNAFSL">FNAF Sister Location</button>
+
+      <button class="EgoMenuButton" id="egoFNAFUCN">FNAF UCN</button>
 
 
 
@@ -1856,7 +1860,7 @@ const egoFNAF2 = document.getElementById("egoFNAF2");
 
 egoFNAF2.addEventListener("click", () => {
   const popupContent = `
-    <div class="EgoWindowPopoutTitle">FNAF</div>
+    <div class="EgoWindowPopoutTitle">FNAF 2</div>
 
     <iframe id="egoFNAF2Iframe" src="https://run3.io/popgame/fnaf/fnaf2.html" frameborder="0" style="width: 100%;height: 20rem;border-radius: 2vmin;display: block;"></iframe>
     <button id="showFNAF2Source" class="EgoMenuButton">Show Page</button>
@@ -1913,7 +1917,7 @@ const egoFNAF3 = document.getElementById("egoFNAF3");
 
 egoFNAF3.addEventListener("click", () => {
   const popupContent = `
-    <div class="EgoWindowPopoutTitle">FNAF</div>
+    <div class="EgoWindowPopoutTitle">FNAF 3</div>
 
     <iframe id="egoFNAF3Iframe" src="https://run3.io/popgame/fnaf/fnaf3.html" frameborder="0" style="width: 100%;height: 20rem;border-radius: 2vmin;display: block;"></iframe>
     <button id="showFNAF3Source" class="EgoMenuButton">Show Page</button>
@@ -1963,6 +1967,177 @@ egoFNAF3.addEventListener("click", () => {
   });
 });
 
+
+
+
+
+
+const egoFNAF4 = document.getElementById("egoFNAF4");
+
+egoFNAF4.addEventListener("click", () => {
+  const popupContent = `
+    <div class="EgoWindowPopoutTitle">FNAF 4</div>
+
+    <iframe id="egoFNAF4Iframe" src="https://run3.io/popgame/fnaf/fnaf4.html" frameborder="0" style="width: 100%;height: 20rem;border-radius: 2vmin;display: block;"></iframe>
+    <button id="showFNAF4Source" class="EgoMenuButton">Show Page</button>
+    <button id="toggleFNAF4Fullscreen" class="EgoMenuButton">Full Screen</button>
+    <div id="egoFNAF4ErrorDiv" style="display: none;color: #ff7272;font-weight: bold;padding: 3vmin;font-family: monospace;font-size: 3vmin;">Error: The iframe failed to load.</div>
+  `;
+  togglePopup(popupContent, true);
+
+  const showFNAF4Source = document.getElementById("showFNAF4Source");
+  showFNAF4Source.addEventListener("click", () => {
+    window.open("https://run3.io/popgame/fnaf/fnaf4.html", "_blank");
+  });
+
+  const toggleFNAF4Fullscreen = document.getElementById("toggleFNAF4Fullscreen");
+  const egoFNAF4Iframe = document.getElementById("egoFNAF4Iframe");
+  const egoFNAF4ErrorDiv = document.getElementById("egoFNAF4ErrorDiv");
+
+  toggleFNAF4Fullscreen.addEventListener("click", () => {
+    if (egoFNAF4Iframe.requestFullscreen) {
+      egoFNAF4Iframe.requestFullscreen();
+    } else if (egoFNAF4Iframe.mozRequestFullScreen) { 
+      egoFNAF4Iframe.mozRequestFullScreen();
+    } else if (egoFNAF4Iframe.webkitRequestFullscreen) { 
+      egoFNAF4Iframe.webkitRequestFullscreen();
+    } else if (egoFNAF4Iframe.msRequestFullscreen) { 
+      egoFNAF4Iframe.msRequestFullscreen();
+    }
+  });
+
+  egoFNAF4Iframe.addEventListener("load", () => {
+    egoFNAF4ErrorDiv.style.display = "none";
+    egoFNAF4Iframe.style.display = "block";
+  });
+
+  egoFNAF4Iframe.onerror = () => {
+    egoFNAF4ErrorDiv.style.display = "block";
+    egoFNAF4Iframe.style.display = "none";
+  };
+  
+  window.addEventListener("message", (event) => {
+    if (event.origin === "https://run3.io/popgame/fnaf/fnaf4.html") {
+      if (event.data === "errorDivVisible") {
+        egoFNAF4ErrorDiv.style.display = "block";
+        egoFNAF4Iframe.style.display = "none";
+      }
+    }
+  });
+});
+
+
+
+
+const egoFNAFSL = document.getElementById("egoFNAFSL");
+
+egoFNAFSL.addEventListener("click", () => {
+  const popupContent = `
+    <div class="EgoWindowPopoutTitle">FNAF Sister Location</div>
+
+    <iframe id="egoFNAFSLIframe" src="https://run3.io/popgame/fnaf/fnafsl.html" frameborder="0" style="width: 100%;height: 20rem;border-radius: 2vmin;display: block;"></iframe>
+    <button id="showFNAFSLSource" class="EgoMenuButton">Show Page</button>
+    <button id="toggleFNAFSLFullscreen" class="EgoMenuButton">Full Screen</button>
+    <div id="egoFNAFSLErrorDiv" style="display: none;color: #ff7272;font-weight: bold;padding: 3vmin;font-family: monospace;font-size: 3vmin;">Error: The iframe failed to load.</div>
+  `;
+  togglePopup(popupContent, true);
+
+  const showFNAFSLSource = document.getElementById("showFNAFSLSource");
+  showFNAFSLSource.addEventListener("click", () => {
+    window.open("https://run3.io/popgame/fnaf/fnafsl.html", "_blank");
+  });
+
+  const toggleFNAFSLFullscreen = document.getElementById("toggleFNAFSLFullscreen");
+  const egoFNAFSLIframe = document.getElementById("egoFNAFSLIframe");
+  const egoFNAFSLErrorDiv = document.getElementById("egoFNAFSLErrorDiv");
+
+  toggleFNAFSLFullscreen.addEventListener("click", () => {
+    if (egoFNAFSLIframe.requestFullscreen) {
+      egoFNAFSLIframe.requestFullscreen();
+    } else if (egoFNAFSLIframe.mozRequestFullScreen) { 
+      egoFNAFSLIframe.mozRequestFullScreen();
+    } else if (egoFNAFSLIframe.webkitRequestFullscreen) { 
+      egoFNAFSLIframe.webkitRequestFullscreen();
+    } else if (egoFNAFSLIframe.msRequestFullscreen) { 
+      egoFNAFSLIframe.msRequestFullscreen();
+    }
+  });
+
+  egoFNAFSLIframe.addEventListener("load", () => {
+    egoFNAFSLErrorDiv.style.display = "none";
+    egoFNAF4Iframe.style.display = "block";
+  });
+
+  egoFNAFSLIframe.onerror = () => {
+    egoFNAFSLErrorDiv.style.display = "block";
+    egoFNAFSLIframe.style.display = "none";
+  };
+  
+  window.addEventListener("message", (event) => {
+    if (event.origin === "https://run3.io/popgame/fnaf/fnafsl.html") {
+      if (event.data === "errorDivVisible") {
+        egoFNAFSLErrorDiv.style.display = "block";
+        egoFNAFSLIframe.style.display = "none";
+      }
+    }
+  });
+});
+
+
+
+const egoFNAFUCN = document.getElementById("egoFNAFUCN");
+
+egoFNAFUCN.addEventListener("click", () => {
+  const popupContent = `
+    <div class="EgoWindowPopoutTitle">FNAF UCN</div>
+
+    <iframe id="egoFNAFUCNIframe" src="https://kdata1.com/2022/01/customnight.html" frameborder="0" style="width: 100%;height: 20rem;border-radius: 2vmin;display: block;"></iframe>
+    <button id="showFNAFUCNSource" class="EgoMenuButton">Show Page</button>
+    <button id="toggleFNAFUCNFullscreen" class="EgoMenuButton">Full Screen</button>
+    <div id="egoFNAFUCNErrorDiv" style="display: none;color: #ff7272;font-weight: bold;padding: 3vmin;font-family: monospace;font-size: 3vmin;">Error: The iframe failed to load.</div>
+  `;
+  togglePopup(popupContent, true);
+
+  const showFNAFUCNSource = document.getElementById("showFNAFUCNSource");
+  showFNAFUCNSource.addEventListener("click", () => {
+    window.open("https://kdata1.com/2022/01/customnight.html", "_blank");
+  });
+
+  const toggleFNAFUCNFullscreen = document.getElementById("toggleFNAFUCNFullscreen");
+  const egoFNAFUCNIframe = document.getElementById("egoFNAFUCNIframe");
+  const egoFNAFUCNErrorDiv = document.getElementById("egoFNAFUCNErrorDiv");
+
+  toggleFNAFUCNFullscreen.addEventListener("click", () => {
+    if (egoFNAFUCNIframe.requestFullscreen) {
+      egoFNAFUCNIframe.requestFullscreen();
+    } else if (egoFNAFUCNIframe.mozRequestFullScreen) { 
+      egoFNAFUCNIframe.mozRequestFullScreen();
+    } else if (egoFNAFUCNIframe.webkitRequestFullscreen) { 
+      egoFNAFUCNIframe.webkitRequestFullscreen();
+    } else if (egoFNAFUCNIframe.msRequestFullscreen) { 
+      egoFNAFUCNIframe.msRequestFullscreen();
+    }
+  });
+
+  egoFNAFUCNIframe.addEventListener("load", () => {
+    egoFNAFUCNErrorDiv.style.display = "none";
+    egoFNAFUCNIframe.style.display = "block";
+  });
+
+  egoFNAFUCNIframe.onerror = () => {
+    egoFNAFUCNErrorDiv.style.display = "block";
+    egoFNAFUCNIframe.style.display = "none";
+  };
+  
+  window.addEventListener("message", (event) => {
+    if (event.origin === "https://kdata1.com/2022/01/customnight.html") {
+      if (event.data === "errorDivVisible") {
+        egoFNAFUCNErrorDiv.style.display = "block";
+        egoFNAFUCNIframe.style.display = "none";
+      }
+    }
+  });
+});
 
 
 
