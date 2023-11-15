@@ -1570,7 +1570,7 @@ egoPacMan.addEventListener("click", () => {
       <button id="showPacManSource" class="EgoMenuButton">Show Frame Source</button>
       <button id="togglePacManFullscreen" class="EgoMenuButton">Full Screen</button>
     ` :
-    `<div id="errorDiv" style="color: #ff7272;font-weight: bold;padding: 3vmin;font-family: monospace;font-size: 3vmin;">Error: LocalStorage is not allowed on this webpage. Try running this on a different page, or press show frame source.</div>`
+    `<div id="errorDiv" style="color: #ff7272;font-weight: bold;padding: 3vmin;font-family: monospace;font-size: 3vmin;">Error: LocalStorage is not allowed on this webpage. Try running this on a different page.</div>`
     }
   `;
   
@@ -1734,7 +1734,7 @@ egoFNAFWeb.addEventListener("click", () => {
 
   const errorDivContent = `
     <div id="errorDiv" style="color: #ff7272;font-weight: bold;padding: 3vmin;font-family: monospace;font-size: 3vmin;">
-      Error: LocalStorage is not allowed on this webpage. Try running this on a different page, or press show frame source.
+      Error: LocalStorage is not allowed on this webpage. Try running this on a different page.
     </div>
   `;
   
