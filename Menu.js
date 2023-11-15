@@ -169,10 +169,16 @@ javascript: (function() {
         border-radius: 1mm;
         position: absolute;
         margin: 0;
-        right: 1%;
+        right: 0%;
         top: -4.1vmin;
         transform: skewX(-10deg);
     }
+    button.EgoXButton.EgoMinimizeButton {
+      right: 9%;
+  }
+  .EgoPopup.minimized {
+    transform: translateX(-27rem);
+}
     .EgoLogo {
       background-image: url("https://cdn.glitch.global/efbbe251-937e-4c16-898c-cdfb9e3d65f4/fullLogo?v=1697857559723");
       background-size: 4vmax;
@@ -268,6 +274,14 @@ javascript: (function() {
               transform: translateX(-100%);
           }
       }
+      @keyframes slideIn {
+        from {
+            transform: translate3d(-100%, 0, 0);
+        }
+        to {
+            transform: translate3d(0, 0, 0);
+        }
+    }
       .EgoCalculatorButtons {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
@@ -672,9 +686,10 @@ div#ego-stream-container {
   top: -4vmin;
   transform: translateX(-50%) skewx(-10deg);
   left: 50%;
-  width: 35vmin;
+  width: 30vmin;
   font-size: 2vmin;
   border-radius: 1mm;
+  text-align: center;
 }
 div#egoCookieClickerContainer {
   width: 95%;
@@ -741,6 +756,14 @@ iframe#dressUpIframe {
   height: 25vmax;
   border-radius: 2vmax;
   border: none;
+}
+img.egoCoLogo {
+  width: 12rem;
+  bottom: 0vmax;
+  position: relative;
+}
+button.egoActiveMinimizedPrompt {
+  left: 105%;
 }
   `;
 
@@ -874,10 +897,9 @@ iframe#dressUpIframe {
       </div>
       </div>
       <div class="EgoPage" id="EgoPage5">
-      <input class="egoSearchInput" type="text" id="searchInput" placeholder="Search...">
 
       <div>Made by ego. <a href="https://yeahbread.github.io/#ego-menu" target="_blank">Project page</a>.</div>
-
+      <img class="egoCoLogo" src="https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/ego(itterationOne).png?raw=true" alt="ego logo">
     </div>
 
   `;
@@ -897,16 +919,22 @@ iframe#dressUpIframe {
       showSmallImage = toggleCheckbox.checked;
       smallImage.style.display = showSmallImage ? "block" : "none";
   });
+
+
+
+
   var popupContainer = document.createElement("div");
   popupContainer.className = "EgoPopupContainer";
   document.body.appendChild(popupContainer);
   var currentPopup = null;
   var currentPopupContent = null;
   var menuCloseTimer;
-  var closePopup = function() {
+  var minimizeButton;
+  
+  var closePopup = function () {
       if (currentPopup) {
           currentPopup.style.animation = "slideOut 0.3s";
-          currentPopup.addEventListener("animationend", function() {
+          currentPopup.addEventListener("animationend", function () {
               popupContainer.removeChild(currentPopup);
               currentPopup = null;
               currentPopupContent = null;
@@ -914,43 +942,73 @@ iframe#dressUpIframe {
           });
       }
   };
-  var togglePopup = function(content) {
+  
+  var togglePopup = function (content) {
       if (currentPopupContent === content) {
           closePopup();
       } else if (currentPopup) {
           closePopup();
-          setTimeout(function() {
+          setTimeout(function () {
               createPopup(content);
           }, 400);
       } else {
           createPopup(content);
       }
   };
-  var createPopup = function(content) {
+  
+  var createPopup = function (content) {
       var popup = document.createElement("div");
       popup.className = "EgoPopup";
       popup.innerHTML = content;
+  
+      minimizeButton = document.createElement("button");
+      minimizeButton.className = "EgoXButton EgoMinimizeButton";
+      minimizeButton.innerText = "-";
+      minimizeButton.addEventListener("click", function () {
+          toggleMinimize();
+      });
+      popup.appendChild(minimizeButton);
+  
       var popupCloseButton = document.createElement("button");
       popupCloseButton.className = "EgoXButton";
       popupCloseButton.innerText = "X";
-      popupCloseButton.addEventListener("click", function() {
+      popupCloseButton.addEventListener("click", function () {
           closePopup();
       });
       popup.appendChild(popupCloseButton);
       popupContainer.appendChild(popup);
       currentPopup = popup;
       currentPopupContent = content;
-      setTimeout(function() {
+      setTimeout(function () {
           popupContainer.classList.add("active");
       }, 0);
   };
-  hoverArea.addEventListener("mouseenter", function() {
+  
+  var toggleMinimize = function () {
+    if (currentPopup) {
+        var isMinimized = currentPopup.classList.contains("minimized");
+
+        if (isMinimized) {
+            currentPopup.classList.remove("minimized");
+            minimizeButton.innerText = "-";
+            minimizeButton.classList.remove("egoActiveMinimizedPrompt");
+        } else {
+            currentPopup.classList.add("minimized");
+            minimizeButton.innerText = "+";
+            minimizeButton.classList.add("egoActiveMinimizedPrompt");
+        }
+    }
+};
+
+  
+  hoverArea.addEventListener("mouseenter", function () {
       clearTimeout(menuCloseTimer);
       menuContainer.classList.add("active");
   });
-  hoverArea.addEventListener("mouseleave", function() {
+  
+  hoverArea.addEventListener("mouseleave", function () {
       if (!menuContainer.contains(event.relatedTarget)) {
-          menuCloseTimer = setTimeout(function() {
+          menuCloseTimer = setTimeout(function () {
               menuContainer.classList.remove("active");
               if (!currentPopup || !popupContainer.contains(currentPopup)) {
                   closePopup();
@@ -958,17 +1016,24 @@ iframe#dressUpIframe {
           }, 1000);
       }
   });
-  menuContainer.addEventListener("mouseenter", function() {
+  
+  menuContainer.addEventListener("mouseenter", function () {
       clearTimeout(menuCloseTimer);
   });
-  menuContainer.addEventListener("mouseleave", function() {
-      menuCloseTimer = setTimeout(function() {
+  
+  menuContainer.addEventListener("mouseleave", function () {
+      menuCloseTimer = setTimeout(function () {
           menuContainer.classList.remove("active");
           if (!currentPopup || !popupContainer.contains(currentPopup)) {
               closePopup();
           }
       }, 1000);
   });
+  
+  
+
+
+  
   document.getElementById("floodingOption").addEventListener("click", function() {
       var content = `
       <div class="EgoWindowPopoutTitle">Flood History</div>
@@ -1930,8 +1995,8 @@ document.getElementById("slopeCityPortal").addEventListener("click", function(e)
           <div>Auto Clicker</div>
           <label for="delayInput">Enter Delay (in milliseconds):</label>
           <input type="number" id="delayInput" class="EgoInput" min="1" value="${DELAY}">
-          <p>Status: <span id="statusIndicator">Inactive</span></p>
-          <p>Press "." to start the autoclicker, and "," to stop it.</p>
+          <div>Status: <span id="statusIndicator">Inactive</span></div>
+          <div>Press "." to start the autoclicker, and "," to stop it.</div>
         `;
         togglePopup(content);
       
@@ -2220,7 +2285,7 @@ document.getElementById("slopeCityPortal").addEventListener("click", function(e)
         <div class="EgoWindowPopoutTitle">Rock Paper Scissors</div>
 
           <div>Rock Paper Scissors</div>
-          <p>Best of 3 - Choose your weapon:</p>
+          <div>Best of 3 - Choose your weapon:</div>
           <div class="rps-container">
             <div class="user-rps">
               <button id="rock-btn" class="rps-btn">🪨</button>
@@ -2249,7 +2314,7 @@ document.getElementById("slopeCityPortal").addEventListener("click", function(e)
           });
           resultEl.classList.remove("rps-result-visible");
           resultEl.innerHTML = `
-          <p></p>
+          <div></div>
         `;
           robotEl.classList.remove("rps-robot-visible");
         }
@@ -2275,13 +2340,13 @@ document.getElementById("slopeCityPortal").addEventListener("click", function(e)
           }
           
           robotEl.innerHTML = `
-            <p>${robotEmoji}</p>
+            <div>${robotEmoji}</div>
           `;
           robotEl.classList.add("rps-robot-visible");
           
           setTimeout(() => {
             resultEl.innerHTML = `
-              <p>${resultText}</p>
+              <div>${resultText}</div>
             `;
             resultEl.classList.add("rps-result-visible");
             scoreEl.textContent = `You: ${userScore} - Robot: ${robotScore}`;
@@ -2293,7 +2358,7 @@ document.getElementById("slopeCityPortal").addEventListener("click", function(e)
                   `The Best of 3 is a tie (${userScore}-${robotScore})!`;
                 togglePopup(`
                   <div>Rock Paper Scissors</div>
-                  <p>${winnerText}</p>
+                  <div>${winnerText}</div>
                 `);
               }, 2000);
             } else {
