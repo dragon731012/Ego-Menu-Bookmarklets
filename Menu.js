@@ -863,7 +863,7 @@ iframe#dressUpIframe {
       <button class="EgoMenuButton" id="egoCheckers">Checkers</button>
       <button class="EgoMenuButton" id="egoChess">Chess</button>
       <button class="EgoMenuButton" id="egoFNAFWeb">FNAF Web</button>
-      <button class="EgoMenuButton" id="egoFNAF1PORT">FNAF Web</button>
+      <button class="EgoMenuButton" id="egoFNAF1PORT">FNAF Port</button>
 
 
 
