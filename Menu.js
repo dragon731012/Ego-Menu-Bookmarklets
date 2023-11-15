@@ -827,6 +827,8 @@ iframe#dressUpIframe {
       <button class="EgoMenuButton" id="unblockerHammerhead3" data-text="flipgrid.cf">flipgrid.cf</button>
       <button class="EgoMenuButton" id="unblockerHammerhead4" data-text="r.pluralsight.gq">r.pluralsight.gq</button>
       <button class="EgoMenuButton" id="unblockerHammerhead5" data-text="coursera.cf">coursera.cf</button>
+      <button class="EgoMenuButton" id="regularYoutube" data-text="Sometimes all you need in a diff URL">Regular Youtube</button>
+      <button class="EgoMenuButton" id="regularDiscord" data-text="Sometimes all you need in a diff URL">Regular Discord</button>
 
       
       
@@ -861,6 +863,7 @@ iframe#dressUpIframe {
       <button class="EgoMenuButton" id="egoCheckers">Checkers</button>
       <button class="EgoMenuButton" id="egoChess">Chess</button>
       <button class="EgoMenuButton" id="egoFNAFWeb">FNAF Web</button>
+      <button class="EgoMenuButton" id="egoFNAF1PORT">FNAF Web</button>
 
 
 
@@ -1100,6 +1103,9 @@ iframe#dressUpIframe {
     { id: "#unblockerHammerhead4", url: "https://r.pluralsight.gq" },
     { id: "#unblockerHammerhead5", url: "https://www.coursera.cf/" },
     { id: "#unblockerHammerhead6", url: "https://search.mugmovies.pics/" },
+    { id: "#regularYoutube", url: "https://youtube.com/" },
+    { id: "#regularDiscord", url: "https://discord.com/" },
+
 
 
 
@@ -1723,6 +1729,59 @@ egoFNAFWeb.addEventListener("click", () => {
   }
 });
 
+const egoFNAF1PORT = document.getElementById("egoFNAF1PORT");
+
+egoFNAF1PORT.addEventListener("click", () => {
+  const popupContent = `
+    <div class="EgoWindowPopoutTitle">FNAF</div>
+
+    <iframe id="egoFNAF1PORTIframe" src="https://ubg98.github.io/FNAF/" frameborder="0" style="width: 100%;height: 20rem;border-radius: 2vmin;display: block;"></iframe>
+    <button id="showFNAF1PORTSource" class="EgoMenuButton">Show Page</button>
+    <button id="toggleFNAF1PORTFullscreen" class="EgoMenuButton">Full Screen</button>
+    <div id="egoFNAF1PORTErrorDiv" style="display: none;color: #ff7272;font-weight: bold;padding: 3vmin;font-family: monospace;font-size: 3vmin;">Error: The iframe failed to load.</div>
+  `;
+  togglePopup(popupContent, true);
+
+  const showFNAF1PORTSource = document.getElementById("showFNAF1PORTSource");
+  showFNAF1PORTSource.addEventListener("click", () => {
+    window.open("https://ubg98.github.io/FNAF/", "_blank");
+  });
+
+  const toggleFNAF1PORTFullscreen = document.getElementById("toggleFNAF1PORTFullscreen");
+  const egoFNAF1PORTIframe = document.getElementById("egoFNAF1PORTIframe");
+  const egoFNAF1PORTErrorDiv = document.getElementById("egoFNAF1PORTErrorDiv");
+
+  toggleFNAF1PORTFullscreen.addEventListener("click", () => {
+    if (egoFNAF1PORTIframe.requestFullscreen) {
+      egoFNAF1PORTIframe.requestFullscreen();
+    } else if (egoFNAF1PORTIframe.mozRequestFullScreen) { 
+      egoFNAF1PORTIframe.mozRequestFullScreen();
+    } else if (egoFNAF1PORTIframe.webkitRequestFullscreen) { 
+      egoFNAF1PORTIframe.webkitRequestFullscreen();
+    } else if (egoFNAF1PORTIframe.msRequestFullscreen) { 
+      egoFNAF1PORTIframe.msRequestFullscreen();
+    }
+  });
+
+  egoFNAF1PORTIframe.addEventListener("load", () => {
+    egoFNAF1PORTErrorDiv.style.display = "none";
+    egoFNAF1PORTIframe.style.display = "block";
+  });
+
+  egoFNAF1PORTIframe.onerror = () => {
+    egoFNAF1PORTErrorDiv.style.display = "block";
+    egoFNAF1PORTIframe.style.display = "none";
+  };
+  
+  window.addEventListener("message", (event) => {
+    if (event.origin === "https://ubg98.github.io/FNAF/") {
+      if (event.data === "errorDivVisible") {
+        egoFNAF1PORTErrorDiv.style.display = "block";
+        egoFNAF1PORTIframe.style.display = "none";
+      }
+    }
+  });
+});
 
 
 
