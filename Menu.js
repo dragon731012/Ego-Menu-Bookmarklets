@@ -888,6 +888,7 @@ button.egoActiveMinimizedPrompt {
       <button class="EgoMenuButton" id="egoFNAFWeb">FNAF Web</button>
       <button class="EgoMenuButton" id="egoFNAF1PORT">FNAF Port</button>
       <button class="EgoMenuButton" id="egoFNAF2">FNAF 2</button>
+      <button class="EgoMenuButton" id="egoFNAF3">FNAF 3</button>
 
 
 
@@ -1907,6 +1908,60 @@ egoFNAF2.addEventListener("click", () => {
 
 
 
+
+const egoFNAF3 = document.getElementById("egoFNAF3");
+
+egoFNAF3.addEventListener("click", () => {
+  const popupContent = `
+    <div class="EgoWindowPopoutTitle">FNAF</div>
+
+    <iframe id="egoFNAF3Iframe" src="https://run3.io/popgame/fnaf/fnaf3.html" frameborder="0" style="width: 100%;height: 20rem;border-radius: 2vmin;display: block;"></iframe>
+    <button id="showFNAF3Source" class="EgoMenuButton">Show Page</button>
+    <button id="toggleFNAF3Fullscreen" class="EgoMenuButton">Full Screen</button>
+    <div id="egoFNAF3ErrorDiv" style="display: none;color: #ff7272;font-weight: bold;padding: 3vmin;font-family: monospace;font-size: 3vmin;">Error: The iframe failed to load.</div>
+  `;
+  togglePopup(popupContent, true);
+
+  const showFNAF3Source = document.getElementById("showFNAF3Source");
+  showFNAF3Source.addEventListener("click", () => {
+    window.open("https://run3.io/popgame/fnaf/fnaf3.html", "_blank");
+  });
+
+  const toggleFNAF3Fullscreen = document.getElementById("toggleFNAF3Fullscreen");
+  const egoFNAF3Iframe = document.getElementById("egoFNAF3Iframe");
+  const egoFNAF3ErrorDiv = document.getElementById("egoFNAF3ErrorDiv");
+
+  toggleFNAF3Fullscreen.addEventListener("click", () => {
+    if (egoFNAF3Iframe.requestFullscreen) {
+      egoFNAF3Iframe.requestFullscreen();
+    } else if (egoFNAF3Iframe.mozRequestFullScreen) { 
+      egoFNAF3Iframe.mozRequestFullScreen();
+    } else if (egoFNAF3Iframe.webkitRequestFullscreen) { 
+      egoFNAF3Iframe.webkitRequestFullscreen();
+    } else if (egoFNAF3Iframe.msRequestFullscreen) { 
+      egoFNAF3Iframe.msRequestFullscreen();
+    }
+  });
+
+  egoFNAF3Iframe.addEventListener("load", () => {
+    egoFNAF3ErrorDiv.style.display = "none";
+    egoFNAF3Iframe.style.display = "block";
+  });
+
+  egoFNAF3Iframe.onerror = () => {
+    egoFNAF3ErrorDiv.style.display = "block";
+    egoFNAF3Iframe.style.display = "none";
+  };
+  
+  window.addEventListener("message", (event) => {
+    if (event.origin === "https://run3.io/popgame/fnaf/fnaf3.html") {
+      if (event.data === "errorDivVisible") {
+        egoFNAF3ErrorDiv.style.display = "block";
+        egoFNAF3Iframe.style.display = "none";
+      }
+    }
+  });
+});
 
 
 
