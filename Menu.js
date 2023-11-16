@@ -761,9 +761,19 @@ img.egoCoLogo {
   width: 12rem;
   bottom: 0vmax;
   position: relative;
+  animation: egoSnakeSway cubic-bezier(0.88, -1.9, 0, 3.26) infinite 3s;
+  animation-delay: 2s;
 }
 button.egoActiveMinimizedPrompt {
   left: 105%;
+}
+@keyframes egoSnakeSway {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(10px); /* Adjust the distance of the sway */
+  }
 }
   `;
 
