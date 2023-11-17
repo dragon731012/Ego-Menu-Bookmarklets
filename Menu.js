@@ -728,7 +728,7 @@ div#egoCookieClickerContainer {
   transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
   z-index: 999999;
   font-size: 1.1vmax;
-  text-align: right;
+  text-align: left;
   pointer-events: none;
   width: max-content;
   max-width: 20vmax;
@@ -775,6 +775,30 @@ button.egoActiveMinimizedPrompt {
     transform: translateX(10px); /* Adjust the distance of the sway */
   }
 }
+.egooHTMLHeader {
+  font-family: monospace;
+  font-size: 1.5vmax;
+  font-weight: bolder;
+  padding: 0;
+  margin: 0;
+}
+.egoHTMLHeader2 {
+  font-family: monospace;
+  font-size: 1.2vmax;
+  margin-top: 3vmin;
+  font-weight: bold;
+  margin-bottom: 1vmin;
+}
+.egoHTMLHeader3 {
+  font-family: monospace;
+  font-size: 2vmin;
+  text-align: left;
+  padding: 2vmin;
+}
+.matched {
+  transform: translate(0vmin, -1vmin) scale(1.2);
+  filter: hue-rotate(35deg) contrast(1.5) saturate(1.5);
+}
   `;
 
 
@@ -802,7 +826,10 @@ button.egoActiveMinimizedPrompt {
           <button class="EgoMenuButton" data-text="Cheat and hacks for school" id="EgoButton2">Hacks/Cheats</button>
           <button class="EgoMenuButton" data-text="Unblocked sites or unblockers" id="EgoButton3">Unblocked</button>
           <button class="EgoMenuButton" data-text="Unblocked games/custom games" id="EgoButton4">Games</button>
+          <button class="EgoMenubutton" data-text="Downloadable HTML's" id="EgoButton6">HTML's</button>
+
           <button class="EgoMenuButton" data-text="Information about Ego Menu" id="EgoButton5">Info</button>
+          
       </div>
       </div>
       <h2 class="EgoLogo"></h2>
@@ -855,11 +882,14 @@ button.egoActiveMinimizedPrompt {
       <button class="EgoMenuButton" id="unblockerMetallic" data-text="metallic.xyz.wf">metallic.xyz.wf</button>
       <button class="EgoMenuButton" id="unblockerMetallic2" data-text="metalli.zc.al">metalli.zc.al</button>
       <button class="EgoMenuButton" id="unblockerGalaxy" data-text="galaxy.lag.tf">galaxy.lag.tf</button>
-      <button class="EgoMenuButton" id="unblockerHammerhead" data-text="typeracer.gq">typeracer.gq</button>
-      <button class="EgoMenuButton" id="unblockerHammerhead2" data-text="quizlet.gq">quizlet.gq</button>
-      <button class="EgoMenuButton" id="unblockerHammerhead3" data-text="flipgrid.cf">flipgrid.cf</button>
-      <button class="EgoMenuButton" id="unblockerHammerhead4" data-text="r.pluralsight.gq">r.pluralsight.gq</button>
-      <button class="EgoMenuButton" id="unblockerHammerhead5" data-text="coursera.cf">coursera.cf</button>
+      <button class="EgoMenuButton" id="unblockerHammerhead" data-text="typeracer.gq by @binary-person">Rammerhead</button>
+      <button class="EgoMenuButton" id="unblockerHammerhead2" data-text="quizlet.gq by @binary-person">Rammerhead</button>
+      <button class="EgoMenuButton" id="unblockerHammerhead3" data-text="flipgrid.cf by @binary-person">Rammerhead</button>
+      <button class="EgoMenuButton" id="unblockerHammerhead4" data-text="r.pluralsight.gq by @binary-person">Rammerhead</button>
+      <button class="EgoMenuButton" id="unblockerHammerhead5" data-text="coursera.cf by @binary-person">Rammerhead</button>
+      <button class="EgoMenuButton" id="unblockerDogeSurf" data-text="Dogesurf.app by @DodgeNetwork">Doge Surf</button>
+      <button class="EgoMenuButton" id="unblockerMocha" data-text="mocha.proudparrot2.tech by @Cafe-Labs">Mocha</button>
+
       <button class="EgoMenuButton" id="regularYoutube" data-text="Sometimes all you need in a diff URL">Regular Youtube</button>
       <button class="EgoMenuButton" id="regularDiscord" data-text="Sometimes all you need in a diff URL">Regular Discord</button>
 
@@ -874,6 +904,8 @@ button.egoActiveMinimizedPrompt {
       <div class="egoButtonHolder">
       <button class="EgoMenuButton" id="UnblockedGamesWorld">Unblocked Games World</button>
       <button class="EgoMenuButton" id="slopeCityPortal">Slope City</button>
+      <button class="EgoMenuButton" data-text="Selenite.cc by @skysthelimitt / skysthelimit.dev"id="egoSelenite">Selenite</button>
+
       <button class="EgoMenuButton" id="BreakoutGame">Breakout</button>
       <button class="EgoMenuButton" id="AsteroidGame">Asteroid</button>
       <button class="EgoMenuButton" id="DinoGameCloaked">Dino Game (cloaked)</button>
@@ -912,10 +944,26 @@ button.egoActiveMinimizedPrompt {
       </div>
       </div>
       <div class="EgoPage" id="EgoPage5">
-
       <div>Made by ego. <a href="https://yeahbread.github.io/#ego-menu" target="_blank">Project page</a>.</div>
       <img class="egoCoLogo" src="https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/ego(itterationOne).png?raw=true" alt="ego logo">
-    </div>
+
+      </div>
+      <div class="EgoPage" id="EgoPage6">
+      <div class="egooHTMLHeader">Downloadable HTML's</div>
+      <div class="egoHTMLHeader2">How do they work?</div>
+      <div class="egoHTMLHeader3">
+      Download HTML files from the URLs below. Run the downloaded HTML files to open local webpages. No internet connection is required.!
+  </div>
+  
+    
+      <button class="EgoMenuButton" id="egoFNAF1HTML">FNAF 1</button>
+      <button class="EgoMenuButton" id="egoFNAF2HTML">FNAF 2</button>
+      <button class="EgoMenuButton" id="egoFNAF3HTML">FNAF 3</button>
+      <button class="EgoMenuButton" id="egoFNAF4HTML">FNAF 4</button>
+      <button class="EgoMenuButton" id="egoFNAFSLHTML">FNAF Sister Location</button>
+
+       </div>
+    
 
   `;
   menuContainer.appendChild(menuContent);
@@ -1184,6 +1232,8 @@ button.egoActiveMinimizedPrompt {
     { id: "#unblockerHammerhead4", url: "https://r.pluralsight.gq" },
     { id: "#unblockerHammerhead5", url: "https://www.coursera.cf/" },
     { id: "#unblockerHammerhead6", url: "https://search.mugmovies.pics/" },
+    { id: "#unblockerDogeSurf", url: "https://dogesurf.app/" },
+    { id: "#unblockerMocha", url: "https://mocha.proudparrot2.tech/" },
     { id: "#regularYoutube", url: "https://youtube.com/" },
     { id: "#regularDiscord", url: "https://discord.com/" },
 
@@ -2164,6 +2214,14 @@ document.getElementById("slopeCityPortal").addEventListener("click", function(e)
   page.open();
 });
       
+document.getElementById("egoSelenite").addEventListener("click", function(e) {
+  e.preventDefault();
+  var page = new ABC({
+    "type": "blank",
+    "url": "https://selenite.cc/"
+  });
+  page.open();
+});
       const breakoutButton = document.querySelector('#BreakoutGame');
 
       breakoutButton.addEventListener('click', () => {
@@ -2291,6 +2349,26 @@ document.getElementById("slopeCityPortal").addEventListener("click", function(e)
 
 
 
+      document.getElementById("egoFNAF1HTML").addEventListener("click", function(e) {
+        window.open("https://ln5.sync.com/dl/5e5345a30#ji3z8gf5-2qp4dq3z-9mncehxv-5bdmwi4h", "_blank");
+      });
+      
+      document.getElementById("egoFNAF2HTML").addEventListener("click", function(e) {
+        window.open("https://ln5.sync.com/dl/a46057250#ea7j9yyj-3utxq6bs-fbs3xgh5-y9az6cze", "_blank");
+      });
+      
+      document.getElementById("egoFNAF3HTML").addEventListener("click", function(e) {
+        window.open("https://ln5.sync.com/dl/c1a624880#4dd7qgfu-q9evgnrw-mrz75u37-pu3m62te", "_blank");
+      });
+
+      document.getElementById("egoFNAF4HTML").addEventListener("click", function(e) {
+        window.open("https://ln5.sync.com/dl/69e6512e0#9jrhwbmx-rrxd2mjs-8yieprh5-nwvvpye2", "_blank");
+      });
+      
+      document.getElementById("egoFNAFSLHTML").addEventListener("click", function(e) {
+        window.open("https://ln5.sync.com/dl/775929770#8y6k3fdm-misf66j4-yjhde8me-npkh7e7v", "_blank");
+      });
+      
 
 
       let isClassroomCovered = false;
@@ -2999,6 +3077,8 @@ document.getElementById("slopeCityPortal").addEventListener("click", function(e)
   const egoPage3 = document.querySelector('#EgoPage3');
   const egoPage4 = document.querySelector('#EgoPage4');
   const egoPage5 = document.querySelector('#EgoPage5');
+  const egoButton6 = document.querySelector('#EgoButton6');
+const egoPage6 = document.querySelector('#EgoPage6');
   const fadeInDuration = 500;
   const fadeOutDuration = 300;
   
@@ -3042,6 +3122,7 @@ document.getElementById("slopeCityPortal").addEventListener("click", function(e)
     fadeOut(egoPage3, fadeOutDuration);
     fadeOut(egoPage4, fadeOutDuration);
     fadeOut(egoPage5, fadeOutDuration);
+    fadeOut(egoPage6, fadeOutDuration);
     fadeIn(egoPage1, fadeInDuration);
   });
   
@@ -3050,6 +3131,7 @@ document.getElementById("slopeCityPortal").addEventListener("click", function(e)
     fadeOut(egoPage3, fadeOutDuration);
     fadeOut(egoPage4, fadeOutDuration);
     fadeOut(egoPage5, fadeOutDuration);
+    fadeOut(egoPage6, fadeOutDuration);
     fadeIn(egoPage2, fadeInDuration);
   });
   
@@ -3058,6 +3140,7 @@ document.getElementById("slopeCityPortal").addEventListener("click", function(e)
     fadeOut(egoPage2, fadeOutDuration);
     fadeOut(egoPage4, fadeOutDuration);
     fadeOut(egoPage5, fadeOutDuration);
+    fadeOut(egoPage6, fadeOutDuration);
     fadeIn(egoPage3, fadeInDuration);
   });
   
@@ -3066,6 +3149,7 @@ document.getElementById("slopeCityPortal").addEventListener("click", function(e)
     fadeOut(egoPage2, fadeOutDuration);
     fadeOut(egoPage3, fadeOutDuration);
     fadeOut(egoPage5, fadeOutDuration);
+    fadeOut(egoPage6, fadeOutDuration);
     fadeIn(egoPage4, fadeInDuration);
   });
   
@@ -3074,9 +3158,17 @@ document.getElementById("slopeCityPortal").addEventListener("click", function(e)
     fadeOut(egoPage2, fadeOutDuration);
     fadeOut(egoPage3, fadeOutDuration);
     fadeOut(egoPage4, fadeOutDuration);
+    fadeOut(egoPage6, fadeOutDuration);
     fadeIn(egoPage5, fadeInDuration);
   });
-
+  egoButton6.addEventListener('click', () => {
+    fadeOut(egoPage1, fadeOutDuration);
+    fadeOut(egoPage2, fadeOutDuration);
+    fadeOut(egoPage3, fadeOutDuration);
+    fadeOut(egoPage4, fadeOutDuration);
+    fadeOut(egoPage5, fadeOutDuration);
+    fadeIn(egoPage6, fadeInDuration);
+  });
 
   
   var hoverAreaClass = "EgoMenuHoverArea";
