@@ -961,6 +961,8 @@ button.egoActiveMinimizedPrompt {
       <button class="EgoMenuButton" id="egoFNAF3HTML">FNAF 3</button>
       <button class="EgoMenuButton" id="egoFNAF4HTML">FNAF 4</button>
       <button class="EgoMenuButton" id="egoFNAFSLHTML">FNAF Sister Location</button>
+      <button class="EgoMenuButton" data-text="(RECOMMENDED) Checkout Eaglercraft.com!" id="egoEaglerCraftOffline">Minecraft</button>
+      <button class="EgoMenuButton" data-text="Checkout Eaglercraft.com!" id="egoEaglerCraftUltimateOffline">Minecraft Online</button>
 
        </div>
     
@@ -2368,8 +2370,17 @@ document.getElementById("egoSelenite").addEventListener("click", function(e) {
       document.getElementById("egoFNAFSLHTML").addEventListener("click", function(e) {
         window.open("https://ln5.sync.com/dl/775929770#8y6k3fdm-misf66j4-yjhde8me-npkh7e7v", "_blank");
       });
-      
 
+      document.getElementById("egoEaglerCraftOffline").addEventListener("click", function(e) {
+        window.open("https://bafybeihqzktptevgim3shzanqnwcdnstac2ud6rqe5zrtudcuo3gnzhsui.ipfs.dweb.link/?filename=Offline_Download_Version.zip", "_blank");
+      });
+
+      document.getElementById("egoEaglerCraftUltimateOffline").addEventListener("click", function(e) {
+        window.open("https://bafybeicagzvkpu3wr7l2jklo54lqu7l5f3lqpqhevp54uekqpsdft2kjvy.ipfs.dweb.link/?filename=EaglercraftX_1.8_Ultimate_Offline.zip", "_blank");
+      });
+      
+      
+      
 
       let isClassroomCovered = false;
       let originalTitle = document.title;
