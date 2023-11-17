@@ -120,7 +120,7 @@ javascript: (function() {
         border-bottom: none;
     }
       .EgoPopupContainer.active {
-          bottom: 35vh;
+          bottom: 21vw;
       }
       .EgoPopup {
         background-color: rgb(0 0 0 / 71%);
@@ -799,6 +799,23 @@ button.egoActiveMinimizedPrompt {
   transform: translate(0vmin, -1vmin) scale(1.2);
   filter: hue-rotate(35deg) contrast(1.5) saturate(1.5);
 }
+button.EgoXButton.EgoPopupDragButton {
+  right: -8%;
+  transform: scaleY(11.5) scaleX(-1.5);
+  top: 45%;
+  border-left: .1px solid black;
+  border-right: 0.1px solid black;
+  border-top: 0.1px solid black;
+  border-bottom: 0.1pt solid black;
+  font-weight: bolder;
+  padding-left: 3px;
+  padding-right: 4px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  border-radius: 0;
+  text-align: center;
+  letter-spacing: -2px;
+}
   `;
 
 
@@ -882,7 +899,7 @@ button.egoActiveMinimizedPrompt {
       <button class="EgoMenuButton" id="unblockerMetallic" data-text="metallic.xyz.wf">metallic.xyz.wf</button>
       <button class="EgoMenuButton" id="unblockerMetallic2" data-text="metalli.zc.al">metalli.zc.al</button>
       <button class="EgoMenuButton" id="unblockerGalaxy" data-text="galaxy.lag.tf">galaxy.lag.tf</button>
-      <button class="EgoMenuButton" id="unblockerHammerhead" data-text="typeracer.gq by @binary-person">Rammerhead</button>
+      <button class="EgoMenuButton" id="unblockerHammerhead" data-text="typeracer.gq by @binary-person">Hammer</button>
       <button class="EgoMenuButton" id="unblockerHammerhead2" data-text="quizlet.gq by @binary-person">Rammerhead</button>
       <button class="EgoMenuButton" id="unblockerHammerhead3" data-text="flipgrid.cf by @binary-person">Rammerhead</button>
       <button class="EgoMenuButton" id="unblockerHammerhead4" data-text="r.pluralsight.gq by @binary-person">Rammerhead</button>
@@ -951,12 +968,13 @@ button.egoActiveMinimizedPrompt {
 
       </div>
       <div class="EgoPage" id="EgoPage6">
+
       <div class="egooHTMLHeader">Downloadable HTML's</div>
       <div class="egoHTMLHeader2">How do they work?</div>
       <div class="egoHTMLHeader3">
       Download HTML files from the URLs below. Run the downloaded HTML files to open local webpages. No internet connection is required.!
   </div>
-  
+
     
       <button class="EgoMenuButton" id="egoFNAF1HTML">FNAF 1</button>
       <button class="EgoMenuButton" id="egoFNAF2HTML">FNAF 2</button>
@@ -997,12 +1015,18 @@ button.egoActiveMinimizedPrompt {
   var currentPopupContent = null;
   var menuCloseTimer;
   var minimizeButton;
-  var dragStart = { x: 0, y: 0 };
-  var isDragging = false;
+  var dragButton;
+  
+  var offset = { x: 0, y: 0 };
+  var draggableOffsetX = 0; 
+  var draggableOffsetY = window.innerHeight * -0.25; 
+  
+  var originalAnimation = window.getComputedStyle(popupContainer).animation; 
   
   var closePopup = function () {
       if (currentPopup) {
           currentPopup.style.animation = "slideOut 0.3s";
+          currentPopup.style.left = -currentPopup.offsetWidth + "px";
           currentPopup.addEventListener("animationend", function () {
               popupContainer.removeChild(currentPopup);
               currentPopup = null;
@@ -1019,7 +1043,7 @@ button.egoActiveMinimizedPrompt {
           closePopup();
           setTimeout(function () {
               createPopup(content);
-          }, 400);
+          }, 0); 
       } else {
           createPopup(content);
       }
@@ -1030,10 +1054,17 @@ button.egoActiveMinimizedPrompt {
       popup.className = "EgoPopup";
       popup.innerHTML = content;
   
+      dragButton = document.createElement("button");
+      dragButton.className = "EgoXButton EgoPopupDragButton";
+      dragButton.innerText = " | | | ";
+      dragButton.addEventListener("mousedown", startDragging);
+      popup.appendChild(dragButton);
+  
       minimizeButton = document.createElement("button");
       minimizeButton.className = "EgoXButton EgoMinimizeButton";
       minimizeButton.innerText = "-";
       minimizeButton.addEventListener("click", function () {
+          resetPopupPosition();
           toggleMinimize();
       });
       popup.appendChild(minimizeButton);
@@ -1042,31 +1073,10 @@ button.egoActiveMinimizedPrompt {
       popupCloseButton.className = "EgoXButton";
       popupCloseButton.innerText = "X";
       popupCloseButton.addEventListener("click", function () {
+          resetPopupPosition();
           closePopup();
       });
       popup.appendChild(popupCloseButton);
-  
-      popup.addEventListener("mousedown", function (e) {
-          isDragging = true;
-          dragStart = {
-              x: e.clientX - popup.getBoundingClientRect().left,
-              y: e.clientY - popup.getBoundingClientRect().top,
-          };
-      });
-  
-      document.addEventListener("mousemove", function (e) {
-          if (isDragging) {
-              var x = e.clientX - dragStart.x;
-              var y = e.clientY - dragStart.y;
-              popup.style.left = x + "px";
-              popup.style.top = y + "px";
-          }
-      });
-  
-      document.addEventListener("mouseup", function () {
-          isDragging = false;
-      });
-  
       popupContainer.appendChild(popup);
       currentPopup = popup;
       currentPopupContent = content;
@@ -1083,13 +1093,55 @@ button.egoActiveMinimizedPrompt {
               currentPopup.classList.remove("minimized");
               minimizeButton.innerText = "-";
               minimizeButton.classList.remove("egoActiveMinimizedPrompt");
+              dragButton.style.display = "inline-block";
           } else {
               currentPopup.classList.add("minimized");
               minimizeButton.innerText = "+";
               minimizeButton.classList.add("egoActiveMinimizedPrompt");
+              dragButton.style.display = "none";
           }
       }
   };
+  
+  var isDragging = false;
+  
+  var startDragging = function (e) {
+      if (!currentPopup.classList.contains("minimized")) {
+          isDragging = true;
+          offset.x = e.clientX - currentPopup.getBoundingClientRect().left - draggableOffsetX;
+          offset.y = e.clientY - currentPopup.getBoundingClientRect().top - draggableOffsetY;
+  
+          document.addEventListener("mousemove", handleDragging);
+          document.addEventListener("mouseup", stopDragging);
+  
+          popupContainer.style.transition = "all 0s ease-in-out";
+      }
+  };
+  
+  var handleDragging = function (e) {
+      if (isDragging) {
+          var newX = e.clientX - offset.x;
+          var newY = e.clientY - offset.y;
+  
+          newX = Math.max(newX, 0);
+          newY = Math.max(newY, 0);
+          newX = Math.min(newX, window.innerWidth - currentPopup.offsetWidth);
+          newY = Math.min(newY, window.innerHeight - currentPopup.offsetHeight);
+  
+          currentPopup.style.left = newX + "px";
+          currentPopup.style.top = newY + "px";
+          currentPopup.style.transition = "all 0s ease-in-out";
+
+      }
+  };
+  
+  var stopDragging = function () {
+      isDragging = false;
+      document.removeEventListener("mousemove", handleDragging);
+      document.removeEventListener("mouseup", stopDragging);
+  
+      popupContainer.style.transition = "all 0.4s ease";
+    };
   
   hoverArea.addEventListener("mouseenter", function () {
       clearTimeout(menuCloseTimer);
@@ -1119,6 +1171,24 @@ button.egoActiveMinimizedPrompt {
           }
       }, 1000);
   });
+  
+  var resetPopupPosition = function () {
+      if (currentPopup) {
+          currentPopup.style.left = "0";
+          currentPopup.style.top = "0";
+          currentPopup.style.transition = "all 0.4s ease";
+
+      }
+  };
+  
+  
+  
+
+  
+
+
+
+
   
 
   
