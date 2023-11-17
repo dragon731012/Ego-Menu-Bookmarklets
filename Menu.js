@@ -826,7 +826,7 @@ button.egoActiveMinimizedPrompt {
           <button class="EgoMenuButton" data-text="Cheat and hacks for school" id="EgoButton2">Hacks/Cheats</button>
           <button class="EgoMenuButton" data-text="Unblocked sites or unblockers" id="EgoButton3">Unblocked</button>
           <button class="EgoMenuButton" data-text="Unblocked games/custom games" id="EgoButton4">Games</button>
-          <button class="EgoMenubutton" data-text="Downloadable HTML's" id="EgoButton6">HTML's</button>
+          <button class="EgoMenuButton" data-text="Downloadable HTML's" id="EgoButton6">HTML's</button>
 
           <button class="EgoMenuButton" data-text="Information about Ego Menu" id="EgoButton5">Info</button>
           
@@ -936,6 +936,7 @@ button.egoActiveMinimizedPrompt {
 
       <button class="EgoMenuButton" id="egoFNAFUCN">FNAF UCN</button>
 
+      <button class="EgoMenuButton" id="egoOfficialCookieClicker">Cookie Clicker</button>
 
 
       
@@ -2091,6 +2092,66 @@ egoFNAF4.addEventListener("click", () => {
 
 
 
+
+const egoOfficialCookieClicker = document.getElementById("egoOfficialCookieClicker");
+
+egoOfficialCookieClicker.addEventListener("click", () => {
+  const popupContent = `
+    <div class="EgoWindowPopoutTitle">Cookie Clicker</div>
+
+    <iframe id="egoCookieClickerIframe" src="https://the.deconstructors.co.uk/tmm-cookieclicker/" frameborder="0" style="width: 100%;height: 20rem;border-radius: 2vmin;display: block;"></iframe>
+    <button id="showCookieClickerSource" class="EgoMenuButton">Show Page</button>
+    
+    <button id="toggleCookieClickerFullscreen" class="EgoMenuButton">Full Screen</button>
+    <div id="CoookieClickerErrorDiv" style="display: none;color: #ff7272;font-weight: bold;padding: 3vmin;font-family: monospace;font-size: 3vmin;">Error: The iframe failed to load.</div>
+
+  `;
+  togglePopup(popupContent, true);
+
+  const showCookieClickerSource = document.getElementById("showCookieClickerSource");
+  showCookieClickerSource.addEventListener("click", () => {
+    window.open("https://the.deconstructors.co.uk/tmm-cookieclicker/", "_blank");
+  });
+
+  const toggleCookieClickerFullscreen = document.getElementById("toggleCookieClickerFullscreen");
+  const egoCookieClickerIframe = document.getElementById("egoCookieClickerIframe");
+  const CoookieClickerErrorDiv = document.getElementById("CoookieClickerErrorDiv");
+
+  toggleCookieClickerFullscreen.addEventListener("click", () => {
+    if (egoCookieClickerIframe.requestFullscreen) {
+      egoCookieClickerIframe.requestFullscreen();
+    } else if (egoCookieClickerIframe.mozRequestFullScreen) { 
+      egoCookieClickerIframe.mozRequestFullScreen();
+    } else if (egoCookieClickerIframe.webkitRequestFullscreen) { 
+      egoCookieClickerIframe.webkitRequestFullscreen();
+    } else if (egoCookieClickerIframe.msRequestFullscreen) { 
+      egoCookieClickerIframe.msRequestFullscreen();
+    }
+  });
+
+  egoCookieClickerIframe.addEventListener("load", () => {
+    CoookieClickerErrorDiv.style.display = "none";
+    egoCookieClickerIframe.style.display = "block";
+  });
+
+  egoCookieClickerIframe.onerror = () => {
+    CoookieClickerErrorDiv.style.display = "block";
+    egoCookieClickerIframe.style.display = "none";
+  };
+  
+  window.addEventListener("message", (event) => {
+    if (event.origin === "https://the.deconstructors.co.uk/tmm-cookieclicker/") {
+      if (event.data === "errorDivVisible") {
+        CoookieClickerErrorDiv.style.display = "block";
+        egoCookieClickerIframe.style.display = "none";
+      }
+    }
+  });
+});
+
+
+
+
 const egoFNAFSL = document.getElementById("egoFNAFSL");
 
 egoFNAFSL.addEventListener("click", () => {
@@ -2200,6 +2261,12 @@ egoFNAFUCN.addEventListener("click", () => {
     }
   });
 });
+
+
+
+
+
+
 
 
 
