@@ -935,12 +935,13 @@ button.egoActiveMinimizedPrompt {
       <button class="EgoMenuButton" id="egoFNAFSL">FNAF Sister Location</button>
 
       <button class="EgoMenuButton" id="egoFNAFUCN">FNAF UCN</button>
+      <button class="EgoMenuButton" id="egoTicTacToe">Tic Tac Toe</button>
 
       <button class="EgoMenuButton" id="egoOfficialCookieClicker">Cookie Clicker</button>
+      <button class="EgoMenuButton" id="egoMobileEmulator">Mobile Emulator</button>
 
 
       
-      <button class="EgoMenuButton" id="egoTicTacToe">Tic Tac Toe</button>
 
       </div>
       </div>
@@ -996,6 +997,8 @@ button.egoActiveMinimizedPrompt {
   var currentPopupContent = null;
   var menuCloseTimer;
   var minimizeButton;
+  var dragStart = { x: 0, y: 0 };
+  var isDragging = false;
   
   var closePopup = function () {
       if (currentPopup) {
@@ -1042,6 +1045,28 @@ button.egoActiveMinimizedPrompt {
           closePopup();
       });
       popup.appendChild(popupCloseButton);
+  
+      popup.addEventListener("mousedown", function (e) {
+          isDragging = true;
+          dragStart = {
+              x: e.clientX - popup.getBoundingClientRect().left,
+              y: e.clientY - popup.getBoundingClientRect().top,
+          };
+      });
+  
+      document.addEventListener("mousemove", function (e) {
+          if (isDragging) {
+              var x = e.clientX - dragStart.x;
+              var y = e.clientY - dragStart.y;
+              popup.style.left = x + "px";
+              popup.style.top = y + "px";
+          }
+      });
+  
+      document.addEventListener("mouseup", function () {
+          isDragging = false;
+      });
+  
       popupContainer.appendChild(popup);
       currentPopup = popup;
       currentPopupContent = content;
@@ -1051,21 +1076,20 @@ button.egoActiveMinimizedPrompt {
   };
   
   var toggleMinimize = function () {
-    if (currentPopup) {
-        var isMinimized = currentPopup.classList.contains("minimized");
-
-        if (isMinimized) {
-            currentPopup.classList.remove("minimized");
-            minimizeButton.innerText = "-";
-            minimizeButton.classList.remove("egoActiveMinimizedPrompt");
-        } else {
-            currentPopup.classList.add("minimized");
-            minimizeButton.innerText = "+";
-            minimizeButton.classList.add("egoActiveMinimizedPrompt");
-        }
-    }
-};
-
+      if (currentPopup) {
+          var isMinimized = currentPopup.classList.contains("minimized");
+  
+          if (isMinimized) {
+              currentPopup.classList.remove("minimized");
+              minimizeButton.innerText = "-";
+              minimizeButton.classList.remove("egoActiveMinimizedPrompt");
+          } else {
+              currentPopup.classList.add("minimized");
+              minimizeButton.innerText = "+";
+              minimizeButton.classList.add("egoActiveMinimizedPrompt");
+          }
+      }
+  };
   
   hoverArea.addEventListener("mouseenter", function () {
       clearTimeout(menuCloseTimer);
@@ -1096,8 +1120,6 @@ button.egoActiveMinimizedPrompt {
       }, 1000);
   });
   
-  
-
 
   
   document.getElementById("floodingOption").addEventListener("click", function() {
@@ -2150,6 +2172,9 @@ egoOfficialCookieClicker.addEventListener("click", () => {
 });
 
 
+document.getElementById("egoMobileEmulator").addEventListener("click", function(e) {
+  window.open("https://now.gg/play/aptoide/1440/aptoide", "_blank");
+});
 
 
 const egoFNAFSL = document.getElementById("egoFNAFSL");
