@@ -765,7 +765,7 @@ img.egoCoLogo {
   animation-delay: 2s;
 }
 button.egoActiveMinimizedPrompt {
-  left: 105%;
+  left: 115%;
 }
 @keyframes egoSnakeSway {
   0%, 100% {
