@@ -1351,7 +1351,7 @@ button.EgoXButton.EgoPopupDragButton {
   document.getElementById("unblockerKazwire").addEventListener("click", function(e) {
     window.open("https://kazwire.com/", "_blank");
   });
-  document.getElementById("#unblockerHydrogen").addEventListener("click", function(e) {
+  document.getElementById("unblockerHydrogen").addEventListener("click", function(e) {
     openABCPage("#unblockerHydrogen", "https://brrrrrr.pages.dev/");
   });
 
