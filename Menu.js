@@ -1333,7 +1333,7 @@ button.EgoXButton.EgoPopupDragButton {
     { id: "#unblockerMocha", url: "https://mocha.proudparrot2.tech/" },
     { id: "#regularYoutube", url: "https://youtube.com/" },
     { id: "#regularDiscord", url: "https://discord.com/" },
-    { id: "unblockerHydrogen", url: "https://brrrrrr.pages.dev/" },
+    { id: "#unblockerHydrogen", url: "https://brrrrrr.pages.dev/" },
 
 
 
