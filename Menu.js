@@ -858,6 +858,7 @@ button.EgoXButton.EgoPopupDragButton {
           <button class="EgoMenuButton" id="floodingOption">Flood History</button>
           <button class="EgoMenuButton" id="calculatorOption">Calculator</button>
           <button class="EgoMenuButton" id="AutoClickerOption">Autoclicker</button>
+          <button onclick="var faviconurl = prompt("Favicon URL"); var title = prompt("Page Title");  var l = document.querySelector("link[rel*='icon']") || document.createElement('link');    l.type = 'image/x-icon';    l.rel = 'shortcut icon';    l.href = faviconurl;    document.getElementsByTagName('head')[0].appendChild(l);    document.title = title;" class="EgoMenuButton" id="TabCloackOption">Tab Cloaker</button>
         </div>
         
         <div class="EgoSwitchContainer">
@@ -906,6 +907,7 @@ button.EgoXButton.EgoPopupDragButton {
       <button class="EgoMenuButton" id="unblockerHammerhead5" data-text="coursera.cf by @binary-person">Rammerhead</button>
       <button class="EgoMenuButton" id="unblockerDogeSurf" data-text="Dogesurf.app by @DodgeNetwork">Doge Surf</button>
       <button class="EgoMenuButton" id="unblockerMocha" data-text="mocha.proudparrot2.tech by @Cafe-Labs">Mocha</button>
+      <button class="EgoMenuButton" id="unblockerHydrogen" data-text="The Hydrogen Proxy!">Hydrogen</button>
 
       <button class="EgoMenuButton" id="regularYoutube" data-text="Sometimes all you need in a diff URL">Regular Youtube</button>
       <button class="EgoMenuButton" id="regularDiscord" data-text="Sometimes all you need in a diff URL">Regular Discord</button>
@@ -1331,6 +1333,7 @@ button.EgoXButton.EgoPopupDragButton {
     { id: "#unblockerMocha", url: "https://mocha.proudparrot2.tech/" },
     { id: "#regularYoutube", url: "https://youtube.com/" },
     { id: "#regularDiscord", url: "https://discord.com/" },
+    { id: "#unblockerHydrogen", url: "https://brrrrrr.pages.dev/" },
 
 
 
@@ -1347,6 +1350,9 @@ button.EgoXButton.EgoPopupDragButton {
 
   document.getElementById("unblockerKazwire").addEventListener("click", function(e) {
     window.open("https://kazwire.com/", "_blank");
+  });
+  document.getElementById("unblockerHydrogen").addEventListener("click", function(e) {
+    openABCPage("#unblockerHydrogen", "https://brrrrrr.pages.dev/");
   });
 
 
@@ -3396,7 +3402,8 @@ const egoPage6 = document.querySelector('#EgoPage6');
     'This is too much... ',
     'You\'re making me crazy... ',
     'I don\'t know what to do... ',
-    'I\'m not sure I want to know... '
+    'I\'m not sure I want to know... ',
+    'Plz wait... forever!'
   ]; 
   
   const randomPrefix = errorPrefixes[Math.floor(Math.random() * errorPrefixes.length)];
