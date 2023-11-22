@@ -892,6 +892,8 @@ button.EgoXButton.EgoPopupDragButton {
 
       <div class="egoButtonHolder">
 
+      <button class="EgoMenuButton" id="unblockedMovieShows" data-text="movie-web.app by mobie-web">Movies and Shows</button>
+
       <button class="EgoMenuButton" id="unblockedYouTube" data-text="Unblocked YouTube">Unblocked YouTube</button>
       <button class="EgoMenuButton" id="unblockerNebula" data-text="nebulaproxy.io">nebulaproxy.io</button>
       <button class="EgoMenuButton" id="unblockerHolyUnblocker" data-text="holyubofficial.net">holyubofficial.net</button>
@@ -1346,7 +1348,9 @@ button.EgoXButton.EgoPopupDragButton {
       openABCPage(element, site.url);
     });
   });
-
+  document.getElementById("unblockedMovieShows").addEventListener("click", function(e) {
+    window.open("https://movie-web.app/", "_blank");
+  });
 
   document.getElementById("unblockerKazwire").addEventListener("click", function(e) {
     window.open("https://kazwire.com/", "_blank");
