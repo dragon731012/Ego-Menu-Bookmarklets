@@ -1465,19 +1465,9 @@ javascript: (function() {
         <div>Fair Warning: exploits like auto answer MAY result in a ban, play it safe and use simpler exploits.</div>
     
 
-        <label class="EgoSwitch">
-          <input type="checkbox" id="showAnswersSwitch">
-          <span class="slider round"></span>
-        </label>
-        <div> Show Answers</div>
-    
-        <label class="EgoSwitch">
-          <input type="checkbox" id="showRegularlySwitch">
-          <span class="slider round"></span>
-        </label>
-        <div> Show On Hold (Hold 'E')</div>
+
         <button id="showBlooketGUIEGO" data-text"by @05konz, AN INCREDIBLE GUI." class="EgoMenuButton">Blooket GUI</button>
-        <div>The above script is incredible, but only works using their GUI, because Blooket is super lame.</div>
+        <div>The above script is incredible, but only works using their GUI/Bookmarklets, because Blooket is super lame.</div>
 
       `;
       togglePopup(popupContent, true);
