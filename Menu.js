@@ -816,6 +816,12 @@ button.EgoXButton.EgoPopupDragButton {
   text-align: center;
   letter-spacing: -2px;
 }
+.correct-ego-bookmarklet {
+  background-color: #46ff46 !important;
+}
+.incorrect-ego-bookmarklet {
+  background-color: #ff4a4a !important;
+}
   `;
 
 
@@ -885,6 +891,8 @@ button.EgoXButton.EgoPopupDragButton {
       <div class="egoButtonHolder">
 
       <button class="EgoMenuButton" id="fetchButton">EdPuzzle Hacks</button>
+      <button class="EgoMenuButton" id="blooketHacksButton">Blooket Hacks</button>
+
       </div>
       </div>
       <div class="EgoPage" id="EgoPage3">
@@ -1306,14 +1314,26 @@ button.EgoXButton.EgoPopupDragButton {
   var head = document.getElementsByTagName('head')[0];
   head.insertBefore(abcScript,head.firstChild);
   
+  abcScript.addEventListener("error", function() {
+    console.log("Error loading ABC script");
+  });
+  
   function openABCPage(element, url) {
     element.addEventListener("click", function(e) {
-      e.preventDefault();
-      var page = new ABC({
-        "type": "blank",
-        "url": url
-      });
-      page.open();
+      try {
+        e.preventDefault();
+        if (typeof ABC !== "undefined") {
+          var page = new ABC({
+            "type": "blank",
+            "url": url
+          });
+          page.open();
+        } else {
+          console.log("Error: ABC is not defined");
+        }
+      } catch (error) {
+        console.log("Error opening ABC page:", error);
+      }
     });
   }
   
@@ -1423,8 +1443,105 @@ button.EgoXButton.EgoPopupDragButton {
     });
   });
 
+  
 
 
+
+
+
+  const blooketHacksButton = document.getElementById("blooketHacksButton");
+  let showAnswersToggle = false;
+  let intervalId = null;
+  let showRegularlyToggle = false;
+  
+  blooketHacksButton.addEventListener("click", () => {
+    const popupContent = `
+      <div class="EgoWindowPopoutTitle">Blooket Hacks</div>
+  
+      <label class="EgoSwitch">
+        <input type="checkbox" id="showAnswersSwitch">
+        <span class="slider round"></span>
+      </label>
+      <div> Show Answers</div>
+  
+      <label class="EgoSwitch">
+        <input type="checkbox" id="showRegularlySwitch">
+        <span class="slider round"></span>
+      </label>
+      <div> Show On Hold (Hold 'E')</div>
+    `;
+    togglePopup(popupContent, true);
+  
+    const showAnswersSwitch = document.getElementById("showAnswersSwitch");
+    showAnswersSwitch.addEventListener("change", () => {
+      showAnswersToggle = showAnswersSwitch.checked;
+      if (showAnswersToggle) {
+        intervalId = setInterval(() => {
+          const { state: o, props: t } = Object.values(document.querySelector('body div[class*="camelCase"]'))[1].children[0]._owner["stateNode"];
+          [...document.querySelectorAll('[class*="answerContainer"]')].forEach((e, s) => {
+            if ((o.question || t.client.question).correctAnswers.includes((o.question || t.client.question).answers[s])) {
+              e.classList.add("correct-ego-bookmarklet");
+              e.classList.remove("incorrect-ego-bookmarklet");
+            } else {
+              e.classList.add("incorrect-ego-bookmarklet");
+              e.classList.remove("correct-ego-bookmarklet");
+            }
+            e.style.transform = "inherit";
+          });
+        }, 150);
+      } else {
+        clearInterval(intervalId);
+        intervalId = null;
+        resetBackgroundColors();
+      }
+    });
+  
+    const showRegularlySwitch = document.getElementById("showRegularlySwitch");
+    showRegularlySwitch.addEventListener("change", () => {
+      showRegularlyToggle = showRegularlySwitch.checked;
+      if (showRegularlyToggle) {
+        document.addEventListener("keydown", handleKeyDownRegularly);
+        document.addEventListener("keyup", handleKeyUpRegularly);
+      } else {
+        document.removeEventListener("keydown", handleKeyDownRegularly);
+        document.removeEventListener("keyup", handleKeyUpRegularly);
+        resetBackgroundColors();
+      }
+    });
+  });
+  
+  function handleKeyDownRegularly(e) {
+    if (e.key === "e") {
+      showRegularly();
+    }
+  }
+  
+  function handleKeyUpRegularly(e) {
+    if (e.key === "e") {
+      resetBackgroundColors();
+    }
+  }
+  
+  function showRegularly() {
+    const { state: o, props: t } = Object.values(document.querySelector('body div[class*="camelCase"]'))[1].children[0]._owner["stateNode"];
+    [...document.querySelectorAll('[class*="answerContainer"]')].forEach((e, s) => {
+      if ((o.question || t.client.question).correctAnswers.includes((o.question || t.client.question).answers[s])) {
+        e.classList.add("correct-ego-bookmarklet");
+        e.classList.remove("incorrect-ego-bookmarklet");
+      } else {
+        e.classList.add("incorrect-ego-bookmarklet");
+        e.classList.remove("correct-ego-bookmarklet");
+      }
+      e.style.transform = "inherit";
+    });
+  }
+  
+  function resetBackgroundColors() {
+    [...document.querySelectorAll('[class*="answerContainer"]')].forEach((e) => {
+      e.classList.remove("correct-ego-bookmarklet");
+      e.classList.remove("incorrect-ego-bookmarklet");
+    });
+  }
 const slopeGameBtn = document.getElementById("egoSlopeGame");
 
 slopeGameBtn.addEventListener("click", () => {
