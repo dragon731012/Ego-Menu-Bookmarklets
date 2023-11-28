@@ -22,6 +22,8 @@ Faster/Alternative 'install' method on [Ego Menu Website](https://yeahbread.gith
 Ego Menu is currently being developed by:
 - me... lol [@yeahbread](https://github.com/yeahbread)
 - [@dragon731012](https://github.com/dragon731012) (Huge list of bookmarklets come from them)
+- [@Coding4Hours](https://github.com/Coding4Hours) 
+
 
 ## Contribution
 Contributions are welcome and encouraged. To contribute, simply fork the repository, make your changes, and submit a pull request for review.
