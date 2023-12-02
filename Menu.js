@@ -119,9 +119,9 @@ javascript: (function() {
         justify-content: center;
         border-bottom: none;
     }
-      .EgoPopupContainer.active {
-          bottom: 21vw;
-      }
+.EgoPopupContainer.active {
+    bottom: 20vh;
+}
       .EgoPopup {
         background-color: rgb(0 0 0 / 71%);
         backdrop-filter: blur(1.5vmin);
