@@ -822,6 +822,10 @@ button.EgoXButton.EgoPopupDragButton {
 .incorrect-ego-bookmarklet {
   background-color: #ff4a4a !important;
 }
+.blooketInstructionsEgo {
+  font-size: 1rem;
+  padding: 1rem;
+}
   `;
 
 
@@ -1470,15 +1474,8 @@ button.EgoXButton.EgoPopupDragButton {
         text-underline-offset: 1mm;
         font-weight: bolder;
     ">Blooket</a> Hacks</div>
-
-    <div style="
-    padding: 1vmin;
-    margin: 0;
-    text-align: center;
-    font-weight: bolder;
-    color: black;
-">⚠️Fair Warning⚠️: exploits like auto-answer may result in an account suspend/ban (learned this the hard way). Use simpler exploits.</div>
-        <br><br>
+<div class="blooketInstructionsEgo">
+<div style="padding: .2rem;margin: 0;text-align: center;font-weight: bolder;color: #ffffff6b;margin-bottom: -2rem;">⚠️Fair Warning⚠️: exploits like auto-answer may result in an account suspend/ban (learned this the hard way). Use simpler exploits.</div>        <br><br>
 
         <div>Blooket hacks GUI has to be downloaded a different way, first install the GUI.</div>
 
@@ -1495,6 +1492,7 @@ button.EgoXButton.EgoPopupDragButton {
         <div>Finally, click "Choose File", then locate the downloaded GUI.</div>
         <br><br>
         <div>To load the cheats, click the newly added bookmarklet. Happy cheating 😈. </div>
+        </div>
 
       `;
       togglePopup(popupContent, true);
