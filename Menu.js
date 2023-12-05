@@ -690,6 +690,8 @@ div#ego-stream-container {
   font-size: 2vmin;
   border-radius: 1mm;
   text-align: center;
+  font-weight: bolder;
+  font-family: monospace;
 }
 div#egoCookieClickerContainer {
   width: 95%;
@@ -923,7 +925,9 @@ button.EgoXButton.EgoPopupDragButton {
       <button class="EgoMenuButton" id="unblockerDogeSurf" data-text="Dogesurf.app by @DodgeNetwork">Doge Surf</button>
       <button class="EgoMenuButton" id="unblockerMocha" data-text="mocha.proudparrot2.tech by @Cafe-Labs">Mocha</button>
       <button class="EgoMenuButton" id="unblockerHydrogen" data-text="The Hydrogen Proxy!">Hydrogen</button>
+      <button class="EgoMenuButton" id="unblockerShadowTabbed" data-text="phantom.lol by Shadow Network">Shadow Tabbed</button>
 
+      
       <button class="EgoMenuButton" id="regularYoutube" data-text="Sometimes all you need in a diff URL">Regular Youtube</button>
       <button class="EgoMenuButton" id="regularDiscord" data-text="Sometimes all you need in a diff URL">Regular Discord</button>
 
@@ -993,11 +997,13 @@ button.EgoXButton.EgoPopupDragButton {
   </div>
 
     
-      <button class="EgoMenuButton" id="egoFNAF1HTML">FNAF 1</button>
-      <button class="EgoMenuButton" id="egoFNAF2HTML">FNAF 2</button>
-      <button class="EgoMenuButton" id="egoFNAF3HTML">FNAF 3</button>
-      <button class="EgoMenuButton" id="egoFNAF4HTML">FNAF 4</button>
-      <button class="EgoMenuButton" id="egoFNAFSLHTML">FNAF Sister Location</button>
+      <button class="EgoMenuButton" data-text="⭐️ 7.3/10 (IMDb)" id="egoFNAF1HTML">FNAF 1</button>
+      <button class="EgoMenuButton" data-text="⭐️ 7.2/10 (IMDb)" id="egoFNAF2HTML">FNAF 2</button>
+      <button class="EgoMenuButton" data-text="⭐️ 6.4/10 (IMDb)" id="egoFNAF3HTML">FNAF 3</button>
+      <button class="EgoMenuButton" data-text="⭐️ 7.1/10 (IMDb)" id="egoFNAF4HTML">FNAF 4</button>
+      <button class="EgoMenuButton" data-text="⭐️ 7.3/10 (IMDb)" id="egoFNAFSLHTML">FNAF Sister Location</button>
+      <button class="EgoMenuButton" data-text="Fruit game :3" id="egoSuikaHTML">Suika Game 🍉</button>
+
       <button class="EgoMenuButton" data-text="(RECOMMENDED) Checkout Eaglercraft.com!" id="egoEaglerCraftOffline">Minecraft</button>
       <button class="EgoMenuButton" data-text="Checkout Eaglercraft.com!" id="egoEaglerCraftUltimateOffline">Minecraft Online</button>
 
@@ -1314,33 +1320,33 @@ button.EgoXButton.EgoPopupDragButton {
 
 
 
-  var abcScript = document.createElement('script');
-  abcScript.src = 'https://cdn.jsdelivr.net/gh/FogNetwork/ABC/index.js';
-  var head = document.getElementsByTagName('head')[0];
-  head.insertBefore(abcScript,head.firstChild);
+
   
-  abcScript.addEventListener("error", function() {
-    console.log("Error loading ABC script");
-  });
-  
-  function openABCPage(element, url) {
-    element.addEventListener("click", function(e) {
-      try {
-        e.preventDefault();
-        if (typeof ABC !== "undefined") {
-          var page = new ABC({
-            "type": "blank",
-            "url": url
-          });
-          page.open();
-        } else {
-          console.log("Error: ABC is not defined");
-        }
-      } catch (error) {
-        console.log("Error opening ABC page:", error);
+  function openBlankPage(url) {
+    try {
+      var win = window.open();
+      if (win === null) {
+        throw new Error("Unable to open a new window");
       }
-    });
+      win.document.body.style.margin = "0";
+      win.document.body.style.height = "100vh";
+      var iframe = win.document.createElement("iframe");
+      iframe.style.border = "none";
+      iframe.style.width = "100%";
+      iframe.style.height = "100%";
+      iframe.style.margin = "0";
+      iframe.referrerpolicy = "no-referrer";
+      iframe.allow = "fullscreen";
+      iframe.src = url;
+      win.document.body.appendChild(iframe);
+    } catch (error) {
+      console.log("Error opening blank page:", error);
+      window.open(url, '_blank');
+    }
   }
+  
+  
+
   
   var sites = [
     { id: "#unblockerNebula", url: "https://nebulaproxy.io/" },
@@ -1362,34 +1368,39 @@ button.EgoXButton.EgoPopupDragButton {
     { id: "#regularDiscord", url: "https://discord.com/" },
     { id: "#unblockerHydrogen", url: "https://brrrrrr.pages.dev/" },
 
-
+   
 
 
     { id: "#unblockerGalaxy", url: "https://galaxy.lag.tf" }
   ];
   
-  sites.forEach(function(site) {
-    document.querySelectorAll(site.id).forEach(function(element) {
-      openABCPage(element, site.url);
+  sites.forEach(function (site) {
+    var elements = document.querySelectorAll(site.id);
+    elements.forEach(function (element) {
+      element.addEventListener("click", function () {
+        openBlankPage(site.url);
+      });
     });
   });
+  
   document.getElementById("unblockedMovieShows").addEventListener("click", function(e) {
-    window.open("https://movie-web.app/", "_blank");
+    openBlankPage("https://movie-web.app/", "_blank");
   });
 
   document.getElementById("egoKahootHacks").addEventListener("click", function(e) {
-      window.open("https://mem.rip/kahoot/", "_blank");
+    openBlankPage("https://mem.rip/kahoot/", "_blank");
     });
   document.getElementById("unblockerKazwire").addEventListener("click", function(e) {
-    window.open("https://kazwire.com/", "_blank");
+    openBlankPage("https://kazwire.com/", "_blank");
   });
-  document.getElementById("unblockerHydrogen").addEventListener("click", function(e) {
-    openABCPage("#unblockerHydrogen", "https://brrrrrr.pages.dev/");
+  document.getElementById("unblockerHydrogen").addEventListener("click", function (e) {
+    openBlankPage("https://brrrrrr.pages.dev/");
   });
-
-
-
   
+
+  document.getElementById("unblockerShadowTabbed").addEventListener("click", function(e) {
+    openBlankPage("https://phantom.lol/", "_blank");
+  });
 
   var searchInputs = document.querySelectorAll('.egoSearchInput');
   var egoPages = document.getElementsByClassName('EgoPage');
@@ -2604,23 +2615,27 @@ document.getElementById("egoSelenite").addEventListener("click", function(e) {
 
 
       document.getElementById("egoFNAF1HTML").addEventListener("click", function(e) {
-        window.open("https://ln5.sync.com/dl/5e5345a30#ji3z8gf5-2qp4dq3z-9mncehxv-5bdmwi4h", "_blank");
+        window.open("https://drive.google.com/file/d/1wCBqyINiCQXFXLExLYd_TYBDa-xjh19h/view?usp=sharing", "_blank");
       });
       
       document.getElementById("egoFNAF2HTML").addEventListener("click", function(e) {
-        window.open("https://ln5.sync.com/dl/a46057250#ea7j9yyj-3utxq6bs-fbs3xgh5-y9az6cze", "_blank");
+        window.open("https://drive.google.com/file/d/1xklHvuaSM0OVA3bSDLWJHrnhnabVKK3a/view?usp=sharing", "_blank");
       });
       
       document.getElementById("egoFNAF3HTML").addEventListener("click", function(e) {
-        window.open("https://ln5.sync.com/dl/c1a624880#4dd7qgfu-q9evgnrw-mrz75u37-pu3m62te", "_blank");
+        window.open("https://drive.google.com/file/d/1_zmSphmX1NB663ySvY568FptzN7KpdCL/view?usp=sharing", "_blank");
       });
 
       document.getElementById("egoFNAF4HTML").addEventListener("click", function(e) {
-        window.open("https://ln5.sync.com/dl/69e6512e0#9jrhwbmx-rrxd2mjs-8yieprh5-nwvvpye2", "_blank");
+        window.open("https://drive.google.com/file/d/1S9PPLJNPG_xY1ZD5wbJa36qfZM3mPi1V/view?usp=sharing", "_blank");
       });
       
       document.getElementById("egoFNAFSLHTML").addEventListener("click", function(e) {
-        window.open("https://ln5.sync.com/dl/775929770#8y6k3fdm-misf66j4-yjhde8me-npkh7e7v", "_blank");
+        window.open("https://drive.google.com/file/d/1ne82rZjyPkN0Ynlv1UCO80oNU3nRliNV/view?usp=sharing", "_blank");
+      });
+      
+      document.getElementById("egoSuikaHTML").addEventListener("click", function(e) {
+        window.open("https://drive.google.com/file/d/1o-CSA2D8vCEirC-p9-awtItWxcP4K3jz/view?usp=sharing", "_blank");
       });
 
       document.getElementById("egoEaglerCraftOffline").addEventListener("click", function(e) {
