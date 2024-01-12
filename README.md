@@ -18,6 +18,9 @@ Faster/Alternative 'install' method on [Ego Menu Website](https://yeahbread.gith
 ## Usage
  You have to click on the bookmarklet ONCE before using it on a page. Sometimes websites block bookmarklets from running or the menu from showing up, nothing I can do about it shake my head
 
+## Help
+ Support and help can be found on this [chat](https://yeahbread.github.io/#chat).
+
 ## Staff
 Ego Menu is currently being developed by:
 - me... lol [@yeahbread](https://github.com/yeahbread)
