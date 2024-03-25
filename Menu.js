@@ -889,7 +889,13 @@ javascript: (function() {
             <span class="slider round"></span>
           </label>
           Panic Key
+          <label class="EgoSwitch">
+          <input type="checkbox" id="blockAdsSwitch">
+          <span class="slider round"></span>
+        </label>
+        Block Ads
         </div>
+
             </div>
             <div class="EgoPage" id="EgoPage2">
         <input class="egoSearchInput" type="text" id="searchInput" placeholder="Search...">
@@ -1210,7 +1216,47 @@ javascript: (function() {
     
   
     
-  
+    document.getElementById("blockAdsSwitch").addEventListener("change", toggleAdBlock);
+
+    function toggleAdBlock() {
+        var blockAdsSwitch = document.getElementById("blockAdsSwitch");
+        
+        if (blockAdsSwitch.checked) {
+          activateAdBlock();
+        } else {
+          deactivateAdBlock();
+        }
+      }
+      
+      function activateAdBlock() {
+        window.adBlockInterval = setInterval(removeIFrames, 500);
+      }
+      
+      function deactivateAdBlock() {
+        clearInterval(window.adBlockInterval);
+      }
+      
+      function removeIFrames() {
+        const exceptOrigins = [
+          'https://disqus.com',
+          document.origin
+        ];
+      
+        var iframes = document.getElementsByTagName('iframe');
+        for (var i = 0; i < iframes.length; i++) {
+          var iframe = iframes[i];
+          try {
+            var orgn = new URL(iframe.src || 'http://unknown-src').origin;
+            if (!exceptOrigins.includes(orgn)) {
+              iframe.parentElement.removeChild(iframe);
+              console.log('REMOVE IFRAME', orgn);
+            }
+          } catch (err) {
+            console.log('REMOVE ERROR', err);
+          }
+        }
+      }
+        
   
   
   
@@ -3212,8 +3258,6 @@ javascript: (function() {
           });
         });
         
-  
-  
   
   
   
