@@ -31,7 +31,8 @@ javascript: (function() {
       'We have a problem, please wait while we resolve it... ',
       'Oopsie, system overload... wait, no, just a silly message... ',
       'What in the world, an error occurred... but we\'ll find a solution. ',
-      'Error message incoming... but don\'t worry, we can fix this. '
+      'Error message incoming... but don\'t worry, we can fix this. ',
+      'Aliens!'
     ];
   
     const bookmarkletAlreadyOpened = window.bookmarkletAlreadyOpened;
@@ -93,12 +94,12 @@ javascript: (function() {
         box-shadow: inset 1mm -1mm 0 #000000c7, -0.3mm 0.3mm 0 0 #000000, -1mm 2mm 1mm 0mm #000000b5 !important;
         transform: translate(-0.2mm, 0mm) !important;
         background-color: #417f3e;
-    }
-    .EgoMenuButton:hover {
-      box-shadow: inset 1mm -1mm 0 #0000001f, -1mm 1mm 0 0.3mm #000000, -1mm 2mm 1mm 0mm #0000006b;
-      transform: translate(1mm, -1mm);
-      background-color: #75b472;
-  }
+      }
+      .EgoMenuButton:hover {
+        box-shadow: inset 1mm -1mm 0 #0000001f, -1mm 1mm 0 0.3mm #000000, -1mm 2mm 1mm 0mm #0000006b;
+        transform: translate(1mm, -1mm);
+        background-color: #75b472;
+      }
         .EgoMenuContainer.active + .EgoMenuHoverArea {
             width: 15vmax;
             height: 15vmax;
@@ -985,6 +986,8 @@ javascript: (function() {
         <button class="EgoMenuButton" id="egoMobileEmulator">Mobile Emulator</button>
         <button class="EgoMenuButton" id="egoPS1Emu">PS1 Emulator</button>
         <button class="EgoMenuButton" id="egoSNESEmu">SNES Emulator</button>
+        <button class="EgoMenuButton" id="ego99Balls">99 Balls</button>
+        <button class="EgoMenuButton" id="egobobrob">Bob the Robber</button>
 
   
         
@@ -2621,7 +2624,181 @@ javascript: (function() {
 
 
 
+
+
+
+
+
+
+
+
+
+  const ego99Balls = document.getElementById("ego99Balls");
   
+  ego99Balls.addEventListener("click", () => {
+    const popupContent = `
+      <div class="EgoWindowPopoutTitle">99 Balls</div>
+  
+      <iframe id="ego99BallsFrame" src="https://raw.githack.com/Hydrogen-Network/Hydrogen-Assets/main/99balls/index.html" frameborder="0" style="width: 100%;height: 20rem;border-radius: 2vmin;display: block;"></iframe>
+      <button id="show99BallsEmu" class="EgoMenuButton">Show Page</button>
+      <button id="toggle99BallsFullscreen" class="EgoMenuButton">Full Screen</button>
+      <div id="ego99BallsErrorDiv" style="display: none;color: #ff7272;font-weight: bold;padding: 3vmin;font-family: monospace;font-size: 3vmin;">Error: The iframe failed to load.</div>
+    `;
+    togglePopup(popupContent, true);
+  
+    const show99Balls = document.getElementById("show99Balls");
+    show99BallsEmu.addEventListener("click", () => {
+      window.open("https://raw.githack.com/Hydrogen-Network/Hydrogen-Assets/main/99balls/index.html", "_blank");
+    });
+  
+    const toggle99BallsFullscreen = document.getElementById("toggle99BallsFullscreen");
+    const ego99BallsFrame = document.getElementById("ego99BallsFrame");
+    const ego99BallsErrorDiv = document.getElementById("ego99BallsErrorDiv");
+  
+    toggle99BallsFullscreen.addEventListener("click", () => {
+      if (ego99BallsFrame.requestFullscreen) {
+        ego99BallsFrame.requestFullscreen();
+      } else if (ego99BallsFrame.mozRequestFullScreen) { 
+        ego99BallsFrame.mozRequestFullScreen();
+      } else if (ego99BallsFrame.webkitRequestFullscreen) { 
+        ego99BallsFrame.webkitRequestFullscreen();
+      } else if (ego99BallsFrame.msRequestFullscreen) { 
+        ego99BallsFrame.msRequestFullscreen();
+      }
+    });
+  
+    ego99BallsFrame.addEventListener("load", () => {
+        ego99BallsErrorDiv.style.display = "none";
+        ego99BallsFrame.style.display = "block";
+    });
+  
+    ego99BallsFrame.onerror = () => {
+        ego99BallsErrorDiv.style.display = "block";
+        ego99BallsFrame.style.display = "none";
+    };
+    
+    window.addEventListener("message", (event) => {
+      if (event.origin === "https://raw.githack.com/Hydrogen-Network/Hydrogen-Assets/main/99balls/index.html") {
+        if (event.data === "errorDivVisible") {
+            ego99BallsErrorDiv.style.display = "block";
+            ego99BallsFrame.style.display = "none";
+        }
+      }
+    });
+  });
+
+
+
+  const ego99Balls = document.getElementById("ego99Balls");
+  
+  ego99Balls.addEventListener("click", () => {
+    const popupContent = `
+      <div class="EgoWindowPopoutTitle">SNES</div>
+  
+      <iframe id="ego99BallsFrame" src="https://raw.githack.com/Hydrogen-Network/Hydrogen-Assets/main/99balls/index.html" frameborder="0" style="width: 100%;height: 20rem;border-radius: 2vmin;display: block;"></iframe>
+      <button id="show99BallsEmu" class="EgoMenuButton">Show Page</button>
+      <button id="toggle99BallsFullscreen" class="EgoMenuButton">Full Screen</button>
+      <div id="ego99BallsErrorDiv" style="display: none;color: #ff7272;font-weight: bold;padding: 3vmin;font-family: monospace;font-size: 3vmin;">Error: The iframe failed to load.</div>
+    `;
+    togglePopup(popupContent, true);
+  
+    const show99Balls = document.getElementById("show99Balls");
+    show99Balls.addEventListener("click", () => {
+      window.open("https://raw.githack.com/Hydrogen-Network/Hydrogen-Assets/main/99balls/index.html", "_blank");
+    });
+  
+    const toggle99BallsFullscreen = document.getElementById("toggle99BallsFullscreen");
+    const ego99BallsFrame = document.getElementById("ego99BallsFrame");
+    const ego99BallsErrorDiv = document.getElementById("ego99BallsErrorDiv");
+  
+    toggle99BallsFullscreen.addEventListener("click", () => {
+      if (ego99BallsFrame.requestFullscreen) {
+        ego99BallsFrame.requestFullscreen();
+      } else if (ego99BallsFrame.mozRequestFullScreen) { 
+        ego99BallsFrame.mozRequestFullScreen();
+      } else if (ego99BallsFrame.webkitRequestFullscreen) { 
+        ego99BallsFrame.webkitRequestFullscreen();
+      } else if (ego99BallsFrame.msRequestFullscreen) { 
+        ego99BallsFrame.msRequestFullscreen();
+      }
+    });
+  
+    ego99BallsFrame.addEventListener("load", () => {
+        ego99BallsErrorDiv.style.display = "none";
+        ego99BallsFrame.style.display = "block";
+    });
+  
+    ego99BallsFrame.onerror = () => {
+        ego99BallsErrorDiv.style.display = "block";
+        ego99BallsFrame.style.display = "none";
+    };
+    
+    window.addEventListener("message", (event) => {
+      if (event.origin === "https://raw.githack.com/Hydrogen-Network/Hydrogen-Assets/main/99balls/index.html") {
+        if (event.data === "errorDivVisible") {
+            ego99BallsErrorDiv.style.display = "block";
+            ego99BallsFrame.style.display = "none";
+        }
+      }
+    });
+  });
+
+
+
+  const egobobrob = document.getElementById("egobobrob");
+  
+  egobobrob.addEventListener("click", () => {
+    const popupContent = `
+      <div class="EgoWindowPopoutTitle">Bob the Robber</div>
+  
+      <iframe id="egobobrobFrame" src="https://raw.githack.com/Hydrogen-Network/Hydrogen-Assets/main/99balls/index.html" frameborder="0" style="width: 100%;height: 20rem;border-radius: 2vmin;display: block;"></iframe>
+      <button id="showbobrobEmu" class="EgoMenuButton">Show Page</button>
+      <button id="togglebobrobFullscreen" class="EgoMenuButton">Full Screen</button>
+      <div id="egobobrobErrorDiv" style="display: none;color: #ff7272;font-weight: bold;padding: 3vmin;font-family: monospace;font-size: 3vmin;">Error: The iframe failed to load.</div>
+    `;
+    togglePopup(popupContent, true);
+  
+    const showbobrob = document.getElementById("showbobrob");
+    showbobrob.addEventListener("click", () => {
+      window.open("https://raw.githack.com/Hydrogen-Network/Hydrogen-Assets/main/bobtherobber/index.html", "_blank");
+    });
+  
+    const togglebobrobFullscreen = document.getElementById("togglebobrobFullscreen");
+    const egobobrobFrame = document.getElementById("egobobrobFrame");
+    const egobobrobErrorDiv = document.getElementById("egobobrobErrorDiv");
+  
+    togglebobrobFullscreen.addEventListener("click", () => {
+      if (egobobrobFrame.requestFullscreen) {
+        egobobrobFrame.requestFullscreen();
+      } else if (egobobrobFrame.mozRequestFullScreen) { 
+        egobobrobFrame.mozRequestFullScreen();
+      } else if (egobobrobFrame.webkitRequestFullscreen) { 
+        egobobrobFrame.webkitRequestFullscreen();
+      } else if (egobobrobFrame.msRequestFullscreen) { 
+        egobobrobFrame.msRequestFullscreen();
+      }
+    });
+  
+    egobobrobFrame.addEventListener("load", () => {
+        egobobrobErrorDiv.style.display = "none";
+        egobobrobFrame.style.display = "block";
+    });
+  
+    egobobrobFrame.onerror = () => {
+        egobobrobErrorDiv.style.display = "block";
+        egobobrobFrame.style.display = "none";
+    };
+    
+    window.addEventListener("message", (event) => {
+      if (event.origin === "https://raw.githack.com/Hydrogen-Network/Hydrogen-Assets/main/bobtherobber/index.html") {
+        if (event.data === "errorDivVisible") {
+            egobobrobErrorDiv.style.display = "block";
+            egobobrobFrame.style.display = "none";
+        }
+      }
+    });
+  });
+          
   
   
   document.getElementById("UnblockedGamesWorld").addEventListener("click", function(e) {
