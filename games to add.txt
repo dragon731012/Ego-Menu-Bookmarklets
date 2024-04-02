@@ -42,3 +42,9 @@ https://raw.githack.com/Hydrogen-Network/Hydrogen-Assets/main/tetris/index.html
 
 vex6
 https://raw.githack.com/Hydrogen-Network/Hydrogen-Assets/main/vex6/index.html
+
+temple run
+https://temple-run-5bp6.onrender.com/
+
+AWESOME TANKS 2
+https://awesome-tanks-2.onrender.com
