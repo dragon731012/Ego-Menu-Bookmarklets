@@ -1,0 +1,44 @@
+bob the robber 2
+https://raw.githack.com/Hydrogen-Network/Hydrogen-Assets/main/bobtherobber2/index.html
+
+bounceback
+https://raw.githack.com/Hydrogen-Network/Hydrogen-Assets/main/bounceback/index.html
+
+breaklock
+https://raw.githack.com/Hydrogen-Network/Hydrogen-Assets/main/breaklock/index.html
+
+chess
+https://raw.githack.com/Hydrogen-Network/Hydrogen-Assets/main/chess/index.html
+
+chroma incident
+https://raw.githack.com/Hydrogen-Network/Hydrogen-Assets/main/chromaincident/index.html
+
+Chrome Dino
+https://raw.githack.com/Hydrogen-Network/Hydrogen-Assets/main/chromedino/index.html
+
+cookie clicker
+https://raw.githack.com/Hydrogen-Network/Hydrogen-Assets/main/cookie-clicker/index.html
+
+edge not found
+https://raw.githack.com/Hydrogen-Network/Hydrogen-Assets/main/edgenotfound/index.html
+
+Geometry dash
+https://raw.githack.com/Hydrogen-Network/Hydrogen-Assets/main/geometrydash/index.html
+
+Minecraft
+https://raw.githack.com/Hydrogen-Network/Hydrogen-Assets/main/minecraft/index.html
+
+Monkey mart
+https://raw.githack.com/Hydrogen-Network/Hydrogen-Assets/main/monkeymart/index.html
+
+paper minecraft
+https://raw.githack.com/Hydrogen-Network/Hydrogen-Assets/main/papermc/index.html
+
+retro bowl
+https://raw.githack.com/Hydrogen-Network/Hydrogen-Assets/main/retro-bowl/index.html
+
+tetris
+https://raw.githack.com/Hydrogen-Network/Hydrogen-Assets/main/tetris/index.html
+
+vex6
+https://raw.githack.com/Hydrogen-Network/Hydrogen-Assets/main/vex6/index.html
