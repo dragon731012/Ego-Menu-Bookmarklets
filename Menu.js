@@ -992,7 +992,8 @@ javascript: (function() {
         </div>
         </div>
         <div class="EgoPage" id="EgoPage5">
-        <div>Made by ego. <a href="https://yeahbread.github.io/#ego-menu" target="_blank">Project page</a>.</div>
+        <div>Made by yeahbread. <a href="https://yeahbread.github.io/#ego-menu" target="_blank">Project page</a>.</div>
+        <div>egomenuhelp@gmail.com</div>
         <img class="egoCoLogo" src="https://github.com/yeahbread/Ego-Menu-Bookmarklets/blob/main/ego(itterationOne).png?raw=true" alt="ego logo">
   
         </div>
@@ -2775,27 +2776,27 @@ javascript: (function() {
   
   
         document.getElementById("egoFNAF1HTML").addEventListener("click", function(e) {
-          window.open("https://drive.google.com/file/d/1wCBqyINiCQXFXLExLYd_TYBDa-xjh19h/view?usp=sharing", "_blank");
+          window.open("https://drive.google.com/file/d/1j9XZRNzVMJ4kn3yPjR3uCnOFm8ucspQK/view?usp=drive_link", "_blank");
         });
         
         document.getElementById("egoFNAF2HTML").addEventListener("click", function(e) {
-          window.open("https://drive.google.com/file/d/1xklHvuaSM0OVA3bSDLWJHrnhnabVKK3a/view?usp=sharing", "_blank");
+          window.open("https://drive.google.com/file/d/1Jj6NbIu8hK2e_b1e0xmyvHveEc6i7G5V/view?usp=drive_link", "_blank");
         });
         
         document.getElementById("egoFNAF3HTML").addEventListener("click", function(e) {
-          window.open("https://drive.google.com/file/d/1_zmSphmX1NB663ySvY568FptzN7KpdCL/view?usp=sharing", "_blank");
+          window.open("https://drive.google.com/file/d/1eYtFV2_Le1bfLRdxbDYWJtHJAriTWRQ0/view?usp=drive_link", "_blank");
         });
   
         document.getElementById("egoFNAF4HTML").addEventListener("click", function(e) {
-          window.open("https://drive.google.com/file/d/1S9PPLJNPG_xY1ZD5wbJa36qfZM3mPi1V/view?usp=sharing", "_blank");
+          window.open("https://drive.google.com/file/d/1QF5QUPRbKyxMRjiBNoTKOXYl4439EM7M/view?usp=drive_link", "_blank");
         });
         
         document.getElementById("egoFNAFSLHTML").addEventListener("click", function(e) {
-          window.open("https://drive.google.com/file/d/1ne82rZjyPkN0Ynlv1UCO80oNU3nRliNV/view?usp=sharing", "_blank");
+          window.open("https://drive.google.com/file/d/1u7U_fbKxvw_O6iKAJRCdsNjveeMdTk0R/view?usp=drive_link", "_blank");
         });
         
         document.getElementById("egoSuikaHTML").addEventListener("click", function(e) {
-          window.open("https://drive.google.com/file/d/1o-CSA2D8vCEirC-p9-awtItWxcP4K3jz/view?usp=sharing", "_blank");
+          window.open("https://drive.google.com/file/d/13LKQZjgZyaltoov3X_g8smzhDwlPVoU8/view?usp=drive_link", "_blank");
         });
   
         document.getElementById("egoEaglerCraftOffline").addEventListener("click", function(e) {
